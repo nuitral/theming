@@ -1,0 +1,10 @@
+@use "../misc" as misc;
+@use "./background" as background;
+@use "./button" as button;
+@use "./color" as color;
+
+@mixin include-all-theming-mixins($theme) {
+  @include background.generate-background-classes($theme);
+  @include color.generate-color-classes($theme);
+  @include button.generate-button-background-classes($theme);
+}

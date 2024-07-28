@@ -1,0 +1,3 @@
+@use '../scss/index' as nuitral;
+
+@include nuitral.generate-theme(nuitral.$light-mode, nuitral.$dark-mode);
