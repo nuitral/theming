@@ -1,7 +1,21 @@
 {
   "name": "@nuitral/theming",
   "version": "0.0.0",
+  "files": [
+    "dist/*"
+  ],
   "description": "Nuitral Theming",
   "author": "Nicola Centonze",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build:sass": "rm -rf dist && sass lib/themes/default.scss:dist/styles.css"
+  },
+  "keywords": [
+    "css",
+    "scss",
+    "theming"
+  ],
+  "devDependencies": {
+    "sass": "^1.77.6"
+  }
 }

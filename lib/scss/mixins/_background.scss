@@ -1,0 +1,21 @@
+@use "../variables";
+
+@mixin generate-background-classes($theme) {
+  @each $var, $scale in $theme {
+    @each $scale-var, $color in $scale {
+      @if $scale-var == 500 {
+        .nuitral-background-#{$var} {
+          @include background-properties($color);
+        }
+      }
+      .nuitral-background-#{$var}-#{$scale-var} {
+        @include background-properties($color);
+      }
+    }
+  }
+}
+
+@mixin background-properties($color) {
+  background-color: $color;
+  transition: variables.$transitions-global;
+}

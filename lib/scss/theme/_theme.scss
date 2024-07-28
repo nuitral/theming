@@ -1,0 +1,29 @@
+@use '../mixins' as mixins;
+
+@mixin generate-theme(
+  $scale-light,
+  $scale-dark,
+  $theme-name: "nuitral",
+  $light-class: "nuitral-light-mode",
+  $dark-class: "nuitral-dark-mode"
+) {
+
+  [nuitral-theme="#{$theme-name}"] {
+    &.#{$light-class} {
+      @include generate-css-variables($scale-light);
+      @include mixins.include-all-theming-mixins($scale-light);
+    }
+    &.#{$dark-class} {
+      @include generate-css-variables($scale-dark);
+      @include mixins.include-all-theming-mixins($scale-dark);
+    }
+  }
+}
+
+@mixin generate-css-variables($scale-mode) {
+  @each $var, $scale in $scale-mode {
+    @each $scale-var, $color in $scale {
+      --#{$var}-#{$scale-var}: #{$color};
+    }
+  }
+}
