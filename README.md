@@ -4,7 +4,7 @@
   </a>
 </p>
 
-<p align="center" style="font-size: 24px; font-weight: 600; margin-bottom: 20px">nuitral - Theming</p>
+<h3>nuitral - Theming</h3>
 <p>This library is part of the <b>nuitral</b> suite and handles theming creation.</p>
 <p>It takes advantage of the power of SCSS and the flexibility of CSS to provide the best development experience.</p>
 
