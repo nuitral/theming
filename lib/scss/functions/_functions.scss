@@ -1,0 +1,31 @@
+@use "sass:math";
+
+@function generate-color-scale($base-color) {
+  $scale: (
+    100: lighten($base-color, 40%),
+    200: lighten($base-color, 30%),
+    300: lighten($base-color, 20%),
+    400: lighten($base-color, 10%),
+    500: $base-color,
+    600: darken($base-color, 10%),
+    700: darken($base-color, 20%),
+    800: darken($base-color, 30%),
+    900: darken($base-color, 40%),
+  );
+  @return $scale;
+}
+
+@function calc-luminance($color) {
+  @return math.div(
+    (0.299 * red($color) + 0.587 * green($color) + 0.114 * blue($color)),
+    255
+  );
+}
+
+@function apply-text-color($background-color, $black, $white) {
+  @if calc-luminance($background-color) > 0.5 {
+    @return $black;
+  } @else {
+    @return $white;
+  }
+}

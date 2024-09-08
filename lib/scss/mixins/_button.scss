@@ -1,9 +1,9 @@
-@use "../misc";
+@use "../functions";
 @use "../variables";
 
 @mixin generate-button-background($color) {
   background-color: $color;
-  color: misc.apply-text-color($color);
+  color: functions.apply-text-color($color, variables.$black, variables.$white);
   box-shadow: variables.$box-shadow;
 }
 
@@ -22,9 +22,12 @@
 
   &:disabled {
     background-color: rgba($color, 0.4);
-    color: lighten(misc.apply-text-color($color), 30%);
+    color: lighten(
+      functions.apply-text-color($color, variables.$black, variables.$white),
+      30%
+    );
     pointer-events: none;
-    box-shadow: none
+    box-shadow: none;
   }
 }
 

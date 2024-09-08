@@ -1,0 +1,9 @@
+@mixin generate-css-variables($scale-mode) {
+  & {
+    @each $var, $scale in $scale-mode {
+      @each $scale-var, $color in $scale {
+        --#{$var}-#{$scale-var}: #{$color};
+      }
+    }
+  }
+}
