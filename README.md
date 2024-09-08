@@ -4,16 +4,16 @@
   </a>
 </p>
 
-<h2 align="center">nuitral - Theming</h2>
-<br>
+<p align="center" style="font-size: 24px; font-weight: 600; margin-bottom: 20px">nuitral - Theming</p>
 <p>This library is part of the <b>nuitral</b> suite and handles theming creation.</p>
-<p >It takes advantage of SCSS's power and CSS's flexibility to provide the best development experience.</p>
+<p>It takes advantage of the power of SCSS and the flexibility of CSS to provide the best development experience.</p>
 
-Check out the official [nuitral](https://nuitral.github.io) suite page
+Check out the official [nuitral](https://nuitral.github.io) suite page.
 
 ### License
 
 This project is licensed under the [MIT License](https://github.com/nuitral/theming/blob/main/LICENSE).
 
 
-<div>Copyright (c) 2024 Nicola Centonze</div>
+Copyright (c) 2024 Nicola Centonze
+ 
