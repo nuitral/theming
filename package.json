@@ -1,6 +1,6 @@
 {
   "name": "@nuitral/theming",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "sass": "dist/scss/_index.scss",
   "style": "dist/nuitral.css",
   "publishConfig": {

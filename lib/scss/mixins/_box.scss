@@ -1,0 +1,31 @@
+@use "../functions";
+@use "../variables";
+
+@mixin generate-box-classes($color) {
+  border-color: $color;
+  color: $color;
+}
+
+@mixin generate-box-states($color) {
+  &:hover {
+    background-color: lighten($color, 20%);
+    color: darken($color, 30%),
+  }
+}
+
+@mixin generate-box-background-classes($theme) {
+  @each $var, $scale in $theme {
+    @each $scale-var, $color in $scale {
+      @if $scale-var == 500 {
+        .nuitral-box-background-#{$var} {
+          @include generate-box-classes($color);
+          @include generate-box-states($color);
+        }
+      }
+      .nuitral-box-background-#{$var}-#{$scale-var} {
+        @include generate-box-classes($color);
+        @include generate-box-states($color);
+      }
+    }
+  }
+}

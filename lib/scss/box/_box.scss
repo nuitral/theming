@@ -1,0 +1,14 @@
+@use "../variables";
+
+.nuitral-box {
+  padding: 1rem;
+  border: 1px solid;
+  border-radius: 10px;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+
+  .nuitral-box-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+}

@@ -1,5 +1,6 @@
 @use "./background" as background;
 @use "./button" as button;
+@use "./box" as box;
 @use "./color" as color;
 @use "./theme" as theme;
 
@@ -7,5 +8,6 @@
   @include background.generate-background-classes($scale);
   @include color.generate-color-classes($scale);
   @include button.generate-button-background-classes($scale);
+  @include box.generate-box-background-classes($scale);
   @include theme.generate-css-variables($scale);
 }
