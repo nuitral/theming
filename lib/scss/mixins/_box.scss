@@ -9,7 +9,7 @@
 @mixin generate-box-states($color) {
   &:hover {
     background-color: lighten($color, 20%);
-    color: darken($color, 30%),
+    color: darken($color, 30%);
   }
 }
 
