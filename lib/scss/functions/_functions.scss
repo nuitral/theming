@@ -1,25 +1,27 @@
 @use "sass:math";
+@use "sass:color";
 
 @function generate-color-scale($base-color) {
   $scale: (
-    100: lighten($base-color, 40%),
-    200: lighten($base-color, 30%),
-    300: lighten($base-color, 20%),
-    400: lighten($base-color, 10%),
+    100: color.scale($base-color, $lightness: 40%),
+    200: color.scale($base-color, $lightness: 30%),
+    300: color.scale($base-color, $lightness: 20%),
+    400: color.scale($base-color, $lightness: 10%),
     500: $base-color,
-    600: darken($base-color, 10%),
-    700: darken($base-color, 20%),
-    800: darken($base-color, 30%),
-    900: darken($base-color, 40%),
+    600: color.scale($base-color, $lightness: -10%),
+    700: color.scale($base-color, $lightness: -20%),
+    800: color.scale($base-color, $lightness: -30%),
+    900: color.scale($base-color, $lightness: -40%),
   );
   @return $scale;
 }
 
 @function calc-luminance($color) {
-  @return math.div(
-    (0.299 * red($color) + 0.587 * green($color) + 0.114 * blue($color)),
-    255
-  );
+  $r: math.div(color.channel($color, "red", $space: rgb), 255);
+  $g: math.div(color.channel($color, "green", $space: rgb), 255);
+  $b: math.div(color.channel($color, "blue", $space: rgb), 255);
+
+  @return (0.2126 * $r) + (0.7152 * $g) + (0.0722 * $b);
 }
 
 @function apply-text-color($background-color, $black, $white) {

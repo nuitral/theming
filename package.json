@@ -29,7 +29,7 @@
   "homepage": "https://github.com/nuitral/theming#readme",
   "devDependencies": {
     "ncp": "^2.0.0",
-    "sass": "^1.77.6",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "sass": "^1.79.4"
   }
 }

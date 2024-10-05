@@ -1,5 +1,6 @@
 @use "../functions";
 @use "../variables";
+@use "sass:color";
 
 @mixin generate-box-classes($color) {
   border-color: $color;
@@ -8,8 +9,8 @@
 
 @mixin generate-box-states($color) {
   &:hover {
-    background-color: lighten($color, 20%);
-    color: darken($color, 30%);
+    background-color: color.scale($color, $lightness: 40%);
+    color: color.scale($color, $lightness: -30%);
   }
 }
 

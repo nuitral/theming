@@ -1,5 +1,6 @@
 @use "../functions";
 @use "../variables";
+@use "sass:color";
 
 @mixin generate-button-background($color) {
   background-color: $color;
@@ -9,11 +10,11 @@
 
 @mixin generate-button-states($color) {
   &:hover {
-    background-color: lighten($color, 10%);
+    background-color: color.scale($color, $lightness: 10%);
   }
 
   &:active {
-    background-color: darken($color, 10%);
+    background-color: color.scale($color, $lightness: -10%);
   }
 
   &:focus {
@@ -22,9 +23,10 @@
 
   &:disabled {
     background-color: rgba($color, 0.4);
-    color: lighten(
-      functions.apply-text-color($color, variables.$black, variables.$white),
-      30%
+    color: functions.apply-text-color(
+      $color,
+      variables.$black,
+      variables.$white
     );
     pointer-events: none;
     box-shadow: none;
