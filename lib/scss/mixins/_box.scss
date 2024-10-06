@@ -4,7 +4,6 @@
 
 @mixin generate-box-classes($color) {
   border-color: $color;
-  color: $color;
 }
 
 @mixin generate-box-states($color) {
