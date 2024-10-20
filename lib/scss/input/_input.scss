@@ -1,0 +1,30 @@
+@use "../variables";
+
+.nuitral-input {
+  height: variables.$height-atoms;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border: 1px solid variables.$background-700;
+  border-radius: variables.$border-radius-atoms;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: variables.$background-400;
+  color: unset;
+  transition: variables.$transitions-global;
+  input {
+    width: 100%;
+    font-size: 16px;
+    outline: none;
+    transition: variables.$transitions-global;
+    border: none;
+    background: transparent;
+  }
+  &.disabled {
+    pointer-events: none;
+    background-color: variables.$background-600;
+  }
+  &:focus-within {
+    border-color: variables.$primary;
+  }
+}

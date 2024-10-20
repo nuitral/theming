@@ -13,11 +13,14 @@
   [nuitral-theme="#{$theme-name}"] {
     &.#{$light-class} {
       color: $light-text-color;
-      @include mixins.include-all-theming-mixins($scale-light);
+      @include mixins.include-all-theming-mixins(
+        $scale-light,
+        $light-text-color
+      );
     }
     &.#{$dark-class} {
       color: $dark-text-color;
-      @include mixins.include-all-theming-mixins($scale-dark);
+      @include mixins.include-all-theming-mixins($scale-dark, $dark-text-color);
     }
   }
 }

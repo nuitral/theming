@@ -2,12 +2,14 @@
 @use "./button" as button;
 @use "./box" as box;
 @use "./color" as color;
+@use "./input" as input;
 @use "./theme" as theme;
 
-@mixin include-all-theming-mixins($scale) {
+@mixin include-all-theming-mixins($scale, $text-color) {
   @include background.generate-background-classes($scale);
   @include color.generate-color-classes($scale);
   @include button.generate-button-background-classes($scale);
   @include box.generate-box-background-classes($scale);
   @include theme.generate-css-variables($scale);
+  @include input.generate-color-classes($text-color);
 }
