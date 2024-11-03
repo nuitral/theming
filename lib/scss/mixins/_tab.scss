@@ -1,0 +1,26 @@
+@use "../variables";
+
+@mixin generate-tab-classes($theme, $text-color) {
+  @each $var, $scale in $theme {
+    @each $scale-var, $color in $scale {
+      @if $scale-var == 500 {
+        .nuitral-tab-#{$var} {
+          color: $text-color;
+          @include border-properties($color);
+        }
+      }
+      .nuitral-tab-#{$var}-#{$scale-var} {
+        color: $text-color;
+        @include border-properties($color);
+      }
+    }
+  }
+}
+
+@mixin border-properties($color) {
+  .nuitral-tab {
+    &.nuitral-tab-active {
+      border-bottom-color: $color;
+    }
+  }
+}
