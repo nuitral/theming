@@ -20,4 +20,9 @@
   &:not(.nuitral-tab-active) {
     border-bottom: 2px solid transparent;
   }
+
+  &.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+  }
 }
