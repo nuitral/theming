@@ -1,10 +1,10 @@
-$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-$box-shadow-focus: 0 4px 8px rgba(0, 0, 0, 0.2);
+$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !default;
+$box-shadow-focus: 0 4px 8px rgba(0, 0, 0, 0.2) !default;
 
-$border-radius-atoms-horizontal-ray: 0.5rem;
-$border-radius-atoms-vertical-ray: 0.5rem;
+$border-radius-atoms-horizontal-ray: 0.5rem !default;
+$border-radius-atoms-vertical-ray: 0.5rem !default;
 $border-radius-atoms: $border-radius-atoms-horizontal-ray
-  $border-radius-atoms-vertical-ray;
+  $border-radius-atoms-vertical-ray !default;
 
 $border-radius-atoms: (
   top-left: $border-radius-atoms,
@@ -13,10 +13,10 @@ $border-radius-atoms: (
   bottom-left: $border-radius-atoms,
 );
 
-$border-radius-molecules-horizontal-ray: .9rem;
-$border-radius-molecules-vertical-ray: .9rem;
+$border-radius-molecules-horizontal-ray: 1rem !default;
+$border-radius-molecules-vertical-ray: 1rem !default;
 $border-radius-molecules: $border-radius-molecules-horizontal-ray
-  $border-radius-molecules-vertical-ray;
+  $border-radius-molecules-vertical-ray !default;
 
 $border-radius-molecules: (
   top-left: $border-radius-molecules,
@@ -25,5 +25,5 @@ $border-radius-molecules: (
   bottom-left: $border-radius-molecules,
 );
 
-$height-atoms: 40px;
-$transitions-global: all 0.3s ease;
+$height-atoms: 40px !default;
+$transitions-global: all 0.3s ease !default;
