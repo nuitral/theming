@@ -1,9 +1,10 @@
 @use "../variables";
+@use "../mixins";
 
 .nuitral-card {
-  padding: 8px 16px;
+  padding: 1rem;
   box-sizing: border-box;
-  border-radius: variables.$border-radius-atoms;
+  @include mixins.apply-radius-molecules();
   border: 1px solid;
 
   &.has-shadow {

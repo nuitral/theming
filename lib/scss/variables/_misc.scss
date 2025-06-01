@@ -13,8 +13,8 @@ $border-radius-atoms: (
   bottom-left: $border-radius-atoms,
 );
 
-$border-radius-molecules-horizontal-ray: 1rem;
-$border-radius-molecules-vertical-ray: 1rem;
+$border-radius-molecules-horizontal-ray: .9rem;
+$border-radius-molecules-vertical-ray: .9rem;
 $border-radius-molecules: $border-radius-molecules-horizontal-ray
   $border-radius-molecules-vertical-ray;
 
