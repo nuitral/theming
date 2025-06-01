@@ -1,6 +1,6 @@
 {
   "name": "@nuitral/theming",
-  "version": "0.0.1-alpha.8",
+  "version": "0.0.1-alpha.9",
   "sass": "dist/scss/_index.scss",
   "style": "dist/nuitral.css",
   "publishConfig": {
@@ -29,7 +29,7 @@
   "homepage": "https://github.com/nuitral/theming#readme",
   "devDependencies": {
     "ncp": "^2.0.0",
-    "prettier": "^3.3.3",
-    "sass": "^1.79.4"
+    "prettier": "^3.5.3",
+    "sass": "^1.89.1"
   }
 }

@@ -1,6 +1,7 @@
 @use "./background" as background;
 @use "./button" as button;
 @use "./box" as box;
+@use "./card" as card;
 @use "./color" as color;
 @use "./input" as input;
 @use "./tab" as tab;
@@ -11,6 +12,7 @@
   @include color.generate-color-classes($scale);
   @include button.generate-button-background-classes($scale);
   @include box.generate-box-background-classes($scale);
+  @include card.generate-card-background-classes($scale);
   @include theme.generate-css-variables($scale);
   @include input.generate-color-classes($text-color);
   @include tab.generate-tab-classes($scale, $text-color);

@@ -1,0 +1,12 @@
+@use "../variables";
+
+.nuitral-card {
+  padding: 8px 16px;
+  box-sizing: border-box;
+  border-radius: variables.$border-radius-atoms;
+  border: 1px solid;
+
+  &.has-shadow {
+    box-shadow: variables.$box-shadow;
+  }
+}
