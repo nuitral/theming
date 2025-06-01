@@ -1,0 +1,23 @@
+@use "../variables";
+
+.nuitral-select {
+  height: variables.$height-atoms;
+  padding: 8px 12px;
+  box-sizing: border-box;
+  border: 1px solid variables.$background-700;
+  border-radius: variables.$border-radius-atoms;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: variables.$background-400;
+  color: unset;
+  transition: variables.$transitions-global;
+
+  &.disabled {
+    pointer-events: none;
+    background-color: variables.$background-600;
+  }
+  &:focus-within {
+    border-color: variables.$primary;
+  }
+}
