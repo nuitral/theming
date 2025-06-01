@@ -1,0 +1,40 @@
+@use "../variables";
+@use "../functions";
+
+@mixin apply-radius-atoms() {
+  border-top-left-radius: functions.radius(
+    variables.$border-radius-atoms,
+    top-left
+  );
+  border-top-right-radius: functions.radius(
+    variables.$border-radius-atoms,
+    top-right
+  );
+  border-bottom-right-radius: functions.radius(
+    variables.$border-radius-atoms,
+    bottom-right
+  );
+  border-bottom-left-radius: functions.radius(
+    variables.$border-radius-atoms,
+    bottom-left
+  );
+}
+
+@mixin apply-radius-molecules() {
+  border-top-left-radius: functions.radius(
+    variables.$border-radius-molecules,
+    top-left
+  );
+  border-top-right-radius: functions.radius(
+    variables.$border-radius-molecules,
+    top-right
+  );
+  border-bottom-right-radius: functions.radius(
+    variables.$border-radius-molecules,
+    bottom-right
+  );
+  border-bottom-left-radius: functions.radius(
+    variables.$border-radius-molecules,
+    bottom-left
+  );
+}
