@@ -8,19 +8,31 @@
   $light-class: "nuitral-light-mode",
   $dark-class: "nuitral-dark-mode",
   $light-text-color: variables.$black,
-  $dark-text-color: variables.$white
+  $dark-text-color: variables.$white,
+  $box-shadow: variables.$box-shadow,
+  $box-shadow-dark: variables.$box-shadow-dark,
+  $box-shadow-focus: variables.$box-shadow-focus,
+  $box-shadow-dark-focus: variables.$box-shadow-dark-focus
 ) {
   [nuitral-theme="#{$theme-name}"] {
     &.#{$light-class} {
       color: $light-text-color;
       @include mixins.include-all-theming-mixins(
         $scale-light,
-        $light-text-color
+        $light-text-color,
+        $box-shadow,
+        $box-shadow-dark-focus
       );
     }
+
     &.#{$dark-class} {
       color: $dark-text-color;
-      @include mixins.include-all-theming-mixins($scale-dark, $dark-text-color);
+      @include mixins.include-all-theming-mixins(
+        $scale-dark,
+        $dark-text-color,
+        $box-shadow-dark,
+        $box-shadow-dark-focus
+      );
     }
   }
 }

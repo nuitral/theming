@@ -2,13 +2,13 @@
 @use "../variables";
 @use "sass:color";
 
-@mixin generate-button-background($color) {
+@mixin generate-button-background($color, $box-shadow) {
   background-color: $color;
   color: functions.apply-text-color($color, variables.$black, variables.$white);
-  box-shadow: variables.$box-shadow;
+  box-shadow: $box-shadow;
 }
 
-@mixin generate-button-states($color) {
+@mixin generate-button-states($color, $box-shadow-focus) {
   &:hover {
     background-color: color.scale($color, $lightness: 10%);
   }
@@ -18,7 +18,7 @@
   }
 
   &:focus {
-    box-shadow: variables.$box-shadow-focus;
+    box-shadow: $box-shadow-focus;
   }
 
   &:disabled {
@@ -33,18 +33,22 @@
   }
 }
 
-@mixin generate-button-background-classes($theme) {
+@mixin generate-button-background-classes(
+  $theme,
+  $box-shadow,
+  $box-shadow-focus
+) {
   @each $var, $scale in $theme {
     @each $scale-var, $color in $scale {
       @if $scale-var == 500 {
         .nuitral-button-background-#{$var} {
-          @include generate-button-background($color);
-          @include generate-button-states($color);
+          @include generate-button-background($color, $box-shadow);
+          @include generate-button-states($color, $box-shadow-focus);
         }
       }
       .nuitral-button-background-#{$var}-#{$scale-var} {
-        @include generate-button-background($color);
-        @include generate-button-states($color);
+        @include generate-button-background($color, $box-shadow);
+        @include generate-button-states($color, $box-shadow-focus);
       }
     }
   }

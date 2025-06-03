@@ -11,14 +11,21 @@
   border-color: $color;
 }
 
+@mixin generate-card-shadow($color, $box-shadow) {
+  .nuitral-card-shadow {
+    border: none;
+    box-shadow: $box-shadow;
+  }
+}
+
 @mixin generate-card-background-classes($theme) {
   @each $var, $scale in $theme {
     @each $scale-var, $color in $scale {
       @if $scale-var == 500 {
         .nuitral-card-background-#{$var} {
           @include generate-card-background($color);
-
         }
+
         .nuitral-card-border-#{$var} {
           @include generate-card-border($color);
         }
