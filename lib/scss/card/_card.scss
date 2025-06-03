@@ -8,6 +8,7 @@
   border: 1px solid;
 
   &.has-shadow {
+    border: none;
     box-shadow: variables.$box-shadow;
   }
 }
