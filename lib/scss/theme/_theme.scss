@@ -14,6 +14,8 @@
   $box-shadow-focus: variables.$box-shadow-focus,
   $box-shadow-dark-focus: variables.$box-shadow-dark-focus
 ) {
+  @include mixins.generate-spacing();
+
   [nuitral-theme="#{$theme-name}"] {
     &.#{$light-class} {
       color: $light-text-color;
