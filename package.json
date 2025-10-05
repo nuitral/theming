@@ -13,7 +13,7 @@
   "author": "Nicola Centonze",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && sass lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss",
+    "build": "rm -rf dist && sass --style=compressed lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss",
     "format": "prettier --write ."
   },
   "keywords": [

@@ -4,29 +4,26 @@
 
 @mixin generate-button-background($var, $scale-var, $box-shadow) {
   background-color: var(--#{$var}-#{$scale-var});
-  //color: functions.apply-text-color(var(--#{$var}-#{$scale-var}), variables.$black, variables.$white);
+  color: var(--#{$var}-text);
   box-shadow: $box-shadow;
 }
 
 @mixin generate-button-states($var, $scale-var, $box-shadow-focus) {
-  //&:hover {
-  //  background-color: color.scale(var(--#{$var}-#{$scale-var}), $lightness: 10%);
-  //}
+  &:hover {
+    background-color: var(--#{$var}-lighten);
+  }
 
-  //&:active {
-  //  background-color: color.scale(var(--#{$var}-#{$scale-var}), $lightness: -10%);
-  //}
+  &:active {
+    background-color: var(--#{$var}-darken);
+  }
 
   &:focus {
-    box-shadow: $box-shadow-focus;
+    box-shadow: variables.$box-shadow-focus;
   }
 
   &:disabled {
     background-color: rgba(var(--#{$var}-#{$scale-var}), 0.4);
-    //color: functions.apply-text-color(var(--#{$var}-#{$scale-var}),
-    //        variables.$black,
-    //        variables.$white
-    //);
+    color: var(--#{$var}-lighten);
     pointer-events: none;
     box-shadow: none;
   }

@@ -11,13 +11,13 @@
   align-items: center;
   gap: 4px;
   background: variables.$background-400;
-  color: unset;
   transition: variables.$transitions-global;
   input {
     width: 100%;
     font-size: 16px;
     outline: none;
     transition: variables.$transitions-global;
+    color: unset;
     border: none;
     background: transparent;
   }

@@ -1,3 +1,6 @@
+@use "../functions";
+@use "sass:map";
+
 @mixin generate-css-variables($scale-mode) {
 
   @each $var, $scale in $scale-mode {
@@ -7,3 +10,16 @@
   }
 
 }
+
+@mixin generate-text-and-state-variables($theme, $black, $white) {
+  @each $var, $scale in $theme {
+    $base: map.get($scale, 500);
+    --#{$var}-text: #{functions.apply-text-color($base, $black, $white)};
+    --#{$var}-lighten: #{functions.tint-shade($base, 10%, "lighten")};
+    --#{$var}-darken: #{functions.tint-shade($base, 10%, "darken")};
+    --#{$var}-extra-light: #{functions.tint-shade($base, 30%, "lighten")};
+    --#{$var}-extra-dark: #{functions.tint-shade($base, 40%, "darken")};
+  }
+}
+
+

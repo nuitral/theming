@@ -1,7 +1,7 @@
-@mixin generate-color-classes($text-color) {
+@mixin generate-input-classes() {
   .nuitral-input-text-color {
     input {
-      color: $text-color !important;
+      color: var(--text-color) !important;
     }
   }
 }

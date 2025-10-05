@@ -4,15 +4,15 @@
 
 @function generate-color-scale($base-color) {
   $scale: (
-    100: color.scale($base-color, $lightness: 40%),
-    200: color.scale($base-color, $lightness: 30%),
-    300: color.scale($base-color, $lightness: 20%),
-    400: color.scale($base-color, $lightness: 10%),
-    500: $base-color,
-    600: color.scale($base-color, $lightness: -10%),
-    700: color.scale($base-color, $lightness: -20%),
-    800: color.scale($base-color, $lightness: -30%),
-    900: color.scale($base-color, $lightness: -40%),
+          100: color.scale($base-color, $lightness: 40%),
+          200: color.scale($base-color, $lightness: 30%),
+          300: color.scale($base-color, $lightness: 20%),
+          400: color.scale($base-color, $lightness: 10%),
+          500: $base-color,
+          600: color.scale($base-color, $lightness: -10%),
+          700: color.scale($base-color, $lightness: -20%),
+          800: color.scale($base-color, $lightness: -30%),
+          900: color.scale($base-color, $lightness: -40%),
   );
   @return $scale;
 }
@@ -35,4 +35,22 @@
 
 @function radius($radius-map, $corner) {
   @return map.get($radius-map, $corner);
+}
+
+@function apply-text-color($background-color, $black, $white) {
+  @if calc-luminance($background-color) > 0.5 {
+    @return $black;
+  } @else {
+    @return $white;
+  }
+}
+
+@function tint-shade($color, $amount, $mode: "lighten") {
+  @if ($mode == "lighten") {
+    @return color.mix(white, $color, $amount);
+  } @else if ($mode == "darken") {
+    @return color.mix(black, $color, $amount);
+  } @else {
+    @error "Invalid mode '#{$mode}' for tint-shade(). Use 'lighten' or 'darken'.";
+  }
 }
