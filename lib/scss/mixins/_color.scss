@@ -3,11 +3,12 @@
     @each $scale-var, $color in $scale {
       @if $scale-var == 500 {
         .nuitral-color-#{$var} {
-          color: $color;
+          color: var(--#{$var}-#{$scale-var});
         }
       }
+
       .nuitral-color-#{$var}-#{$scale-var} {
-        color: $color;
+        color: var(--#{$var}-#{$scale-var});
       }
     }
   }

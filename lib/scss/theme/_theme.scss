@@ -14,25 +14,26 @@
   $box-shadow-focus: variables.$box-shadow-focus,
   $box-shadow-dark-focus: variables.$box-shadow-dark-focus
 ) {
-  [nuitral-theme="#{$theme-name}"] {
-    &.#{$light-class} {
-      color: $light-text-color;
-      @include mixins.include-all-theming-mixins(
-        $scale-light,
-        $light-text-color,
-        $box-shadow,
-        $box-shadow-dark-focus
-      );
-    }
-
-    &.#{$dark-class} {
-      color: $dark-text-color;
-      @include mixins.include-all-theming-mixins(
-        $scale-dark,
-        $dark-text-color,
-        $box-shadow-dark,
-        $box-shadow-dark-focus
-      );
-    }
+  [nuitral-theme="#{$theme-name}"].#{$light-class} {
+    color: $light-text-color;
+    @include mixins.generate-css-variables($scale-light);
   }
+
+  [nuitral-theme="#{$theme-name}"].#{$dark-class} {
+    color: $dark-text-color;
+    @include mixins.generate-css-variables($scale-dark);
+  }
+
+  @include mixins.generate-color-classes($scale-light);
+  @include mixins.generate-background-classes($scale-light);
+  @include mixins.generate-button-background-classes(
+                  $scale-light,
+                  $box-shadow,
+                  $box-shadow-dark-focus
+  );
+  @include mixins.generate-box-background-classes($scale-light);
+  //@include mixins.generate-card-background-classes($scale-light);
+  //@include mixins.generate-card-shadow($scale-light, $box-shadow);
+  @include mixins.generate-tab-classes($scale-light, $light-text-color);
+
 }
