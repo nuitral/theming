@@ -2,29 +2,29 @@
 @use "../variables";
 @use "sass:color";
 
-@mixin generate-box-classes($color) {
-  border-color: $color;
+@mixin generate-box-classes($var, $scale-var) {
+  border-color: var(--#{$var}-#{$scale-var});
 }
 
-@mixin generate-box-states($color) {
-  &:hover {
-    background-color: color.scale($color, $lightness: 40%);
-    color: color.scale($color, $lightness: -30%);
-  }
-}
+//@mixin generate-box-states($color) {
+//  &:hover {
+//    background-color: color.scale($color, $lightness: 40%);
+//    color: color.scale($color, $lightness: -30%);
+//  }
+//}
 
 @mixin generate-box-background-classes($theme) {
   @each $var, $scale in $theme {
     @each $scale-var, $color in $scale {
       @if $scale-var == 500 {
-        .nuitral-box-background-#{$var} {
-          @include generate-box-classes($color);
-          @include generate-box-states($color);
+        .nuitral-box-#{$var} {
+          @include generate-box-classes($var, $scale-var);
+          //@include generate-box-states($color);
         }
       }
-      .nuitral-box-background-#{$var}-#{$scale-var} {
-        @include generate-box-classes($color);
-        @include generate-box-states($color);
+      .nuitral-box-#{$var}-#{$scale-var} {
+        @include generate-box-classes($var, $scale-var);
+        //@include generate-box-states($color);
       }
     }
   }

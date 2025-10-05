@@ -2,32 +2,31 @@
 @use "../variables";
 @use "sass:color";
 
-@mixin generate-button-background($color, $box-shadow) {
-  background-color: $color;
-  color: functions.apply-text-color($color, variables.$black, variables.$white);
+@mixin generate-button-background($var, $scale-var, $box-shadow) {
+  background-color: var(--#{$var}-#{$scale-var});
+  //color: functions.apply-text-color(var(--#{$var}-#{$scale-var}), variables.$black, variables.$white);
   box-shadow: $box-shadow;
 }
 
-@mixin generate-button-states($color, $box-shadow-focus) {
-  &:hover {
-    background-color: color.scale($color, $lightness: 10%);
-  }
+@mixin generate-button-states($var, $scale-var, $box-shadow-focus) {
+  //&:hover {
+  //  background-color: color.scale(var(--#{$var}-#{$scale-var}), $lightness: 10%);
+  //}
 
-  &:active {
-    background-color: color.scale($color, $lightness: -10%);
-  }
+  //&:active {
+  //  background-color: color.scale(var(--#{$var}-#{$scale-var}), $lightness: -10%);
+  //}
 
   &:focus {
     box-shadow: $box-shadow-focus;
   }
 
   &:disabled {
-    background-color: rgba($color, 0.4);
-    color: functions.apply-text-color(
-      $color,
-      variables.$black,
-      variables.$white
-    );
+    background-color: rgba(var(--#{$var}-#{$scale-var}), 0.4);
+    //color: functions.apply-text-color(var(--#{$var}-#{$scale-var}),
+    //        variables.$black,
+    //        variables.$white
+    //);
     pointer-events: none;
     box-shadow: none;
   }
@@ -42,13 +41,13 @@
     @each $scale-var, $color in $scale {
       @if $scale-var == 500 {
         .nuitral-button-background-#{$var} {
-          @include generate-button-background($color, $box-shadow);
-          @include generate-button-states($color, $box-shadow-focus);
+          @include generate-button-background($var, $scale-var, $box-shadow);
+          @include generate-button-states($var, $scale-var, $box-shadow-focus);
         }
       }
       .nuitral-button-background-#{$var}-#{$scale-var} {
-        @include generate-button-background($color, $box-shadow);
-        @include generate-button-states($color, $box-shadow-focus);
+        @include generate-button-background($var, $scale-var, $box-shadow);
+        @include generate-button-states($var, $scale-var, $box-shadow-focus);
       }
     }
   }
