@@ -1,0 +1,7 @@
+@mixin generate-order-classes($from: 1, $to: 12) {
+  @for $i from $from through $to {
+    .order-#{$i} {
+      order: $i;
+    }
+  }
+}

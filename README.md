@@ -1,17 +1,27 @@
 <p align="center">
-  <a href="https://nuitral.github.io/">
-    <img src="https://avatars.githubusercontent.com/u/174748587?s=96&v=4" alt="nuitral logo">
-  </a>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./media/logo-theming-dark-mode.svg" width="150" height="150" />
+    <source media="(prefers-color-scheme: light)" srcset="./media/logo-theming-light-mode.svg" width="150" height="150" />
+    <img src="./media/logo-theming-dark-mode.svg" alt="nuitral core logo" width="150" height="150">
+  </picture>
 </p>
 
-<h3>nuitral - Theming</h3>
-<p>This library is part of the <b>nuitral</b> suite and handles theming creation.</p>
+<p><b>nuitral theming</b> is part of the <b>nuitral</b> suite and handles theming creation.</p>
 <p>It takes advantage of the power of SCSS and the flexibility of CSS to provide the best development experience.</p>
+<p><b>Status:</b> This project is currently in <b>alpha version</b>.</p>
 
-Check out the official [nuitral](https://nuitral.github.io) suite page.
+---
+
+### 🔗 Suite
+
+This library is part of the **nuitral** suite, a native UI toolkit designed to build modern, flexible, and high-performance interfaces.
+
+Explore the suite → https://nuitral.github.io
+
+---
 
 ### License
 
 This project is licensed under the [MIT License](https://github.com/nuitral/theming/blob/main/LICENSE).
 
-Copyright (c) 2024 Nicola Centonze
+Copyright (c) 2025 **Nicola Centonze**

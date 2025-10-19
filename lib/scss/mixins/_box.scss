@@ -13,7 +13,6 @@
   }
 }
 
-
 @mixin generate-box-background-classes($theme) {
   @each $var, $scale in $theme {
     @each $scale-var, $color in $scale {
