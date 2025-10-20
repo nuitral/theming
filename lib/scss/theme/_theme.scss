@@ -19,9 +19,9 @@
       --text-color: #{$light-text-color};
       @include mixins.generate-css-variables($scale-light);
       @include mixins.generate-text-and-state-variables(
-        $scale-light,
-        $light-text-color,
-        $dark-text-color
+                      $scale-light,
+                      $light-text-color,
+                      $dark-text-color
       );
     }
   }
@@ -31,9 +31,9 @@
       --text-color: #{$dark-text-color};
       @include mixins.generate-css-variables($scale-dark);
       @include mixins.generate-text-and-state-variables(
-        $scale-dark,
-        $dark-text-color,
-        $light-text-color
+                      $scale-dark,
+                      $light-text-color,
+                      $dark-text-color,
       );
     }
   }
@@ -43,12 +43,12 @@
   @include mixins.generate-color-classes($scale-light);
   @include mixins.generate-background-classes($scale-light);
   @include mixins.generate-button-background-classes(
-    $scale-light,
-    $box-shadow,
-    $box-shadow-dark-focus
+                  $scale-light,
+                  $box-shadow,
+                  $box-shadow-dark-focus
   );
   @include mixins.generate-box-background-classes($scale-light);
-  //@include mixins.generate-card-background-classes($scale-light);
+  @include mixins.generate-card-background-classes($scale-light);
   //@include mixins.generate-card-shadow($scale-light, $box-shadow);
   @include mixins.generate-tab-classes($scale-light);
   @include mixins.generate-input-classes();

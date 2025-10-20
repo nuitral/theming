@@ -2,40 +2,38 @@
 @use "../variables";
 @use "sass:color";
 
-@mixin generate-card-background($color) {
-  background-color: $color;
-  color: functions.apply-text-color($color, variables.$black, variables.$white);
+@mixin generate-card-background($var, $scale-var) {
+
+  color: var(--#{$var}-#{$scale-var}-text);
+
+  background-color: var(--#{$var}-#{$scale-var})
 }
 
-@mixin generate-card-border($color) {
-  border-color: $color;
-}
-
-@mixin generate-card-shadow($color, $box-shadow) {
-  .nuitral-card-shadow {
-    border: none;
-    box-shadow: $box-shadow;
-  }
+@mixin generate-card-border($var, $scale-var) {
+  border-color: var(--#{$var}-#{$scale-var});
 }
 
 @mixin generate-card-background-classes($theme) {
   @each $var, $scale in $theme {
     @each $scale-var, $color in $scale {
       @if $scale-var == 500 {
-        .nuitral-card-background-#{$var} {
-          @include generate-card-background($color);
+        .nuitral-card-#{$var} {
+          @include generate-card-background($var, $scale-var);
         }
 
         .nuitral-card-border-#{$var} {
-          @include generate-card-border($color);
+          @include generate-card-border($var, $scale-var);
         }
       }
-      .nuitral-card-background-#{$var}-#{$scale-var} {
-        @include generate-card-background($color);
+      .nuitral-card-#{$var}-#{$scale-var} {
+        @include generate-card-background($var, $scale-var);
       }
       .nuitral-card-border-#{$var}-#{$scale-var} {
-        @include generate-card-border($color);
+        @include generate-card-border($var, $scale-var);
       }
     }
   }
 }
+
+
+

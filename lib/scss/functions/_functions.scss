@@ -25,14 +25,6 @@
   @return (0.2126 * $r) + (0.7152 * $g) + (0.0722 * $b);
 }
 
-@function apply-text-color($background-color, $black, $white) {
-  @if calc-luminance($background-color) > 0.5 {
-    @return $black;
-  } @else {
-    @return $white;
-  }
-}
-
 @function radius($radius-map, $corner) {
   @return map.get($radius-map, $corner);
 }

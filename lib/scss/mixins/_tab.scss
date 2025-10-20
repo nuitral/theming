@@ -8,6 +8,7 @@
           color: var(--text-color);
           @include border-properties($var, $scale-var);
         }
+
       }
       .nuitral-tab-#{$var}-#{$scale-var} {
         color: var(--text-color);

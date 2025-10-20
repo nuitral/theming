@@ -9,8 +9,13 @@
   }
 }
 
-@mixin generate-text-and-state-variables($theme, $black, $white) {
-  @each $var, $scale in $theme {
+@mixin generate-text-and-state-variables($scale-mode, $black, $white) {
+  @each $var, $scale in $scale-mode {
+    @each $scale-var, $color in $scale {
+      --#{$var}-#{$scale-var}-text: #{functions.apply-text-color($color, $black, $white)};
+    }
+  }
+  @each $var, $scale in $scale-mode {
     $base: map.get($scale, 500);
     --#{$var}-text: #{functions.apply-text-color($base, $black, $white)};
     --#{$var}-lighten: #{functions.tint-shade($base, 10%, "lighten")};

@@ -4,6 +4,7 @@
 
 @mixin generate-box-classes($var, $scale-var) {
   border-color: var(--#{$var}-#{$scale-var});
+  color: var(--#{$var}-#{$scale-var});
 }
 
 @mixin generate-box-states($var) {
