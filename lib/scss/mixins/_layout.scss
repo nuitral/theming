@@ -1,0 +1,76 @@
+@use "sass:math";
+@use "sass:map";
+
+@mixin apply-padding($paddings, $suffix: col) {
+  padding: map.get($paddings, #{$suffix}-y) map.get($paddings, #{$suffix}-x);
+  box-sizing: border-box;
+}
+
+@mixin generate-flex-base($columns, $paddings) {
+  .layout-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    @include apply-padding($paddings, grid)
+  }
+
+  .col {
+    flex: 1 1 auto;
+    width: auto;
+    @include apply-padding($paddings)
+  }
+
+  .col-auto {
+    flex: 0 0 auto;
+    width: auto;
+    @include apply-padding($paddings)
+  }
+
+  @for $i from 1 through $columns {
+    .col-#{$i} {
+      flex: 1 1 auto;
+      max-width: math.percentage(math.div($i, $columns));
+      @include apply-padding($paddings)
+    }
+  }
+
+}
+
+@mixin generate-flex-grid($columns, $breakpoints, $paddings) {
+
+
+  @each $bp, $size in $breakpoints {
+    @media (min-width: $size) {
+      @for $i from 1 through $columns {
+        .#{$bp}-col-#{$i} {
+          flex: 0 0 math.percentage(math.div($i, $columns));
+          max-width: math.percentage(math.div($i, $columns));
+          @include apply-padding($paddings)
+        }
+      }
+
+      .#{$bp}-col-auto {
+        flex: 1 1 auto;
+        max-width: none;
+        @include apply-padding($paddings)
+      }
+    }
+  }
+}
+
+
+@mixin generate-order-classes($from, $to) {
+  @for $i from $from through $to {
+    .order-#{$i} {
+      order: $i;
+    }
+  }
+}
+
+@mixin generate-flex-layout($columns,$breakpoints, $device-breakpoints, $paddings) {
+  @include generate-flex-base($columns, $paddings);
+  @include generate-flex-grid($columns, $breakpoints, $paddings);
+  @include generate-flex-grid($columns, $device-breakpoints, $paddings);
+  @include generate-order-classes(1, $columns);
+}
+

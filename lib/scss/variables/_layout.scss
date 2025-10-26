@@ -1,0 +1,23 @@
+$grid-columns: 12 !default;
+$grid-paddings: (
+        col-x: 1rem,
+        col-y: 1rem,
+        grid-x: 0,
+        grid-y: 0
+) !default;
+
+$breakpoints: (
+        xs: 360px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1440px
+) !default;
+
+$device-breakpoints: (
+        mobile: 360px,
+        tablet: 768px,
+        laptop: 1024px,
+        desktop: 1280px
+) !default;

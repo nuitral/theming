@@ -39,7 +39,7 @@
   }
 
   @include mixins.generate-spacing();
-  @include mixins.generate-order-classes();
+  @include mixins.generate-flex-layout(variables.$grid-columns, variables.$breakpoints, variables.$device-breakpoints , variables.$grid-paddings);
   @include mixins.generate-color-classes($scale-light);
   @include mixins.generate-background-classes($scale-light);
   @include mixins.generate-button-background-classes(
