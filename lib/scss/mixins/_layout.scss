@@ -36,51 +36,53 @@
 
 }
 
-@mixin generate-flex-grid($columns, $breakpoints, $paddings) {
-
-
-  @each $bp, $size in $breakpoints {
-    @media (min-width: $size) {
-      @for $i from 1 through $columns {
-        .#{$bp}-col-#{$i} {
-          flex: 0 0 math.percentage(math.div($i, $columns));
-          max-width: math.percentage(math.div($i, $columns));
-          @include apply-padding($paddings)
+@mixin generate-flex-grid($columns, $paddings, $breakpoints-list) {
+  @each $breakpoints in $breakpoints-list {
+    @each $bp, $size in $breakpoints {
+      @media (min-width: $size) {
+        @for $i from 1 through $columns {
+          .#{$bp}-col-#{$i} {
+            flex: 0 0 math.percentage(math.div($i, $columns));
+            max-width: math.percentage(math.div($i, $columns));
+            @include apply-padding($paddings);
+          }
         }
-      }
 
-      .#{$bp}-col-auto {
-        flex: 1 1 auto;
-        max-width: none;
-        @include apply-padding($paddings)
+        .#{$bp}-col-auto {
+          flex: 1 1 auto;
+          max-width: none;
+          @include apply-padding($paddings);
+        }
       }
     }
   }
 }
 
-@mixin generate-order-base($to) {
+
+@mixin generate-order($to, $breakpoints-list: null) {
   @for $i from 1 through $to {
     .order-#{$i} {
       order: $i;
     }
   }
-}
 
-@mixin generate-order-responsive($to, $breakpoints) {
-  @each $bp, $size in $breakpoints {
-    @media (min-width: $size) {
-      @for $i from 1 through $to {
-        .#{$bp}-order-#{$i} {
-          order: $i;
+  @if $breakpoints-list != null {
+    @each $breakpoints in $breakpoints-list {
+      @each $bp, $size in $breakpoints {
+        @media (min-width: $size) {
+          @for $i from 1 through $to {
+            .#{$bp}-order-#{$i} {
+              order: $i;
+            }
+          }
         }
       }
     }
   }
-
 }
 
-@mixin generate-flex-utilities($flex-directions, $justify-values, $align-values) {
 
+@mixin generate-flex-utilities($flex-directions, $justify-values, $align-values, $breakpoints-list: null) {
   .flex {
     display: flex !important;
   }
@@ -105,6 +107,39 @@
       align-items: $value !important;
     }
   }
+
+  @if $breakpoints-list != null {
+    @each $breakpoints in $breakpoints-list {
+      @each $bp, $size in $breakpoints {
+        @media (min-width: $size) {
+          .#{$bp}-flex {
+            display: flex !important;
+          }
+          .#{$bp}-inline-flex {
+            display: inline-flex !important;
+          }
+
+          @each $key, $value in $flex-directions {
+            .#{$bp}-flex-#{$key} {
+              flex-direction: $value !important;
+            }
+          }
+
+          @each $key, $value in $justify-values {
+            .#{$bp}-justify-#{$key} {
+              justify-content: $value !important;
+            }
+          }
+
+          @each $key, $value in $align-values {
+            .#{$bp}-items-#{$key} {
+              align-items: $value !important;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 
@@ -123,11 +158,19 @@
 
 
   @include generate-flex-base($columns, $paddings);
-  @include generate-flex-grid($columns, $viewport-breakpoints, $paddings);
-  @include generate-flex-grid($columns, $device-breakpoints, $paddings);
-  @include generate-flex-utilities($flex-directions, $justify-values, $align-values);
-  @include generate-order-base($columns);
-  @include generate-order-responsive($columns, $viewport-breakpoints);
-  @include generate-order-responsive($columns, $device-breakpoints);
+  @include generate-flex-grid($columns, $paddings, (
+          $viewport-breakpoints,
+          $device-breakpoints
+  ));
+
+  @include generate-flex-utilities($flex-directions, $justify-values, $align-values, (
+          $viewport-breakpoints,
+          $device-breakpoints
+  ));
+
+  @include generate-order($columns, (
+          $viewport-breakpoints,
+          $device-breakpoints
+  ));
 }
 

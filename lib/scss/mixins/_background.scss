@@ -1,5 +1,10 @@
 @use "../variables";
 
+@mixin background-properties($var, $scale-var) {
+  background-color: var(--#{$var}-#{$scale-var});
+  transition: variables.$transitions-global;
+}
+
 @mixin generate-background-classes($theme) {
   @each $var, $scale in $theme {
     @each $scale-var, $color in $scale {
@@ -15,7 +20,4 @@
   }
 }
 
-@mixin background-properties($var, $scale-var) {
-  background-color: var(--#{$var}-#{$scale-var});
-  transition: variables.$transitions-global;
-}
+
