@@ -58,19 +58,76 @@
   }
 }
 
-
-@mixin generate-order-classes($from, $to) {
-  @for $i from $from through $to {
+@mixin generate-order-base($to) {
+  @for $i from 1 through $to {
     .order-#{$i} {
       order: $i;
     }
   }
 }
 
-@mixin generate-flex-layout($columns,$breakpoints, $device-breakpoints, $paddings) {
+@mixin generate-order-responsive($to, $breakpoints) {
+  @each $bp, $size in $breakpoints {
+    @media (min-width: $size) {
+      @for $i from 1 through $to {
+        .#{$bp}-order-#{$i} {
+          order: $i;
+        }
+      }
+    }
+  }
+
+}
+
+@mixin generate-flex-utilities($flex-directions, $justify-values, $align-values) {
+
+  .flex {
+    display: flex !important;
+  }
+  .inline-flex {
+    display: inline-flex !important;
+  }
+
+  @each $key, $value in $flex-directions {
+    .flex-#{$key} {
+      flex-direction: $value !important;
+    }
+  }
+
+  @each $key, $value in $justify-values {
+    .justify-#{$key} {
+      justify-content: $value !important;
+    }
+  }
+
+  @each $key, $value in $align-values {
+    .items-#{$key} {
+      align-items: $value !important;
+    }
+  }
+}
+
+
+@mixin generate-layout($layout) {
+
+  $columns: map.get($layout, grid-columns);
+  $paddings: map.get($layout, grid-paddings);
+  $breakpoints: map.get($layout, breakpoints);
+  $device-breakpoints: map.get($breakpoints, device);
+  $viewport-breakpoints: map.get($breakpoints, viewport);
+
+  $flex: map.get($layout, flex);
+  $flex-directions: map.get($flex, direction);
+  $justify-values: map.get($flex, justify);
+  $align-values: map.get($flex, align);
+
+
   @include generate-flex-base($columns, $paddings);
-  @include generate-flex-grid($columns, $breakpoints, $paddings);
+  @include generate-flex-grid($columns, $viewport-breakpoints, $paddings);
   @include generate-flex-grid($columns, $device-breakpoints, $paddings);
-  @include generate-order-classes(1, $columns);
+  @include generate-flex-utilities($flex-directions, $justify-values, $align-values);
+  @include generate-order-base($columns);
+  @include generate-order-responsive($columns, $viewport-breakpoints);
+  @include generate-order-responsive($columns, $device-breakpoints);
 }
 

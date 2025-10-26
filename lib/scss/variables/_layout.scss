@@ -1,4 +1,5 @@
 $grid-columns: 12 !default;
+
 $grid-paddings: (
         col-x: 1rem,
         col-y: 1rem,
@@ -6,7 +7,7 @@ $grid-paddings: (
         grid-y: 0
 ) !default;
 
-$breakpoints: (
+$viewport-breakpoints: (
         xs: 360px,
         sm: 576px,
         md: 768px,
@@ -21,3 +22,49 @@ $device-breakpoints: (
         laptop: 1024px,
         desktop: 1280px
 ) !default;
+
+$breakpoints: (
+        viewport: $viewport-breakpoints,
+        device: $device-breakpoints,
+);
+
+
+$flex-directions: (
+        row: row,
+        col: column,
+        row-reverse: row-reverse,
+        col-reverse: column-reverse
+);
+
+$justify-values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+        evenly: space-evenly
+);
+
+$align-values: (
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        stretch: stretch,
+        baseline: baseline
+);
+
+$flex: (
+        direction: $flex-directions,
+        justify: $justify-values,
+        align: $align-values
+);
+
+$layout: (
+        grid-columns: $grid-columns,
+        breakpoints: $breakpoints,
+        grid-paddings: $grid-paddings,
+        flex: $flex
+);
+
+
+
