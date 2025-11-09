@@ -6,8 +6,10 @@ $variables: (
         layout: v.$layout
 );
 
-@mixin generate-theme($theme-options) {
+@mixin generate-theme($theme-options: null) {
   $defaults: (
+          scale-light: v.$light-mode,
+          scale-dark: v.$dark-mode,
           theme-name: "nuitral",
           light-class: "nuitral-light-mode",
           dark-class: "nuitral-dark-mode",
@@ -16,7 +18,7 @@ $variables: (
           variables: v
   );
 
-  $config: map.merge($defaults, $theme-options);
+  $config: if($theme-options == null, $defaults, map.merge($defaults, $theme-options));
 
   $scale-light: map.get($config, scale-light);
   $scale-dark: map.get($config, scale-dark);
