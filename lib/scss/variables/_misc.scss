@@ -28,8 +28,8 @@ $border-radius-molecules: (
   bottom-left: $border-radius-molecules,
 );
 
-$height-atoms: 40px;
-$transitions-global: all 0.3s ease;
+$height-atoms: 40px !default;
+$transitions-global: all 0.3s ease !default;
 
 $directions: (
   top: "t",

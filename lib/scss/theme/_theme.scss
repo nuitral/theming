@@ -1,41 +1,55 @@
 @use "../mixins" as mixins;
+@use "sass:map";
 @use "../variables" as v;
 
-@mixin generate-theme(
-  $scale-light,
-  $scale-dark,
-  $theme-name: "nuitral",
-  $light-class: "nuitral-light-mode",
-  $dark-class: "nuitral-dark-mode",
-  $light-text-color: v.$black,
-  $dark-text-color: v.$white
-) {
-  [nuitral-theme="#{$theme-name}"] {
-    &.#{$light-class} {
-      --text-color: #{$light-text-color};
-      --box-shadow: v.$box-shadow;
-      --box-shadow-focus: v.$box-shadow-focus;
-      @include mixins.generate-css-variables($scale-light);
-      @include mixins.generate-text-and-state-variables(
-        $scale-light,
-        $light-text-color,
-        $dark-text-color
-      );
-    }
+$variables: (
+        layout: v.$layout
+);
+
+@mixin generate-theme($theme-options) {
+  $defaults: (
+          theme-name: "nuitral",
+          light-class: "nuitral-light-mode",
+          dark-class: "nuitral-dark-mode",
+          light-text-color: v.$black,
+          dark-text-color: v.$white,
+          variables: v
+  );
+
+  $config: map.merge($defaults, $theme-options);
+
+  $scale-light: map.get($config, scale-light);
+  $scale-dark: map.get($config, scale-dark);
+  $theme-name: map.get($config, theme-name);
+  $light-class: map.get($config, light-class);
+  $dark-class: map.get($config, dark-class);
+  $light-text-color: map.get($config, light-text-color);
+  $dark-text-color: map.get($config, dark-text-color);
+
+  [nuitral-theme="#{$theme-name}"].#{$light-class} {
+    --text-color: #{$light-text-color};
+    --box-shadow: #{v.$box-shadow};
+    --box-shadow-focus: #{v.$box-shadow-focus};
+
+    @include mixins.generate-css-variables($scale-light);
+    @include mixins.generate-text-and-state-variables(
+                    $scale-light,
+                    $light-text-color,
+                    $dark-text-color
+    );
   }
 
-  [nuitral-theme="#{$theme-name}"] {
-    &.#{$dark-class} {
-      --text-color: #{$dark-text-color};
-      --box-shadow: v.$box-shadow-dark;
-      --box-shadow-dark-focus: v.$box-shadow-dark-focus;
-      @include mixins.generate-css-variables($scale-dark);
-      @include mixins.generate-text-and-state-variables(
-        $scale-dark,
-        $light-text-color,
-        $dark-text-color
-      );
-    }
+  [nuitral-theme="#{$theme-name}"].#{$dark-class} {
+    --text-color: #{$dark-text-color};
+    --box-shadow: #{v.$box-shadow-dark};
+    --box-shadow-focus: #{v.$box-shadow-dark-focus};
+
+    @include mixins.generate-css-variables($scale-dark);
+    @include mixins.generate-text-and-state-variables(
+                    $scale-dark,
+                    $light-text-color,
+                    $dark-text-color
+    );
   }
 
   //BOX
@@ -44,14 +58,14 @@
 
   //BUTTON
   @include mixins.generate-button(
-    v.$height-atoms,
-    v.$transitions-global,
-    v.$border-radius-atoms
+                  v.$height-atoms,
+                  v.$transitions-global,
+                  v.$border-radius-atoms
   );
   @include mixins.generate-button-background-classes(
-    $scale-light,
-    var(--box-shadow),
-    var(--box-shadow-focus)
+                  $scale-light,
+                  var(--box-shadow),
+                  var(--box-shadow-focus)
   );
 
   //CARD
@@ -60,13 +74,13 @@
 
   //INPUT
   @include mixins.generate-input(
-    v.$primary,
-    v.$background-400,
-    v.$background-700,
-    v.$background-700,
-    v.$transitions-global,
-    v.$height-atoms,
-    v.$border-radius-atoms
+                  v.$primary,
+                  v.$background-400,
+                  v.$background-700,
+                  v.$background-700,
+                  v.$transitions-global,
+                  v.$height-atoms,
+                  v.$border-radius-atoms
   );
   @include mixins.generate-input-classes();
 
@@ -88,7 +102,7 @@
 
   //BACKGROUND COLORS
   @include mixins.generate-background-classes(
-    $scale-light,
-    v.$transitions-global
+                  $scale-light,
+                  v.$transitions-global
   );
 }
