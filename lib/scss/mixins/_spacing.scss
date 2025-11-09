@@ -1,10 +1,9 @@
-@use "../variables";
 @use "sass:map";
 @use "sass:math";
 
-@mixin generate-spacing {
-  @each $dir, $suf in variables.$directions {
-    @each $key, $val in variables.$spacers {
+@mixin generate-spacing($directions, $spacers) {
+  @each $dir, $suf in $directions {
+    @each $key, $val in $spacers {
       $is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
 
       @if $dir == x {
@@ -57,8 +56,8 @@
     }
   }
 
-  @each $dir, $suf in variables.$directions {
-    @each $key, $val in variables.$spacers {
+  @each $dir, $suf in $directions {
+    @each $key, $val in $spacers {
       $is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
 
       @if $dir == x {
@@ -93,7 +92,7 @@
     }
   }
 
-  @each $key, $val in variables.$spacers {
+  @each $key, $val in $spacers {
     $is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
 
     .m-#{$key} {

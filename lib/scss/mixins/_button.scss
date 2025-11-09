@@ -1,6 +1,35 @@
 @use "../functions";
-@use "../variables";
 @use "sass:color";
+@use "../mixins/border-radius" as border-radius;
+
+@mixin generate-button(
+  $height-atoms,
+  $transitions-global,
+  $border-radius-atoms
+) {
+  .nuitral-button {
+    @include border-radius.apply-radius-atoms($border-radius-atoms);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: $height-atoms;
+    overflow: hidden;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    gap: 4px;
+    backface-visibility: hidden;
+    border-style: none;
+    box-shadow: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: normal;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+    outline: none;
+    transition: $transitions-global;
+  }
+}
 
 @mixin generate-button-background($var, $scale-var, $box-shadow) {
   background-color: var(--#{$var}-#{$scale-var});
@@ -18,11 +47,11 @@
   }
 
   &:focus {
-    box-shadow: variables.$box-shadow-focus;
+    box-shadow: var(--box-shadow-focus);
   }
 
   &:disabled {
-    opacity: .6;
+    opacity: 0.6;
     background-color: var(--#{$var}-#{$scale-var});
     color: var(--#{$var}-#{$scale-var}-text);
     pointer-events: none;
@@ -33,7 +62,6 @@
 @mixin generate-button-icon($var, $scale-var) {
   .nuitral-icon {
     color: var(--#{$var}-#{$scale-var}-text);
-
   }
 }
 

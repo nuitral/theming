@@ -11,29 +11,28 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    @include apply-padding($paddings, grid)
+    @include apply-padding($paddings, grid);
   }
 
   .col {
     flex: 1 1 auto;
     width: auto;
-    @include apply-padding($paddings)
+    @include apply-padding($paddings);
   }
 
   .col-auto {
     flex: 0 0 auto;
     width: auto;
-    @include apply-padding($paddings)
+    @include apply-padding($paddings);
   }
 
   @for $i from 1 through $columns {
     .col-#{$i} {
       flex: 1 1 auto;
       max-width: math.percentage(math.div($i, $columns));
-      @include apply-padding($paddings)
+      @include apply-padding($paddings);
     }
   }
-
 }
 
 @mixin generate-flex-grid($columns, $paddings, $breakpoints-list) {
@@ -58,7 +57,6 @@
   }
 }
 
-
 @mixin generate-order($to, $breakpoints-list: null) {
   @for $i from 1 through $to {
     .order-#{$i} {
@@ -81,8 +79,12 @@
   }
 }
 
-
-@mixin generate-flex-utilities($flex-directions, $justify-values, $align-values, $breakpoints-list: null) {
+@mixin generate-flex-utilities(
+  $flex-directions,
+  $justify-values,
+  $align-values,
+  $breakpoints-list: null
+) {
   .flex {
     display: flex !important;
   }
@@ -142,9 +144,7 @@
   }
 }
 
-
 @mixin generate-layout($layout) {
-
   $columns: map.get($layout, grid-columns);
   $paddings: map.get($layout, grid-paddings);
   $breakpoints: map.get($layout, breakpoints);
@@ -156,21 +156,22 @@
   $justify-values: map.get($flex, justify);
   $align-values: map.get($flex, align);
 
-
   @include generate-flex-base($columns, $paddings);
-  @include generate-flex-grid($columns, $paddings, (
-          $viewport-breakpoints,
-          $device-breakpoints
-  ));
+  @include generate-flex-grid(
+    $columns,
+    $paddings,
+    ($viewport-breakpoints, $device-breakpoints)
+  );
 
-  @include generate-flex-utilities($flex-directions, $justify-values, $align-values, (
-          $viewport-breakpoints,
-          $device-breakpoints
-  ));
+  @include generate-flex-utilities(
+    $flex-directions,
+    $justify-values,
+    $align-values,
+    ($viewport-breakpoints, $device-breakpoints)
+  );
 
-  @include generate-order($columns, (
-          $viewport-breakpoints,
-          $device-breakpoints
-  ));
+  @include generate-order(
+    $columns,
+    ($viewport-breakpoints, $device-breakpoints)
+  );
 }
-

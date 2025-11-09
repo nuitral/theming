@@ -1,23 +1,19 @@
-@use "../variables";
-
-@mixin background-properties($var, $scale-var) {
+@mixin background-properties($var, $scale-var, $transitions-global) {
   background-color: var(--#{$var}-#{$scale-var});
-  transition: variables.$transitions-global;
+  transition: $transitions-global;
 }
 
-@mixin generate-background-classes($theme) {
+@mixin generate-background-classes($theme, $transitions-global) {
   @each $var, $scale in $theme {
     @each $scale-var, $color in $scale {
       @if $scale-var == 500 {
         .nuitral-background-#{$var} {
-          @include background-properties($var, $scale-var);
+          @include background-properties($var, $scale-var, $transitions-global);
         }
       }
       .nuitral-background-#{$var}-#{$scale-var} {
-        @include background-properties($var, $scale-var);
+        @include background-properties($var, $scale-var, $transitions-global);
       }
     }
   }
 }
-
-

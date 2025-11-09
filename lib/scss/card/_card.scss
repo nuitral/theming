@@ -1,9 +1,0 @@
-@use "../variables";
-@use "../mixins";
-
-.nuitral-card {
-  padding: 1rem;
-  box-sizing: border-box;
-  @include mixins.apply-radius-molecules();
-  border: 1px solid;
-}

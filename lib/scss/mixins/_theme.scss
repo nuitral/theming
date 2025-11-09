@@ -12,7 +12,11 @@
 @mixin generate-text-and-state-variables($scale-mode, $black, $white) {
   @each $var, $scale in $scale-mode {
     @each $scale-var, $color in $scale {
-      --#{$var}-#{$scale-var}-text: #{functions.apply-text-color($color, $black, $white)};
+      --#{$var}-#{$scale-var}-text: #{functions.apply-text-color(
+          $color,
+          $black,
+          $white
+        )};
     }
   }
   @each $var, $scale in $scale-mode {

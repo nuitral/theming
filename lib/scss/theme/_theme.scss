@@ -1,5 +1,5 @@
 @use "../mixins" as mixins;
-@use "../variables" as variables;
+@use "../variables" as v;
 
 @mixin generate-theme(
   $scale-light,
@@ -7,21 +7,19 @@
   $theme-name: "nuitral",
   $light-class: "nuitral-light-mode",
   $dark-class: "nuitral-dark-mode",
-  $light-text-color: variables.$black,
-  $dark-text-color: variables.$white,
-  $box-shadow: variables.$box-shadow,
-  $box-shadow-dark: variables.$box-shadow-dark,
-  $box-shadow-focus: variables.$box-shadow-focus,
-  $box-shadow-dark-focus: variables.$box-shadow-dark-focus
+  $light-text-color: v.$black,
+  $dark-text-color: v.$white
 ) {
   [nuitral-theme="#{$theme-name}"] {
     &.#{$light-class} {
       --text-color: #{$light-text-color};
+      --box-shadow: v.$box-shadow;
+      --box-shadow-focus: v.$box-shadow-focus;
       @include mixins.generate-css-variables($scale-light);
       @include mixins.generate-text-and-state-variables(
-                      $scale-light,
-                      $light-text-color,
-                      $dark-text-color
+        $scale-light,
+        $light-text-color,
+        $dark-text-color
       );
     }
   }
@@ -29,27 +27,68 @@
   [nuitral-theme="#{$theme-name}"] {
     &.#{$dark-class} {
       --text-color: #{$dark-text-color};
+      --box-shadow: v.$box-shadow-dark;
+      --box-shadow-dark-focus: v.$box-shadow-dark-focus;
       @include mixins.generate-css-variables($scale-dark);
       @include mixins.generate-text-and-state-variables(
-                      $scale-dark,
-                      $light-text-color,
-                      $dark-text-color,
+        $scale-dark,
+        $light-text-color,
+        $dark-text-color
       );
     }
   }
 
-  @include mixins.generate-spacing();
-  @include mixins.generate-layout(variables.$layout);
-  @include mixins.generate-color-classes($scale-light);
-  @include mixins.generate-background-classes($scale-light);
-  @include mixins.generate-button-background-classes(
-                  $scale-light,
-                  $box-shadow,
-                  $box-shadow-dark-focus
-  );
+  //BOX
+  @include mixins.generate-box(v.$border-radius-molecules);
   @include mixins.generate-box-background-classes($scale-light);
+
+  //BUTTON
+  @include mixins.generate-button(
+    v.$height-atoms,
+    v.$transitions-global,
+    v.$border-radius-atoms
+  );
+  @include mixins.generate-button-background-classes(
+    $scale-light,
+    var(--box-shadow),
+    var(--box-shadow-focus)
+  );
+
+  //CARD
+  @include mixins.generate-card(v.$border-radius-atoms);
   @include mixins.generate-card-background-classes($scale-light);
-  //@include mixins.generate-card-shadow($scale-light, $box-shadow);
-  @include mixins.generate-tab-classes($scale-light);
+
+  //INPUT
+  @include mixins.generate-input(
+    v.$primary,
+    v.$background-400,
+    v.$background-700,
+    v.$background-700,
+    v.$transitions-global,
+    v.$height-atoms,
+    v.$border-radius-atoms
+  );
   @include mixins.generate-input-classes();
+
+  //TABS
+  @include mixins.generate-tabs();
+
+  //TAB
+  @include mixins.generate-tab(v.$height-atoms, v.$transitions-global);
+  @include mixins.generate-tab-classes($scale-light);
+
+  //SPACING
+  @include mixins.generate-spacing(v.$directions, v.$spacers);
+
+  //LAYOUT
+  @include mixins.generate-layout(v.$layout);
+
+  //TEXT COLORS
+  @include mixins.generate-color-classes($scale-light);
+
+  //BACKGROUND COLORS
+  @include mixins.generate-background-classes(
+    $scale-light,
+    v.$transitions-global
+  );
 }

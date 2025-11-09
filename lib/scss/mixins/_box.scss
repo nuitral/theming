@@ -1,6 +1,22 @@
 @use "../functions";
-@use "../variables";
 @use "sass:color";
+@use "../mixins/border-radius" as border-radius;
+
+@mixin generate-box($border-radius-molecules) {
+  .nuitral-box {
+    padding: 1rem;
+    border: 1px solid;
+    @include border-radius.apply-radius-molecules($border-radius-molecules);
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+
+    .nuitral-box-title {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+    }
+  }
+}
 
 @mixin generate-box-classes($var, $scale-var) {
   border-color: var(--#{$var}-#{$scale-var});

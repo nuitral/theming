@@ -1,7 +1,7 @@
 @use "../variables";
 @use "../functions";
 
-@mixin apply-radius-atoms() {
+@mixin apply-radius-atoms($border-radius-atoms) {
   border-top-left-radius: functions.radius(
     variables.$border-radius-atoms,
     top-left
@@ -20,7 +20,7 @@
   );
 }
 
-@mixin apply-radius-molecules() {
+@mixin apply-radius-molecules($border-radius-molecules) {
   border-top-left-radius: functions.radius(
     variables.$border-radius-molecules,
     top-left

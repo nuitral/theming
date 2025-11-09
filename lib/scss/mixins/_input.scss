@@ -1,3 +1,53 @@
+@use "../mixins/border-radius" as border-radius;
+
+@mixin generate-input(
+  $primary,
+  $background,
+  $background-disabled,
+  $border-color,
+  $transitions-global,
+  $height-atoms,
+  $border-radius-atoms
+) {
+  .nuitral-input {
+    height: $height-atoms;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    border: 1px solid $border-color;
+    @include border-radius.apply-radius-atoms($border-radius-atoms);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: $background;
+    transition: $transitions-global;
+
+    input {
+      width: 100%;
+      font-size: 16px;
+      outline: none;
+      transition: $transitions-global;
+      color: unset;
+      border: none;
+      background: transparent;
+    }
+    @include generate-input-states(
+      $primary,
+      $background-disabled,
+      $border-color
+    );
+  }
+}
+
+@mixin generate-input-states($primary, $background-disabled, $border-color) {
+  &.disabled {
+    pointer-events: none;
+    background-color: $background-disabled;
+  }
+  &:focus-within {
+    border-color: $primary;
+  }
+}
+
 @mixin generate-input-classes() {
   .nuitral-input-text-color {
     input {
