@@ -7,10 +7,9 @@
   $background-disabled,
   $border-color,
   $transitions-global,
-  $height-atoms,
-  $misc
+    $height-atoms,
+  $border-radius-atoms
 ) {
-  $border-radius-atoms: map.get($misc, border-radius-atoms);
   .nuitral-input {
     height: $height-atoms;
     padding: 8px 12px;

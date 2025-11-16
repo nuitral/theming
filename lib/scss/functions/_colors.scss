@@ -3,9 +3,6 @@
 @use "sass:map";
 @use "sass:meta";
 
-
-
-
 @function generate-color-scale($base-color) {
   $scale: (
     100: color.scale($base-color, $lightness: 40%),

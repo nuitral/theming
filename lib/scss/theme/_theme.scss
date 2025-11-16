@@ -1,14 +1,14 @@
-@use "../mixins" as mixins;
 @use "sass:map";
 @use "../variables" as v;
-@use "../functions" as f;
+@use "../functions" as fn;
+@use "../mixins" as mixins;
 
 $default-variables: (
         layout: v.$layout,
         misc: v.$misc,
 );
 
-@mixin generate-theme($theme-options: null) {
+@function generate-theme($theme-options: null) {
   $defaults: (
           scale-light: v.$light-mode,
           scale-dark: v.$dark-mode,
@@ -20,66 +20,81 @@ $default-variables: (
           variables: $default-variables,
   );
 
-  $config: map.deep-merge($defaults, $theme-options);
+  @return map.deep-merge($defaults, $theme-options);
+}
 
-  $scale-light: map.get($config, scale-light);
-  $scale-dark: map.get($config, scale-dark);
-  $theme-name: map.get($config, theme-name);
-  $light-class: map.get($config, light-class);
-  $dark-class: map.get($config, dark-class);
-  $light-text-color: map.get($config, light-text-color);
-  $dark-text-color: map.get($config, dark-text-color);
-  $variables: map.get($config, variables);
+@mixin apply-theme($theme-map) {
+  $theme-name: map.get($theme-map, theme-name);
+  $light-class: map.get($theme-map, light-class);
+  $dark-class: map.get($theme-map, dark-class);
+  $light-scale: map.get($theme-map, scale-light);
+  $dark-scale: map.get($theme-map, scale-dark);
+  $variables: map.get($theme-map, variables);
 
-  // THEME AND MODE
-
+  //
+  // LIGHT MODE
+  //
   [nuitral-theme="#{$theme-name}"].#{$light-class} {
-    --text-color: #{$light-text-color};
+    --text-color: #{map.get($theme-map, light-text-color)};
     --box-shadow: #{v.$box-shadow};
     --box-shadow-focus: #{v.$box-shadow-focus};
 
-    @include mixins.generate-css-variables($scale-light);
+    @include mixins.generate-misc-css-variables($variables);
+    @include mixins.generate-css-colors-variables($light-scale);
     @include mixins.generate-text-and-state-variables(
-                    $scale-light,
-                    $light-text-color,
-                    $dark-text-color
+                    $light-scale,
+                    map.get($theme-map, light-text-color),
+                    map.get($theme-map, dark-text-color)
     );
   }
 
+  //
+  // DARK MODE
+  //
   [nuitral-theme="#{$theme-name}"].#{$dark-class} {
-    --text-color: #{$dark-text-color};
+    --text-color: #{map.get($theme-map, dark-text-color)};
     --box-shadow: #{v.$box-shadow-dark};
     --box-shadow-focus: #{v.$box-shadow-dark-focus};
 
-    @include mixins.generate-css-variables($scale-dark);
+    @include mixins.generate-misc-css-variables($variables);
+    @include mixins.generate-css-colors-variables($dark-scale);
     @include mixins.generate-text-and-state-variables(
-                    $scale-dark,
-                    $light-text-color,
-                    $dark-text-color
+                    $dark-scale,
+                    map.get($theme-map, light-text-color),
+                    map.get($theme-map, dark-text-color)
     );
   }
 
-  //BOX
-  @include mixins.generate-box(v.$border-radius-molecules);
-  @include mixins.generate-box-background-classes($scale-light);
+  //
+  // COMPONENTS
+  //
 
-  //BUTTON
+  // BOX
+  @include mixins.generate-box(
+                  fn.get-token($variables, misc, border-radius-molecules)
+  );
+  @include mixins.generate-box-background-classes($light-scale);
+
+  @debug v.$height-atoms;
+  // BUTTON
   @include mixins.generate-button(
-                  v.$height-atoms,
                   v.$transitions-global,
-                  map.get($variables, misc)
+                  v.$height-atoms,
+                  fn.get-token($variables, misc)
   );
   @include mixins.generate-button-background-classes(
-                  $scale-light,
+                  $light-scale,
                   var(--box-shadow),
                   var(--box-shadow-focus)
   );
 
-  //CARD
-  @include mixins.generate-card(v.$border-radius-atoms);
-  @include mixins.generate-card-background-classes($scale-light);
+  // CARD
+  @include mixins.generate-card(
+                  fn.get-token($variables, misc, border-radius-atoms)
+  );
+  @include mixins.generate-card-background-classes($light-scale);
 
-  //INPUT
+  // INPUT
   @include mixins.generate-input(
                   v.$primary,
                   v.$background-400,
@@ -87,29 +102,29 @@ $default-variables: (
                   v.$background-700,
                   v.$transitions-global,
                   v.$height-atoms,
-                  map.get($variables, misc)
+                  v.$border-radius-atoms
   );
   @include mixins.generate-input-classes();
 
-  //TABS
+  // TABS
   @include mixins.generate-tabs();
 
-  //TAB
+  // TAB
   @include mixins.generate-tab(v.$height-atoms, v.$transitions-global);
-  @include mixins.generate-tab-classes($scale-light);
+  @include mixins.generate-tab-classes($light-scale);
 
-  //SPACING
+  // SPACING
   @include mixins.generate-spacing(v.$directions, v.$spacers);
 
-  //LAYOUT
+  // LAYOUT
   @include mixins.generate-layout($variables);
 
-  //TEXT COLORS
-  @include mixins.generate-color-classes($scale-light);
+  // TEXT COLORS
+  @include mixins.generate-color-classes($light-scale);
 
-  //BACKGROUND COLORS
+  // BACKGROUND COLORS
   @include mixins.generate-background-classes(
-                  $scale-light,
+                  $light-scale,
                   v.$transitions-global
   );
 }
