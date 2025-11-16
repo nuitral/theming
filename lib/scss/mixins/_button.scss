@@ -9,6 +9,8 @@
   $misc
 ) {
 
+  $border-radius-atoms: map.get($misc, border-radius-atoms);
+
   .nuitral-button {
     @include border-radius.apply-radius-atoms($border-radius-atoms);
     display: flex;
