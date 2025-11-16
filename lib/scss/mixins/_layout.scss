@@ -144,7 +144,9 @@
   }
 }
 
-@mixin generate-layout($layout) {
+@mixin generate-layout($variables) {
+  $layout: map.get($variables, layout);
+
   $columns: map.get($layout, grid-columns);
   $paddings: map.get($layout, grid-paddings);
   $breakpoints: map.get($layout, breakpoints);

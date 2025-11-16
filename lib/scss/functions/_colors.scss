@@ -1,6 +1,10 @@
 @use "sass:math";
 @use "sass:color";
 @use "sass:map";
+@use "sass:meta";
+
+
+
 
 @function generate-color-scale($base-color) {
   $scale: (
@@ -26,6 +30,9 @@
 }
 
 @function radius($radius-map, $corner) {
+  @if meta.type-of($radius-map) != "map" {
+    @return $radius-map;
+  }
   @return map.get($radius-map, $corner);
 }
 

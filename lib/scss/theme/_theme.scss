@@ -1,9 +1,11 @@
 @use "../mixins" as mixins;
 @use "sass:map";
 @use "../variables" as v;
+@use "../functions" as f;
 
-$variables: (
-        layout: v.$layout
+$default-variables: (
+        layout: v.$layout,
+        misc: v.$misc,
 );
 
 @mixin generate-theme($theme-options: null) {
@@ -15,10 +17,10 @@ $variables: (
           dark-class: "nuitral-dark-mode",
           light-text-color: v.$black,
           dark-text-color: v.$white,
-          variables: v
+          variables: $default-variables,
   );
 
-  $config: if($theme-options == null, $defaults, map.merge($defaults, $theme-options));
+  $config: map.deep-merge($defaults, $theme-options);
 
   $scale-light: map.get($config, scale-light);
   $scale-dark: map.get($config, scale-dark);
@@ -27,6 +29,9 @@ $variables: (
   $dark-class: map.get($config, dark-class);
   $light-text-color: map.get($config, light-text-color);
   $dark-text-color: map.get($config, dark-text-color);
+  $variables: map.get($config, variables);
+
+  // THEME AND MODE
 
   [nuitral-theme="#{$theme-name}"].#{$light-class} {
     --text-color: #{$light-text-color};
@@ -62,7 +67,7 @@ $variables: (
   @include mixins.generate-button(
                   v.$height-atoms,
                   v.$transitions-global,
-                  v.$border-radius-atoms
+                  map.get($variables, misc)
   );
   @include mixins.generate-button-background-classes(
                   $scale-light,
@@ -82,7 +87,7 @@ $variables: (
                   v.$background-700,
                   v.$transitions-global,
                   v.$height-atoms,
-                  v.$border-radius-atoms
+                  map.get($variables, misc)
   );
   @include mixins.generate-input-classes();
 
@@ -97,7 +102,7 @@ $variables: (
   @include mixins.generate-spacing(v.$directions, v.$spacers);
 
   //LAYOUT
-  @include mixins.generate-layout(v.$layout);
+  @include mixins.generate-layout($variables);
 
   //TEXT COLORS
   @include mixins.generate-color-classes($scale-light);

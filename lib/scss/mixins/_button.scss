@@ -1,12 +1,14 @@
 @use "../functions";
 @use "sass:color";
+@use "sass:map";
 @use "../mixins/border-radius" as border-radius;
 
 @mixin generate-button(
   $height-atoms,
   $transitions-global,
-  $border-radius-atoms
+  $misc
 ) {
+
   .nuitral-button {
     @include border-radius.apply-radius-atoms($border-radius-atoms);
     display: flex;
