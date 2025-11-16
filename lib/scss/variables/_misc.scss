@@ -4,6 +4,8 @@ $box-shadow-focus: 0 4px 8px rgba(0, 0, 0, 0.2) !default;
 $box-shadow-dark: 0 2px 4px rgba(255, 255, 255, 0.1) !default;
 $box-shadow-dark-focus: 0 4px 8px rgba(255, 255, 255, 0.2) !default;
 
+
+
 $border-radius-atoms-horizontal-ray: 0.5rem !default;
 $border-radius-atoms-vertical-ray: 0.5rem !default;
 $border-radius-atoms: $border-radius-atoms-horizontal-ray
@@ -48,3 +50,6 @@ $misc: (
 ) !default;
 
 $height-atoms: var(--height-atoms) !default;
+$text-color: var(--text-color) !default;
+$text-color-disabled: var(--text-color) !default;
+

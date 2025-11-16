@@ -6,6 +6,12 @@
 $default-variables: (
         layout: v.$layout,
         misc: v.$misc,
+        text-colors: (
+                light: v.$black,
+                disabled-light: v.$black,
+                dark: v.$white,
+                disabled-dark: v.$white
+        )
 );
 
 @function generate-theme($theme-options: null) {
@@ -15,8 +21,6 @@ $default-variables: (
           theme-name: "nuitral",
           light-class: "nuitral-light-mode",
           dark-class: "nuitral-dark-mode",
-          light-text-color: v.$black,
-          dark-text-color: v.$white,
           variables: $default-variables,
   );
 
@@ -35,7 +39,10 @@ $default-variables: (
   // LIGHT MODE
   //
   [nuitral-theme="#{$theme-name}"].#{$light-class} {
-    --text-color: #{map.get($theme-map, light-text-color)};
+
+
+    --text-color: #{fn.get-token($variables, text-colors, light)};
+
     --box-shadow: #{v.$box-shadow};
     --box-shadow-focus: #{v.$box-shadow-focus};
 
@@ -52,7 +59,7 @@ $default-variables: (
   // DARK MODE
   //
   [nuitral-theme="#{$theme-name}"].#{$dark-class} {
-    --text-color: #{map.get($theme-map, dark-text-color)};
+    --text-color: #{fn.get-token($variables, text-colors, dark)};
     --box-shadow: #{v.$box-shadow-dark};
     --box-shadow-focus: #{v.$box-shadow-dark-focus};
 

@@ -30,6 +30,5 @@
 }
 
 @mixin generate-misc-css-variables($variables) {
-  @debug fn.get-token($variables, misc, border-radius-atoms);
   --height-atoms: #{fn.get-token($variables, misc, height-atoms)};
 }
