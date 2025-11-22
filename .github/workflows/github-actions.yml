@@ -9,7 +9,7 @@ on:
       - feature/**
       - fix/**
 
-run-name: "CI Demo triggered by @${{ github.actor }} 🚀"
+run-name: "CI triggered by @${{ github.actor }} 🚀"
 
 jobs:
   demo:
@@ -35,4 +35,4 @@ jobs:
         run: echo "The workflow environment is configured and ready."
 
       - name: 📊 Final job status
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+        run: echo "🍏 This job's status is ${{ job.status }}."
