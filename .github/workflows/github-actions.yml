@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - next
+      - feature/**
+      - fix/**
+
+run-name: "CI Demo triggered by @${{ github.actor }} 🚀"
+
+jobs:
+  demo:
+    name: Demo Workflow Execution
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔄 Checkout repository
+        uses: actions/checkout@v5
+
+      - name: 📝 Display trigger information
+        run: |
+          echo "🎉 Triggered by event: ${{ github.event_name }}"
+          echo "🔎 Branch/Ref:       ${{ github.ref }}"
+          echo "📦 Repository:       ${{ github.repository }}"
+          echo "👤 Actor:            ${{ github.actor }}"
+          echo "🏗 Runner OS:        ${{ runner.os }}"
+
+      - name: 📁 List repository files
+        run: ls -alh ${{ github.workspace }}
+
+      - name: 🧪 Ready to run custom tasks
+        run: echo "The workflow environment is configured and ready."
+
+      - name: 📊 Final job status
+      - run: echo "🍏 This job's status is ${{ job.status }}."
