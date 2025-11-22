@@ -72,12 +72,12 @@
 ) {
   @include generate-input-classes();
   @include generate-input(
-    $color,
-    $background,
-    $background-disabled,
-    $border-color,
-    $transitions-global,
-    $height-atoms,
-    $border-radius-atoms
+                  $color,
+                  $background,
+                  $background-disabled,
+                  $border-color,
+                  $transitions-global,
+                  $height-atoms,
+                  $border-radius-atoms
   );
 }

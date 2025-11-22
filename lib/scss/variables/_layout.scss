@@ -1,70 +1,70 @@
 $grid-columns: 12 !default;
 
 $grid-paddings: (
-  col-x: 1rem,
-  col-y: 1rem,
-  grid-x: 0,
-  grid-y: 0,
+        col-x: 1rem,
+        col-y: 1rem,
+        grid-x: 0,
+        grid-y: 0,
 ) !default;
 
 $viewport-breakpoints: (
-  xs: 360px,
-  sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
-  xxl: 1440px,
+        xs: 360px,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px,
+        xxl: 1440px,
 ) !default;
 
 $device-breakpoints: (
-  mobile: 360px,
-  tablet: 768px,
-  laptop: 1024px,
-  desktop: 1280px,
+        mobile: 360px,
+        tablet: 768px,
+        laptop: 1024px,
+        desktop: 1280px,
 ) !default;
 
 $breakpoints: (
-  viewport: $viewport-breakpoints,
-  device: $device-breakpoints,
+        viewport: $viewport-breakpoints,
+        device: $device-breakpoints,
 ) !default;
 
 //STATIC
 
 $flex-directions: (
-  row: row,
-  col: column,
-  row-reverse: row-reverse,
-  col-reverse: column-reverse,
+        row: row,
+        col: column,
+        row-reverse: row-reverse,
+        col-reverse: column-reverse,
 );
 
 $justify-values: (
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  between: space-between,
-  around: space-around,
-  evenly: space-evenly,
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        between: space-between,
+        around: space-around,
+        evenly: space-evenly,
 );
 
 $align-values: (
-  start: flex-start,
-  end: flex-end,
-  center: center,
-  stretch: stretch,
-  baseline: baseline,
+        start: flex-start,
+        end: flex-end,
+        center: center,
+        stretch: stretch,
+        baseline: baseline,
 );
 
 $flex: (
-  direction: $flex-directions,
-  justify: $justify-values,
-  align: $align-values,
+        direction: $flex-directions,
+        justify: $justify-values,
+        align: $align-values,
 );
 
 //MUTABLE
 
 $layout: (
-  grid-columns: $grid-columns,
-  grid-paddings: $grid-paddings,
-  breakpoints: $breakpoints,
-  flex: $flex,
+        grid-columns: $grid-columns,
+        grid-paddings: $grid-paddings,
+        breakpoints: $breakpoints,
+        flex: $flex,
 ) !default;

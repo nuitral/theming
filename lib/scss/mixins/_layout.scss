@@ -160,20 +160,20 @@
 
   @include generate-flex-base($columns, $paddings);
   @include generate-flex-grid(
-    $columns,
-    $paddings,
-    ($viewport-breakpoints, $device-breakpoints)
+                  $columns,
+                  $paddings,
+                          ($viewport-breakpoints, $device-breakpoints)
   );
 
   @include generate-flex-utilities(
-    $flex-directions,
-    $justify-values,
-    $align-values,
-    ($viewport-breakpoints, $device-breakpoints)
+                  $flex-directions,
+                  $justify-values,
+                  $align-values,
+                          ($viewport-breakpoints, $device-breakpoints)
   );
 
   @include generate-order(
-    $columns,
-    ($viewport-breakpoints, $device-breakpoints)
+                  $columns,
+                          ($viewport-breakpoints, $device-breakpoints)
   );
 }

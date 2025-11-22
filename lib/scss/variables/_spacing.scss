@@ -8,20 +8,20 @@ $spacers: ();
 
 @for $i from 0 through $spacer-steps {
   $spacers: map.merge(
-    $spacers,
-    (
-      "#{$i}": $spacer * $i,
-    )
+                  $spacers,
+                  (
+                          "#{$i}": $spacer * $i,
+                  )
   );
 
   @for $j from 1 through ($spacer-divider - 1) {
     $key: "#{$i}_#{$j}";
     $value: $spacer * ($i + math.div($j, $spacer-divider));
     $spacers: map.merge(
-      $spacers,
-      (
-        $key: $value,
-      )
+                    $spacers,
+                    (
+                            $key: $value,
+                    )
     );
   }
 }

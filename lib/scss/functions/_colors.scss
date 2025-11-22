@@ -5,15 +5,15 @@
 
 @function generate-color-scale($base-color) {
   $scale: (
-    100: color.scale($base-color, $lightness: 40%),
-    200: color.scale($base-color, $lightness: 30%),
-    300: color.scale($base-color, $lightness: 20%),
-    400: color.scale($base-color, $lightness: 10%),
-    500: $base-color,
-    600: color.scale($base-color, $lightness: -10%),
-    700: color.scale($base-color, $lightness: -20%),
-    800: color.scale($base-color, $lightness: -30%),
-    900: color.scale($base-color, $lightness: -40%),
+          100: color.scale($base-color, $lightness: 40%),
+          200: color.scale($base-color, $lightness: 30%),
+          300: color.scale($base-color, $lightness: 20%),
+          400: color.scale($base-color, $lightness: 10%),
+          500: $base-color,
+          600: color.scale($base-color, $lightness: -10%),
+          700: color.scale($base-color, $lightness: -20%),
+          800: color.scale($base-color, $lightness: -30%),
+          900: color.scale($base-color, $lightness: -40%),
   );
   @return $scale;
 }

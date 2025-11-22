@@ -97,13 +97,13 @@
   $dark-box-shadow
 ) {
   @include generate-button(
-    $transitions-global,
-    $height-atoms,
-    $border-radius-atoms
+                  $transitions-global,
+                  $height-atoms,
+                  $border-radius-atoms
   );
   @include generate-button-background-classes(
-    $light-scale,
-    var(--box-shadow),
-    var(--box-shadow-focus)
+                  $light-scale,
+                  var(--box-shadow),
+                  var(--box-shadow-focus)
   );
 }

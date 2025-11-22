@@ -10,5 +10,5 @@
 
 @function radius-scale($scale) {
   @return #{radius($scale, top-left)} #{radius($scale, top-right)}
-    #{radius($scale, bottom-right)} #{radius($scale, bottom-left)};
+  #{radius($scale, bottom-right)} #{radius($scale, bottom-left)};
 }

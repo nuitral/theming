@@ -1,6 +1,6 @@
 {
   "name": "@nuitral/theming",
-  "version": "0.0.1-alpha.13",
+  "version": "0.0.1-beta.1",
   "sass": "dist/scss/_index.scss",
   "style": "dist/nuitral.css",
   "publishConfig": {
@@ -15,8 +15,7 @@
   "author": "Nicola Centonze",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && sass --style=compressed lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss",
-    "format": "prettier --write ."
+    "build": "rm -rf dist && sass --style=compressed lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss"
   },
   "keywords": [
     "CSS",
@@ -31,7 +30,6 @@
   "homepage": "https://github.com/nuitral/theming#readme",
   "devDependencies": {
     "ncp": "^2.0.0",
-    "prettier": "^3.5.3",
     "sass": "^1.89.1"
   }
 }
