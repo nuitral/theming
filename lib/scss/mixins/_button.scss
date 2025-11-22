@@ -3,7 +3,7 @@
 @use "sass:map";
 @use "../mixins/border-radius" as border-radius;
 
-@mixin generate-button($transitions-global,$height-atoms, $misc) {
+@mixin generate-button($transitions-global, $height-atoms, $misc) {
   $border-radius-atoms: map.get($misc, border-radius-atoms);
   .nuitral-button {
     @include border-radius.apply-radius-atoms($border-radius-atoms);

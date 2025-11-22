@@ -9,19 +9,26 @@
   }
 }
 
-@mixin generate-text-and-state-variables($scale-mode, $black, $white) {
+@mixin generate-text-and-state-variables($scale-mode, $variables) {
+  --text-color-light: #{fn.get-token($variables, text-colors, light)};
+  --text-color-dark: #{fn.get-token($variables, text-colors, dark)};
+
   @each $var, $scale in $scale-mode {
     @each $scale-var, $color in $scale {
       --#{$var}-#{$scale-var}-text: #{fn.apply-text-color(
           $color,
-          $black,
-          $white
+          var(--text-color-light),
+          var(--text-color-dark)
         )};
     }
   }
   @each $var, $scale in $scale-mode {
     $base: map.get($scale, 500);
-    --#{$var}-text: #{fn.apply-text-color($base, $black, $white)};
+    --#{$var}-text: #{fn.apply-text-color(
+        $base,
+        var(--text-color-light),
+        var(--text-color-dark)
+      )};
     --#{$var}-lighten: #{fn.tint-shade($base, 10%, "lighten")};
     --#{$var}-darken: #{fn.tint-shade($base, 10%, "darken")};
     --#{$var}-extra-light: #{fn.tint-shade($base, 30%, "lighten")};
@@ -30,5 +37,5 @@
 }
 
 @mixin generate-misc-css-variables($variables) {
-  --height-atoms: #{fn.get-token($variables, misc, height-atoms)};
+    --height-atoms: #{fn.get-token($variables, misc, height-atoms)};
 }
