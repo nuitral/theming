@@ -1,19 +1,18 @@
 @use "../functions";
 @use "sass:color";
-@use "../mixins/border-radius" as border-radius;
 
-@mixin generate-card($border-radius-atoms) {
+@mixin generate-card($border-radius-molecules, $transitions-global) {
   .nuitral-card {
     padding: 1rem;
     box-sizing: border-box;
-    @include border-radius.apply-radius-molecules($border-radius-atoms);
+    border-radius: $border-radius-molecules;
     border: 1px solid;
+    transition: $transitions-global;
   }
 }
 
 @mixin generate-card-background($var, $scale-var) {
   color: var(--#{$var}-#{$scale-var}-text);
-
   background-color: var(--#{$var}-#{$scale-var});
 }
 
@@ -41,4 +40,9 @@
       }
     }
   }
+}
+
+@mixin card($light-scale, $border-radius-molecules, $transitions-global) {
+  @include generate-card($border-radius-molecules, $transitions-global);
+  @include generate-card-background-classes($light-scale);
 }

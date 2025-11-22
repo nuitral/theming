@@ -69,3 +69,9 @@
     }
   }
 }
+
+@mixin tab($scale, $height-atoms, $transitions-global) {
+  @include generate-tabs();
+  @include generate-tab($height-atoms, $transitions-global);
+  @include generate-tab-classes($scale);
+}

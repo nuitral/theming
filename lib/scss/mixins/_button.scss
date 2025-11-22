@@ -1,12 +1,14 @@
 @use "../functions";
 @use "sass:color";
 @use "sass:map";
-@use "../mixins/border-radius" as border-radius;
 
-@mixin generate-button($transitions-global, $height-atoms, $misc) {
-  $border-radius-atoms: map.get($misc, border-radius-atoms);
+@mixin generate-button(
+  $transitions-global,
+  $height-atoms,
+  $border-radius-atoms
+) {
   .nuitral-button {
-    @include border-radius.apply-radius-atoms($border-radius-atoms);
+    border-radius: $border-radius-atoms;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -84,4 +86,24 @@
       }
     }
   }
+}
+
+@mixin button(
+  $light-scale,
+  $height-atoms,
+  $border-radius-atoms,
+  $transitions-global,
+  $light-box-shadow,
+  $dark-box-shadow
+) {
+  @include generate-button(
+    $transitions-global,
+    $height-atoms,
+    $border-radius-atoms
+  );
+  @include generate-button-background-classes(
+    $light-scale,
+    var(--box-shadow),
+    var(--box-shadow-focus)
+  );
 }

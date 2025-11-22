@@ -26,13 +26,6 @@
   @return (0.2126 * $r) + (0.7152 * $g) + (0.0722 * $b);
 }
 
-@function radius($radius-map, $corner) {
-  @if meta.type-of($radius-map) != "map" {
-    @return $radius-map;
-  }
-  @return map.get($radius-map, $corner);
-}
-
 @function apply-text-color($background-color, $black, $white) {
   @if calc-luminance($background-color) > 0.5 {
     @return $black;

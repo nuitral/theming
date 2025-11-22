@@ -3,3 +3,7 @@
     color: var(--text-color);
   }
 }
+
+@mixin icon {
+  @include generate-icon();
+}

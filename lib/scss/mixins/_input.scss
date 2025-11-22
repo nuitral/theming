@@ -1,8 +1,7 @@
-@use "../mixins/border-radius" as border-radius;
 @use "sass:map";
 
 @mixin generate-input(
-  $primary,
+  $color,
   $background,
   $background-disabled,
   $border-color,
@@ -15,7 +14,7 @@
     padding: 8px 12px;
     box-sizing: border-box;
     border: 1px solid $border-color;
-    @include border-radius.apply-radius-atoms($border-radius-atoms);
+    border-radius: $border-radius-atoms;
     display: flex;
     align-items: center;
     gap: 4px;
@@ -31,21 +30,18 @@
       border: none;
       background: transparent;
     }
-    @include generate-input-states(
-      $primary,
-      $background-disabled,
-      $border-color
-    );
+
+    @include generate-input-states($color, $background-disabled, $border-color);
   }
 }
 
-@mixin generate-input-states($primary, $background-disabled, $border-color) {
+@mixin generate-input-states($color, $background-disabled, $border-color) {
   &.disabled {
     pointer-events: none;
     background-color: $background-disabled;
   }
   &:focus-within {
-    border-color: $primary;
+    border-color: $color;
   }
 }
 
@@ -63,4 +59,25 @@
       stroke: var(--text-color) !important;
     }
   }
+}
+
+@mixin input(
+  $color,
+  $background,
+  $background-disabled,
+  $border-color,
+  $transitions-global,
+  $height-atoms,
+  $border-radius-atoms
+) {
+  @include generate-input-classes();
+  @include generate-input(
+    $color,
+    $background,
+    $background-disabled,
+    $border-color,
+    $transitions-global,
+    $height-atoms,
+    $border-radius-atoms
+  );
 }

@@ -10,8 +10,8 @@ $default-variables: (
                 light: var.$black,
                 disabled-light: var.$black,
                 dark: var.$white,
-                disabled-dark: var.$white
-        )
+                disabled-dark: var.$white,
+        ),
 );
 
 @function generate-theme($theme-options: null) {
@@ -24,7 +24,9 @@ $default-variables: (
           variables: $default-variables,
   );
 
-  @return map.deep-merge($defaults, $theme-options);
+  $theme-options-checked: if($theme-options == null, (), $theme-options);
+
+  @return map.deep-merge($defaults, $theme-options-checked);
 }
 
 @mixin apply-theme($theme-map) {
@@ -35,9 +37,10 @@ $default-variables: (
   $dark-scale: map.get($theme-map, scale-dark);
   $variables: map.get($theme-map, variables);
 
-  //
+  // --------------------------------------------------
   // LIGHT MODE
-  //
+  // --------------------------------------------------
+
   [nuitral-theme="#{$theme-name}"].#{$light-class} {
     --text-color: var(--text-color-light);
     --box-shadow: #{var.$box-shadow};
@@ -45,14 +48,13 @@ $default-variables: (
 
     @include mx.generate-misc-css-variables($variables);
     @include mx.generate-css-colors-variables($light-scale);
-    @include mx.generate-text-and-state-variables(
-                    $light-scale, $variables
-    );
+    @include mx.generate-text-and-state-variables($light-scale, $variables);
   }
 
-  //
+  // --------------------------------------------------
   // DARK MODE
-  //
+  // --------------------------------------------------
+
   [nuitral-theme="#{$theme-name}"].#{$dark-class} {
     --text-color: var(--text-color-dark);
     --box-shadow: #{var.$box-shadow-dark};
@@ -60,41 +62,31 @@ $default-variables: (
 
     @include mx.generate-misc-css-variables($variables);
     @include mx.generate-css-colors-variables($dark-scale);
-    @include mx.generate-text-and-state-variables(
-                    $dark-scale, $variables
-    );
+    @include mx.generate-text-and-state-variables($dark-scale, $variables);
   }
 
-  //
+  // --------------------------------------------------
   // COMPONENTS
-  //
+  // --------------------------------------------------
 
-  // BOX
-  @include mx.generate-box(
-                  fn.get-token($variables, misc, border-radius-molecules)
-  );
-  @include mx.generate-box-background-classes($light-scale);
+  @include mx.box($light-scale, var.$border-radius-molecules);
 
-  // BUTTON
-  @include mx.generate-button(
-                  var.$transitions-global,
-                  var.$height-atoms,
-                  fn.get-token($variables, misc)
-  );
-  @include mx.generate-button-background-classes(
+  @include mx.button(
                   $light-scale,
+                  var.$height-atoms,
+                  var.$border-radius-atoms,
+                  var.$transitions-global,
                   var(--box-shadow),
                   var(--box-shadow-focus)
   );
 
-  // CARD
-  @include mx.generate-card(
-                  fn.get-token($variables, misc, border-radius-atoms)
+  @include mx.card(
+                  $light-scale,
+                  var.$border-radius-molecules,
+                  var.$transitions-global
   );
-  @include mx.generate-card-background-classes($light-scale);
 
-  // INPUT
-  @include mx.generate-input(
+  @include mx.input(
                   var.$primary,
                   var.$background-400,
                   var.$background-700,
@@ -103,27 +95,31 @@ $default-variables: (
                   var.$height-atoms,
                   var.$border-radius-atoms
   );
-  @include mx.generate-input-classes();
 
-  // TABS
-  @include mx.generate-tabs();
+  @include mx.icon();
 
-  // TAB
-  @include mx.generate-tab(var.$height-atoms, var.$transitions-global);
-  @include mx.generate-tab-classes($light-scale);
+  @include mx.tab($light-scale, var.$height-atoms, var.$transitions-global);
 
-  // SPACING
-  @include mx.generate-spacing(var.$directions, var.$spacers);
+  // --------------------------------------------------
+  // COLORS
+  // --------------------------------------------------
 
-  // LAYOUT
-  @include mx.generate-layout($variables);
-
-  // TEXT COLORS
   @include mx.generate-color-classes($light-scale);
 
-  // BACKGROUND COLORS
   @include mx.generate-background-classes(
                   $light-scale,
                   var.$transitions-global
   );
+
+  // --------------------------------------------------
+  // SPACING
+  // --------------------------------------------------
+
+  @include mx.generate-spacing(var.$directions, var.$spacers);
+
+  // --------------------------------------------------
+  // LAYOUT
+  // --------------------------------------------------
+
+  @include mx.generate-layout($variables);
 }
