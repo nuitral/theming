@@ -15,7 +15,10 @@
   "author": "Nicola Centonze",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf dist && sass --style=compressed lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss"
+    "build": "rm -rf dist && sass --style=compressed lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss",
+    "release": "semantic-release",
+    "release:dry": "semantic-release --dry-run --debug",
+    "commit": "git-cz"
   },
   "keywords": [
     "CSS",
@@ -29,7 +32,22 @@
   },
   "homepage": "https://github.com/nuitral/theming#readme",
   "devDependencies": {
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@semantic-release/npm": "^12.0.2",
+    "@semantic-release/release-notes-generator": "^14.1.0",
+    "commitizen": "^4.3.1",
+    "git-cz": "^4.9.0",
     "ncp": "^2.0.0",
     "sass": "^1.89.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
   }
 }
