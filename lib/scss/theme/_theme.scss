@@ -32,8 +32,8 @@ $default-variables: (
 	$theme-name: map.get($theme-map, theme-name);
 	$light-class: map.get($theme-map, light-class);
 	$dark-class: map.get($theme-map, dark-class);
-	$light-scale: map.get($theme-map, scale-light);
-	$dark-scale: map.get($theme-map, scale-dark);
+	$dark-scale: fn.generate-theme-scale(map.get($theme-map, scale-dark));
+	$light-scale: fn.generate-theme-scale(map.get($theme-map, scale-light));
 	$variables: map.get($theme-map, variables);
 
 	// --------------------------------------------------

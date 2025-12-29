@@ -22,49 +22,29 @@ $background-dark: #121212 !default;
 $surface-dark: #1e1e1e !default;
 $black: #1e1e1e;
 $white: #f5f5f5;
-$primary-light-scale: functions.generate-color-scale($primary-light);
-$primary-dark-scale: functions.generate-color-scale($primary-dark);
-$secondary-light-scale: functions.generate-color-scale($secondary-light);
-$secondary-dark-scale: functions.generate-color-scale($secondary-dark);
-$accent-light-scale: functions.generate-color-scale($accent-light);
-$accent-dark-scale: functions.generate-color-scale($accent-dark);
-$error-light-scale: functions.generate-color-scale($error-light);
-$error-dark-scale: functions.generate-color-scale($error-dark);
-$success-light-scale: functions.generate-color-scale($success-light);
-$success-dark-scale: functions.generate-color-scale($success-dark);
-$warning-light-scale: functions.generate-color-scale($warning-light);
-$warning-dark-scale: functions.generate-color-scale($warning-dark);
-$info-light-scale: functions.generate-color-scale($info-light);
-$info-dark-scale: functions.generate-color-scale($info-dark);
-$neutral-light-scale: functions.generate-color-scale($neutral-light);
-$neutral-dark-scale: functions.generate-color-scale($neutral-dark);
-$background-light-scale: functions.generate-color-scale($background-light);
-$background-dark-scale: functions.generate-color-scale($background-dark);
-$surface-light-scale: functions.generate-color-scale($surface-light);
-$surface-dark-scale: functions.generate-color-scale($surface-dark);
 $light-mode: (
-	primary: $primary-light-scale,
-	secondary: $secondary-light-scale,
-	accent: $accent-light-scale,
-	background: $background-light-scale,
-	surface: $surface-light-scale,
-	error: $error-light-scale,
-	success: $success-light-scale,
-	warning: $warning-light-scale,
-	info: $info-light-scale,
-	neutral: $neutral-light-scale,
+	primary: $primary-light,
+	secondary: $secondary-light,
+	accent: $accent-light,
+	background: $background-light,
+	surface: $surface-light,
+	error: $error-light,
+	success: $success-light,
+	warning: $warning-light,
+	info: $info-light,
+	neutral: $neutral-light,
 );
 $dark-mode: (
-	primary: $primary-dark-scale,
-	secondary: $secondary-dark-scale,
-	accent: $accent-dark-scale,
-	background: $background-dark-scale,
-	surface: $surface-dark-scale,
-	error: $error-dark-scale,
-	success: $success-dark-scale,
-	warning: $warning-dark-scale,
-	info: $info-dark-scale,
-	neutral: $neutral-dark-scale,
+	primary: $primary-dark,
+	secondary: $secondary-dark,
+	accent: $accent-dark,
+	background: $background-dark,
+	surface: $surface-dark,
+	error: $error-dark,
+	success: $success-dark,
+	warning: $warning-dark,
+	info: $info-dark,
+	neutral: $neutral-dark,
 );
 
 // Primary Color
