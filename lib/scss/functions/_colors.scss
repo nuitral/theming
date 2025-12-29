@@ -1,45 +1,49 @@
-@use "sass:math";
-@use "sass:color";
-@use "sass:map";
-@use "sass:meta";
+@use 'sass:math';
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:meta';
 
 @function generate-color-scale($base-color) {
-  $scale: (
-          100: color.scale($base-color, $lightness: 40%),
-          200: color.scale($base-color, $lightness: 30%),
-          300: color.scale($base-color, $lightness: 20%),
-          400: color.scale($base-color, $lightness: 10%),
-          500: $base-color,
-          600: color.scale($base-color, $lightness: -10%),
-          700: color.scale($base-color, $lightness: -20%),
-          800: color.scale($base-color, $lightness: -30%),
-          900: color.scale($base-color, $lightness: -40%),
-  );
-  @return $scale;
+	$scale: (
+		100: color.scale($base-color, $lightness: 40%),
+		200: color.scale($base-color, $lightness: 30%),
+		300: color.scale($base-color, $lightness: 20%),
+		400: color.scale($base-color, $lightness: 10%),
+		500: $base-color,
+		600: color.scale($base-color, $lightness: -10%),
+		700: color.scale($base-color, $lightness: -20%),
+		800: color.scale($base-color, $lightness: -30%),
+		900: color.scale($base-color, $lightness: -40%),
+	);
+	@return $scale;
 }
 
 @function calc-luminance($color) {
-  $r: math.div(color.channel($color, "red", $space: rgb), 255);
-  $g: math.div(color.channel($color, "green", $space: rgb), 255);
-  $b: math.div(color.channel($color, "blue", $space: rgb), 255);
+	$r: math.div(color.channel($color, 'red', $space: rgb), 255);
+	$g: math.div(color.channel($color, 'green', $space: rgb), 255);
+	$b: math.div(color.channel($color, 'blue', $space: rgb), 255);
 
-  @return (0.2126 * $r) + (0.7152 * $g) + (0.0722 * $b);
+	@return (0.2126 * $r) + (0.7152 * $g) + (0.0722 * $b);
 }
 
 @function apply-text-color($background-color, $black, $white) {
-  @if calc-luminance($background-color) > 0.5 {
-    @return $black;
-  } @else {
-    @return $white;
-  }
+	@if calc-luminance($background-color) > 0.5 {
+		@return $black;
+	} @else {
+		@return $white;
+	}
 }
 
-@function tint-shade($color, $amount, $mode: "lighten") {
-  @if ($mode == "lighten") {
-    @return color.mix(white, $color, $amount);
-  } @else if ($mode == "darken") {
-    @return color.mix(black, $color, $amount);
-  } @else {
-    @error "Invalid mode '#{$mode}' for tint-shade(). Use 'lighten' or 'darken'.";
-  }
+@function tint-shade($color, $amount, $mode: 'lighten') {
+	@if $mode == 'lighten' {
+		@return color.mix(white, $color, $amount);
+	} @else if $mode == 'darken' {
+		@return color.mix(black, $color, $amount);
+	} @else {
+		@error "Invalid mode '#{$mode}' for tint-shade(). Use 'lighten' or 'darken'.";
+	}
+}
+
+@function hex-to-rgb($hex) {
+	@return '#{color.red($hex)}, #{color.green($hex)}, #{color.blue($hex)}';
 }

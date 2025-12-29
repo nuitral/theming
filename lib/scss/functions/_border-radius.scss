@@ -1,14 +1,14 @@
-@use "sass:map";
-@use "sass:meta";
+@use 'sass:map';
+@use 'sass:meta';
 
 @function radius($radius-map, $corner) {
-  @if meta.type-of($radius-map) != "map" {
-    @return $radius-map;
-  }
-  @return map.get($radius-map, $corner);
+	@if meta.type-of($radius-map) != 'map' {
+		@return $radius-map;
+	}
+	@return map.get($radius-map, $corner);
 }
 
 @function radius-scale($scale) {
-  @return #{radius($scale, top-left)} #{radius($scale, top-right)}
-  #{radius($scale, bottom-right)} #{radius($scale, bottom-left)};
+	@return #{radius($scale, top-left)} #{radius($scale, top-right)}
+		#{radius($scale, bottom-right)} #{radius($scale, bottom-left)};
 }

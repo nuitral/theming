@@ -1,0 +1,88 @@
+@use '../functions';
+@use 'sass:color';
+@use 'sass:map';
+@use 'sass:math';
+
+@mixin generate-chip(
+	$light-scale,
+	$height-atoms,
+	$border-radius-atoms,
+	$transitions-global
+) {
+	.nuitral-chip {
+		height: calc((#{$height-atoms} * 2 / 3) - 2px);
+		border-radius: $border-radius-atoms;
+		align-items: center;
+		width: auto;
+		border: 1px solid transparent;
+		padding: 0 8px;
+		display: inline-flex;
+		gap: 4px;
+		color: unset;
+	}
+}
+
+@mixin generate-chip-states($var, $scale-var) {
+	&:hover {
+		background-color: var(--#{$var}-extra-light);
+	}
+}
+
+@mixin generate-chip-background($var, $scale-var) {
+	background-color: var(--#{$var}-#{$scale-var});
+	color: var(--#{$var}-#{$scale-var}-text);
+}
+
+@mixin generate-chip-background-gloss($var, $scale-var) {
+	border-color: var(--#{$var}-#{$scale-var});
+	background-color: rgb(var(--#{$var}-#{$scale-var}, 0.2));
+	color: var(--#{$var}-#{$scale-var});
+}
+
+@mixin generate-chip-background-classes($theme) {
+	@each $var, $scale in $theme {
+		@each $scale-var, $color in $scale {
+			@if $scale-var == 500 {
+				.nuitral-chip-#{$var} {
+					@include generate-chip-background($var, $scale-var);
+					@include generate-chip-states($var, $scale-var);
+				}
+			}
+			.nuitral-chip-#{$var}-#{$scale-var} {
+				@include generate-chip-background($var, $scale-var);
+				@include generate-chip-states($var, $scale-var);
+			}
+		}
+	}
+}
+
+@mixin generate-chip-gloss($theme) {
+	@each $var, $scale in $theme {
+		@each $scale-var, $color in $scale {
+			@if $scale-var == 500 {
+				.nuitral-chip-#{$var}-gloss {
+					@include generate-chip-background-gloss($var, $scale-var);
+				}
+			}
+			.nuitral-chip-#{$var}-#{$scale-var}-gloss {
+				@include generate-chip-background-gloss($var, $scale-var);
+			}
+		}
+	}
+}
+
+@mixin chip(
+	$light-scale,
+	$height-atoms,
+	$border-radius-atoms,
+	$transitions-global
+) {
+	@include generate-chip(
+		$light-scale,
+		$height-atoms,
+		$border-radius-atoms,
+		$transitions-global
+	);
+	@include generate-chip-background-classes($light-scale);
+	@include generate-chip-gloss($light-scale);
+}

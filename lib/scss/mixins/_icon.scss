@@ -1,9 +1,9 @@
 @mixin generate-icon {
-  .nuitral-icon {
-    color: var(--text-color);
-  }
+	.nuitral-icon {
+		color: var(--text-color);
+	}
 }
 
 @mixin icon {
-  @include generate-icon();
+	@include generate-icon;
 }

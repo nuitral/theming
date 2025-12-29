@@ -1,77 +1,77 @@
 @mixin generate-tabs {
-  .nuitral-tabs {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-  }
+	.nuitral-tabs {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
 
-  .nuitral-tab-content {
-    padding-top: 8px;
-  }
+	.nuitral-tab-content {
+		padding-top: 8px;
+	}
 }
 
 @mixin generate-tab($height-atoms, $transitions-global) {
-  .nuitral-tab {
-    height: $height-atoms;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    padding: 8px 16px;
-    box-sizing: border-box;
-    cursor: pointer;
-    transition: $transitions-global;
+	.nuitral-tab {
+		height: $height-atoms;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		padding: 8px 16px;
+		box-sizing: border-box;
+		cursor: pointer;
+		transition: $transitions-global;
 
-    .nuitral-icon {
-      margin-bottom: 2px;
-    }
+		.nuitral-icon {
+			margin-bottom: 2px;
+		}
 
-    &.nuitral-tab-active {
-      border-bottom: 2px solid;
-    }
+		&.nuitral-tab-active {
+			border-bottom: 2px solid;
+		}
 
-    &:not(.nuitral-tab-active) {
-      border-bottom: 2px solid transparent;
-    }
+		&:not(.nuitral-tab-active) {
+			border-bottom: 2px solid transparent;
+		}
 
-    &.disabled {
-      opacity: 0.6;
-      pointer-events: none;
-    }
-  }
+		&.disabled {
+			opacity: 0.6;
+			pointer-events: none;
+		}
+	}
 
-  .nuitral-tab-content {
-    color: var(--text-color);
-  }
+	.nuitral-tab-content {
+		color: var(--text-color);
+	}
 }
 
 @mixin generate-tab-classes($theme) {
-  @each $var, $scale in $theme {
-    @each $scale-var, $color in $scale {
-      @if $scale-var == 500 {
-        .nuitral-tab-#{$var} {
-          color: var(--text-color);
-          @include border-properties($var, $scale-var);
-        }
-      }
-      .nuitral-tab-#{$var}-#{$scale-var} {
-        color: var(--text-color);
-        @include border-properties($var, $scale-var);
-      }
-    }
-  }
+	@each $var, $scale in $theme {
+		@each $scale-var, $color in $scale {
+			@if $scale-var == 500 {
+				.nuitral-tab-#{$var} {
+					color: var(--text-color);
+					@include border-properties($var, $scale-var);
+				}
+			}
+			.nuitral-tab-#{$var}-#{$scale-var} {
+				color: var(--text-color);
+				@include border-properties($var, $scale-var);
+			}
+		}
+	}
 }
 
 @mixin border-properties($var, $scale-var) {
-  .nuitral-tab {
-    &.nuitral-tab-active {
-      border-bottom-color: var(--#{$var}-#{$scale-var});
-    }
-  }
+	.nuitral-tab {
+		&.nuitral-tab-active {
+			border-bottom-color: var(--#{$var}-#{$scale-var});
+		}
+	}
 }
 
 @mixin tab($scale, $height-atoms, $transitions-global) {
-  @include generate-tabs();
-  @include generate-tab($height-atoms, $transitions-global);
-  @include generate-tab-classes($scale);
+	@include generate-tabs;
+	@include generate-tab($height-atoms, $transitions-global);
+	@include generate-tab-classes($scale);
 }
