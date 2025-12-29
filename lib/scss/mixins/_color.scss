@@ -14,24 +14,6 @@
 	}
 }
 
-// @mixin generate-background-color-classes($theme) {
-//  @each $var, $scale in $theme {
-//    @each $scale-var, $color in $scale {
-//      @if $scale-var == 500 {
-//        .nuitral-bg-#{$var} {
-//          background-color: var(--#{$var}-#{$scale-var});
-//        }
-//      }
-//
-//      .nuitral-bg-#{$var}-#{$scale-var} {
-//        background-color: var(--#{$var}-#{$scale-var});
-//      }
-//    }
-//  }
-// }
-
 @mixin generate-color-classes($theme) {
 	@include generate-text-color-classes($theme);
-
-	// @include generate-background-color-classes($theme);
 }
