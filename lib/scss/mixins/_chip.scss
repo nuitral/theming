@@ -1,4 +1,4 @@
-@use '../functions';
+@use '../functions' as fn;
 @use 'sass:color';
 @use 'sass:map';
 @use 'sass:math';
@@ -22,50 +22,70 @@
 	}
 }
 
-@mixin generate-chip-states($var, $scale-var) {
-	&:hover {
-		background-color: var(--#{$var}-extra-light);
-	}
-}
-
-@mixin generate-chip-background($var, $scale-var) {
+@mixin generate-chip-with-background($var, $scale-var) {
 	background-color: var(--#{$var}-#{$scale-var});
 	color: var(--#{$var}-#{$scale-var}-text);
 }
 
-@mixin generate-chip-background-gloss($var, $scale-var) {
+@mixin generate-chip-gloss($var, $scale-var, $border-radius-atoms) {
+	position: relative;
 	border-color: var(--#{$var}-#{$scale-var});
-	background-color: rgb(var(--#{$var}-#{$scale-var}, 0.2));
+	background-color: rgb(var(--#{$var}-#{$scale-var}-rgb), 0.15);
+	color: var(--#{$var}-#{$scale-var});
+	backdrop-filter: blur(10px);
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 40%;
+		border-radius: $border-radius-atoms;
+		background: linear-gradient(
+			to bottom,
+			rgb(255 255 255 / 60%) 0%,
+			rgb(255 255 255 / 10%) 50%,
+			transparent 100%
+		);
+	}
+}
+
+@mixin generate-chip-outline($var, $scale-var) {
+	border-color: var(--#{$var}-#{$scale-var});
 	color: var(--#{$var}-#{$scale-var});
 }
 
-@mixin generate-chip-background-classes($theme) {
+@mixin generate-chip-styles($theme, $border-radius-atoms) {
 	@each $var, $scale in $theme {
 		@each $scale-var, $color in $scale {
 			@if $scale-var == 500 {
 				.nuitral-chip-#{$var} {
-					@include generate-chip-background($var, $scale-var);
-					@include generate-chip-states($var, $scale-var);
+					@include generate-chip-with-background($var, $scale-var);
+				}
+				.nuitral-chip-#{$var}-gloss {
+					@include generate-chip-gloss(
+						$var,
+						$scale-var,
+						$border-radius-atoms
+					);
+				}
+				.nuitral-chip-#{$var}-outline {
+					@include generate-chip-outline($var, $scale-var);
 				}
 			}
 			.nuitral-chip-#{$var}-#{$scale-var} {
-				@include generate-chip-background($var, $scale-var);
-				@include generate-chip-states($var, $scale-var);
-			}
-		}
-	}
-}
-
-@mixin generate-chip-gloss($theme) {
-	@each $var, $scale in $theme {
-		@each $scale-var, $color in $scale {
-			@if $scale-var == 500 {
-				.nuitral-chip-#{$var}-gloss {
-					@include generate-chip-background-gloss($var, $scale-var);
-				}
+				@include generate-chip-with-background($var, $scale-var);
 			}
 			.nuitral-chip-#{$var}-#{$scale-var}-gloss {
-				@include generate-chip-background-gloss($var, $scale-var);
+				@include generate-chip-gloss(
+					$var,
+					$scale-var,
+					$border-radius-atoms
+				);
+			}
+			.nuitral-chip-#{$var}-#{$scale-var}-outline {
+				@include generate-chip-outline($var, $scale-var);
 			}
 		}
 	}
@@ -83,6 +103,5 @@
 		$border-radius-atoms,
 		$transitions-global
 	);
-	@include generate-chip-background-classes($light-scale);
-	@include generate-chip-gloss($light-scale);
+	@include generate-chip-styles($light-scale, $border-radius-atoms);
 }
