@@ -1,83 +1,88 @@
-@use "sass:map";
+@use 'sass:map';
 
 @mixin generate-input(
-  $color,
-  $background,
-  $background-disabled,
-  $border-color,
-  $transitions-global,
-  $height-atoms,
-  $border-radius-atoms
+	$color,
+	$background,
+	$background-disabled,
+	$border-color,
+	$transitions-global,
+	$height-atoms,
+	$border-radius-atoms
 ) {
-  .nuitral-input {
-    height: $height-atoms;
-    padding: 8px 12px;
-    box-sizing: border-box;
-    border: 1px solid $border-color;
-    border-radius: $border-radius-atoms;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    background: $background;
-    transition: $transitions-global;
+	.nuitral-input {
+		height: $height-atoms;
+		padding: 8px 12px;
+		box-sizing: border-box;
+		border: 1px solid $border-color;
+		border-radius: $border-radius-atoms;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		background: $background;
+		transition: $transitions-global;
 
-    input {
-      width: 100%;
-      font-size: 16px;
-      outline: none;
-      transition: $transitions-global;
-      color: unset;
-      border: none;
-      background: transparent;
-    }
+		input {
+			width: 100%;
+			font-size: 16px;
+			outline: none;
+			transition: $transitions-global;
+			color: unset;
+			border: none;
+			background: transparent;
+		}
 
-    @include generate-input-states($color, $background-disabled, $border-color);
-  }
+		@include generate-input-states(
+			$color,
+			$background-disabled,
+			$border-color
+		);
+	}
 }
 
 @mixin generate-input-states($color, $background-disabled, $border-color) {
-  &.disabled {
-    pointer-events: none;
-    background-color: $background-disabled;
-  }
-  &:focus-within {
-    border-color: $color;
-  }
+	&.disabled {
+		pointer-events: none;
+		background-color: $background-disabled;
+	}
+
+	&:focus-within {
+		border-color: $color;
+	}
 }
 
 @mixin generate-input-classes() {
-  .nuitral-input-text-color {
-    input {
-      color: var(--text-color) !important;
-    }
+	.nuitral-input-text-color {
+		input {
+			color: var(--text-color) !important;
+		}
 
-    *,
-    *::before,
-    *::after {
-      color: var(--text-color) !important;
-      fill: var(--text-color) !important;
-      stroke: var(--text-color) !important;
-    }
-  }
+		*,
+		*::before,
+		*::after {
+			color: var(--text-color) !important;
+			fill: var(--text-color) !important;
+			stroke: var(--text-color) !important;
+		}
+	}
 }
 
 @mixin input(
-  $color,
-  $background,
-  $background-disabled,
-  $border-color,
-  $transitions-global,
-  $height-atoms,
-  $border-radius-atoms
+	$color,
+	$background,
+	$background-disabled,
+	$border-color,
+	$transitions-global,
+	$height-atoms,
+	$border-radius-atoms
 ) {
-  @include generate-input-classes();
-  @include generate-input(
-                  $color,
-                  $background,
-                  $background-disabled,
-                  $border-color,
-                  $transitions-global,
-                  $height-atoms,
-                  $border-radius-atoms
-  );
+	@include generate-input-classes;
+	@include generate-input(
+		$color,
+		$background,
+		$background-disabled,
+		$border-color,
+		$transitions-global,
+		$height-atoms,
+		$border-radius-atoms
+	);
 }

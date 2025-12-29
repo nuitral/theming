@@ -1,52 +1,52 @@
-@use "../functions" as fn;
-@use "sass:color";
+@use '../functions' as fn;
+@use 'sass:color';
 
 @mixin generate-box($border-radius-molecules) {
-  .nuitral-box {
-    padding: 1rem;
-    border: 1px solid;
-    border-radius: $border-radius-molecules;
-    background: transparent;
-    transition: all 0.3s ease-in-out;
-    box-sizing: border-box;
+	.nuitral-box {
+		padding: 1rem;
+		border: 1px solid;
+		border-radius: $border-radius-molecules;
+		background: transparent;
+		transition: all 0.3s ease-in-out;
+		box-sizing: border-box;
 
-    .nuitral-box-title {
-      font-size: 1.25rem;
-      margin-bottom: 10px;
-    }
-  }
+		.nuitral-box-title {
+			font-size: 1.25rem;
+			margin-bottom: 10px;
+		}
+	}
 }
 
 @mixin generate-box-classes($var, $scale-var) {
-  border-color: var(--#{$var}-#{$scale-var});
-  color: var(--#{$var}-#{$scale-var});
+	border-color: var(--#{$var}-#{$scale-var});
+	color: var(--#{$var}-#{$scale-var});
 }
 
 @mixin generate-box-states($var) {
-  &:hover {
-    background-color: var(--#{$var}-extra-light);
-    color: var(--#{$var}-extra-dark);
-  }
+	&:hover {
+		background-color: var(--#{$var}-extra-light);
+		color: var(--#{$var}-extra-dark);
+	}
 }
 
 @mixin generate-box-background-classes($theme) {
-  @each $var, $scale in $theme {
-    @each $scale-var, $color in $scale {
-      @if $scale-var == 500 {
-        .nuitral-box-#{$var} {
-          @include generate-box-classes($var, $scale-var);
-          @include generate-box-states($var);
-        }
-      }
-      .nuitral-box-#{$var}-#{$scale-var} {
-        @include generate-box-classes($var, $scale-var);
-        @include generate-box-states($var);
-      }
-    }
-  }
+	@each $var, $scale in $theme {
+		@each $scale-var, $color in $scale {
+			@if $scale-var == 500 {
+				.nuitral-box-#{$var} {
+					@include generate-box-classes($var, $scale-var);
+					@include generate-box-states($var);
+				}
+			}
+			.nuitral-box-#{$var}-#{$scale-var} {
+				@include generate-box-classes($var, $scale-var);
+				@include generate-box-states($var);
+			}
+		}
+	}
 }
 
 @mixin box($light-scale, $border-radius-molecules) {
-  @include generate-box-background-classes($light-scale);
-  @include generate-box($border-radius-molecules);
+	@include generate-box-background-classes($light-scale);
+	@include generate-box($border-radius-molecules);
 }

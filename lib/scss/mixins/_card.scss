@@ -1,48 +1,48 @@
-@use "../functions";
-@use "sass:color";
+@use '../functions';
+@use 'sass:color';
 
 @mixin generate-card($border-radius-molecules, $transitions-global) {
-  .nuitral-card {
-    padding: 1rem;
-    box-sizing: border-box;
-    border-radius: $border-radius-molecules;
-    border: 1px solid;
-    transition: $transitions-global;
-  }
+	.nuitral-card {
+		padding: 1rem;
+		box-sizing: border-box;
+		border-radius: $border-radius-molecules;
+		border: 1px solid;
+		transition: $transitions-global;
+	}
 }
 
 @mixin generate-card-background($var, $scale-var) {
-  color: var(--#{$var}-#{$scale-var}-text);
-  background-color: var(--#{$var}-#{$scale-var});
+	color: var(--#{$var}-#{$scale-var}-text);
+	background-color: var(--#{$var}-#{$scale-var});
 }
 
 @mixin generate-card-border($var, $scale-var) {
-  border-color: var(--#{$var}-#{$scale-var});
+	border-color: var(--#{$var}-#{$scale-var});
 }
 
 @mixin generate-card-background-classes($theme) {
-  @each $var, $scale in $theme {
-    @each $scale-var, $color in $scale {
-      @if $scale-var == 500 {
-        .nuitral-card-#{$var} {
-          @include generate-card-background($var, $scale-var);
-        }
+	@each $var, $scale in $theme {
+		@each $scale-var, $color in $scale {
+			@if $scale-var == 500 {
+				.nuitral-card-#{$var} {
+					@include generate-card-background($var, $scale-var);
+				}
 
-        .nuitral-card-border-#{$var} {
-          @include generate-card-border($var, $scale-var);
-        }
-      }
-      .nuitral-card-#{$var}-#{$scale-var} {
-        @include generate-card-background($var, $scale-var);
-      }
-      .nuitral-card-border-#{$var}-#{$scale-var} {
-        @include generate-card-border($var, $scale-var);
-      }
-    }
-  }
+				.nuitral-card-border-#{$var} {
+					@include generate-card-border($var, $scale-var);
+				}
+			}
+			.nuitral-card-#{$var}-#{$scale-var} {
+				@include generate-card-background($var, $scale-var);
+			}
+			.nuitral-card-border-#{$var}-#{$scale-var} {
+				@include generate-card-border($var, $scale-var);
+			}
+		}
+	}
 }
 
 @mixin card($light-scale, $border-radius-molecules, $transitions-global) {
-  @include generate-card($border-radius-molecules, $transitions-global);
-  @include generate-card-background-classes($light-scale);
+	@include generate-card($border-radius-molecules, $transitions-global);
+	@include generate-card-background-classes($light-scale);
 }

@@ -1,11 +1,11 @@
-@use "sass:map";
+@use 'sass:map';
 
 @function get-token($map, $keys...) {
-  $current: $map;
+	$current: $map;
 
-  @each $key in $keys {
-    $current: map.get($current, $key);
-  }
+	@each $key in $keys {
+		$current: map.get($current, $key);
+	}
 
-  @return $current;
+	@return $current;
 }

@@ -1,46 +1,37 @@
-@use "../functions" as fn;
+@use '../functions' as fn;
 
-$box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !default;
-$box-shadow-focus: 0 4px 8px rgba(0, 0, 0, 0.2) !default;
-
-$box-shadow-dark: 0 2px 4px rgba(255, 255, 255, 0.1) !default;
-$box-shadow-dark-focus: 0 4px 8px rgba(255, 255, 255, 0.2) !default;
-
+$box-shadow: 0 2px 4px rgb(0 0 0 / 10%) !default;
+$box-shadow-focus: 0 4px 8px rgb(0 0 0 / 20%) !default;
+$box-shadow-dark: 0 2px 4px rgb(255 255 255 / 10%) !default;
+$box-shadow-dark-focus: 0 4px 8px rgb(255 255 255 / 20%) !default;
 $border-radius-atoms-value: 0.5rem !default;
-
 $border-radius-atoms-scale: (
-        top-left: $border-radius-atoms-value,
-        top-right: $border-radius-atoms-value,
-        bottom-right: $border-radius-atoms-value,
-        bottom-left: $border-radius-atoms-value,
+	top-left: $border-radius-atoms-value,
+	top-right: $border-radius-atoms-value,
+	bottom-right: $border-radius-atoms-value,
+	bottom-left: $border-radius-atoms-value,
 );
-
 $border-radius-molecules-value: 1rem !default;
-
 $border-radius-molecules-scale: (
-        top-left: $border-radius-molecules-value,
-        top-right: $border-radius-molecules-value,
-        bottom-right: $border-radius-molecules-value,
-        bottom-left: $border-radius-molecules-value,
+	top-left: $border-radius-molecules-value,
+	top-right: $border-radius-molecules-value,
+	bottom-right: $border-radius-molecules-value,
+	bottom-left: $border-radius-molecules-value,
 );
-
 $transitions-global: all 0.3s ease !default;
-
 $directions: (
-        top: "t",
-        right: "r",
-        bottom: "b",
-        left: "l",
-        x: "x",
-        y: "y",
+	top: 't',
+	right: 'r',
+	bottom: 'b',
+	left: 'l',
+	x: 'x',
+	y: 'y',
 );
-
 $misc: (
-        border-radius-atoms: fn.radius-scale($border-radius-atoms-scale),
-        border-radius-molecules: fn.radius-scale($border-radius-molecules-scale),
-        height-atoms: 40px,
+	border-radius-atoms: fn.radius-scale($border-radius-atoms-scale),
+	border-radius-molecules: fn.radius-scale($border-radius-molecules-scale),
+	height-atoms: 40px,
 ) !default;
-
 $height-atoms: var(--height-atoms) !default;
 $border-radius-atoms: var(--border-radius-atoms) !default;
 $border-radius-molecules: var(--border-radius-molecules) !default;

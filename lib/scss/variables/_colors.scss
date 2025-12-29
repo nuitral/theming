@@ -1,4 +1,4 @@
-@use "../functions";
+@use '../functions';
 
 $primary-light: #325d79 !default;
 $secondary-light: #9bd7d1 !default;
@@ -9,8 +9,7 @@ $warning-light: #f9a26c !default;
 $info-light: #325d79 !default;
 $neutral-light: #7a7a7a !default;
 $background-light: #efeeee !default;
-$surface-light: #ffffff !default;
-
+$surface-light: #fff !default;
 $primary-dark: #9bd7d1 !default;
 $secondary-dark: #325d79 !default;
 $accent-dark: #f26627 !default;
@@ -21,69 +20,35 @@ $info-dark: #9bd7d1 !default;
 $neutral-dark: #b3b3b3 !default;
 $background-dark: #121212 !default;
 $surface-dark: #1e1e1e !default;
-
 $black: #1e1e1e;
 $white: #f5f5f5;
-
-$primary-light-scale: functions.generate-color-scale($primary-light);
-$primary-dark-scale: functions.generate-color-scale($primary-dark);
-
-$secondary-light-scale: functions.generate-color-scale($secondary-light);
-$secondary-dark-scale: functions.generate-color-scale($secondary-dark);
-
-$accent-light-scale: functions.generate-color-scale($accent-light);
-$accent-dark-scale: functions.generate-color-scale($accent-dark);
-
-$error-light-scale: functions.generate-color-scale($error-light);
-$error-dark-scale: functions.generate-color-scale($error-dark);
-
-$success-light-scale: functions.generate-color-scale($success-light);
-$success-dark-scale: functions.generate-color-scale($success-dark);
-
-$warning-light-scale: functions.generate-color-scale($warning-light);
-$warning-dark-scale: functions.generate-color-scale($warning-dark);
-
-$info-light-scale: functions.generate-color-scale($info-light);
-$info-dark-scale: functions.generate-color-scale($info-dark);
-
-$neutral-light-scale: functions.generate-color-scale($neutral-light);
-$neutral-dark-scale: functions.generate-color-scale($neutral-dark);
-
-$background-light-scale: functions.generate-color-scale($background-light);
-$background-dark-scale: functions.generate-color-scale($background-dark);
-
-$surface-light-scale: functions.generate-color-scale($surface-light);
-$surface-dark-scale: functions.generate-color-scale($surface-dark);
-
 $light-mode: (
-        primary: $primary-light-scale,
-        secondary: $secondary-light-scale,
-        accent: $accent-light-scale,
-        background: $background-light-scale,
-        surface: $surface-light-scale,
-        error: $error-light-scale,
-        success: $success-light-scale,
-        warning: $warning-light-scale,
-        info: $info-light-scale,
-        neutral: $neutral-light-scale,
+	primary: $primary-light,
+	secondary: $secondary-light,
+	accent: $accent-light,
+	background: $background-light,
+	surface: $surface-light,
+	error: $error-light,
+	success: $success-light,
+	warning: $warning-light,
+	info: $info-light,
+	neutral: $neutral-light,
 );
-
 $dark-mode: (
-        primary: $primary-dark-scale,
-        secondary: $secondary-dark-scale,
-        accent: $accent-dark-scale,
-        background: $background-dark-scale,
-        surface: $surface-dark-scale,
-        error: $error-dark-scale,
-        success: $success-dark-scale,
-        warning: $warning-dark-scale,
-        info: $info-dark-scale,
-        neutral: $neutral-dark-scale,
+	primary: $primary-dark,
+	secondary: $secondary-dark,
+	accent: $accent-dark,
+	background: $background-dark,
+	surface: $surface-dark,
+	error: $error-dark,
+	success: $success-dark,
+	warning: $warning-dark,
+	info: $info-dark,
+	neutral: $neutral-dark,
 );
 
 // Primary Color
 $primary: var(--primary-500);
-
 $primary-100: var(--primary-100);
 $primary-200: var(--primary-200);
 $primary-300: var(--primary-300);
@@ -96,7 +61,6 @@ $primary-900: var(--primary-900);
 
 // Secondary Color
 $secondary: var(--secondary-500);
-
 $secondary-100: var(--secondary-100);
 $secondary-200: var(--secondary-200);
 $secondary-300: var(--secondary-300);
@@ -109,7 +73,6 @@ $secondary-900: var(--secondary-900);
 
 // Accent Color
 $accent: var(--accent-500);
-
 $accent-100: var(--accent-100);
 $accent-200: var(--accent-200);
 $accent-300: var(--accent-300);
@@ -122,7 +85,6 @@ $accent-900: var(--accent-900);
 
 // Background Color
 $background: var(--background-500);
-
 $background-100: var(--background-100);
 $background-200: var(--background-200);
 $background-300: var(--background-300);
@@ -135,7 +97,6 @@ $background-900: var(--background-900);
 
 // Surface Color
 $surface: var(--surface-500);
-
 $surface-100: var(--surface-100);
 $surface-200: var(--surface-200);
 $surface-300: var(--surface-300);
@@ -148,7 +109,6 @@ $surface-900: var(--surface-900);
 
 // Error Color
 $error: var(--error-500);
-
 $error-100: var(--error-100);
 $error-200: var(--error-200);
 $error-300: var(--error-300);
@@ -161,7 +121,6 @@ $error-900: var(--error-900);
 
 // Success Color
 $success: var(--success-500);
-
 $success-100: var(--success-100);
 $success-200: var(--success-200);
 $success-300: var(--success-300);
@@ -174,7 +133,6 @@ $success-900: var(--success-900);
 
 // Warning Color
 $warning: var(--warning-500);
-
 $warning-100: var(--warning-100);
 $warning-200: var(--warning-200);
 $warning-300: var(--warning-300);
@@ -187,7 +145,6 @@ $warning-900: var(--warning-900);
 
 // Info Color
 $info: var(--info-500);
-
 $info-100: var(--info-100);
 $info-200: var(--info-200);
 $info-300: var(--info-300);
@@ -200,7 +157,6 @@ $info-900: var(--info-900);
 
 // Neutral Color
 $neutral: var(--neutral-500);
-
 $neutral-100: var(--neutral-100);
 $neutral-200: var(--neutral-200);
 $neutral-300: var(--neutral-300);

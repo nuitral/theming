@@ -1,120 +1,120 @@
-@use "sass:map";
-@use "sass:math";
+@use 'sass:map';
+@use 'sass:math';
 
 @mixin generate-spacing($directions, $spacers) {
-  @each $dir, $suf in $directions {
-    @each $key, $val in $spacers {
-      $is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
+	@each $dir, $suf in $directions {
+		@each $key, $val in $spacers {
+			$is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
 
-      @if $dir == x {
-        .m#{$suf}-#{$key} {
-          @if $is-zero {
-            margin-left: 0 !important;
-            margin-right: 0 !important;
-          } @else {
-            margin-left: #{$val} !important;
-            margin-right: #{$val} !important;
-          }
-        }
-      } @else if $dir == y {
-        .m#{$suf}-#{$key} {
-          @if $is-zero {
-            margin-top: 0 !important;
-            margin-bottom: 0 !important;
-          } @else {
-            margin-top: #{$val} !important;
-            margin-bottom: #{$val} !important;
-          }
-        }
-      } @else {
-        .m#{$suf}-#{$key} {
-          @if $is-zero {
-            margin-#{$dir}: 0 !important;
-          } @else {
-            margin-#{$dir}: #{$val} !important;
-          }
-        }
-      }
+			@if $dir == x {
+				.m#{$suf}-#{$key} {
+					@if $is-zero {
+						margin-left: 0 !important;
+						margin-right: 0 !important;
+					} @else {
+						margin-left: #{$val} !important;
+						margin-right: #{$val} !important;
+					}
+				}
+			} @else if $dir == y {
+				.m#{$suf}-#{$key} {
+					@if $is-zero {
+						margin-top: 0 !important;
+						margin-bottom: 0 !important;
+					} @else {
+						margin-top: #{$val} !important;
+						margin-bottom: #{$val} !important;
+					}
+				}
+			} @else {
+				.m#{$suf}-#{$key} {
+					@if $is-zero {
+						margin-#{$dir}: 0 !important;
+					} @else {
+						margin-#{$dir}: #{$val} !important;
+					}
+				}
+			}
 
-      @if not $is-zero {
-        @if $dir == x {
-          .m#{$suf}-n#{$key} {
-            margin-left: -#{$val} !important;
-            margin-right: -#{$val} !important;
-          }
-        } @else if $dir == y {
-          .m#{$suf}-n#{$key} {
-            margin-top: -#{$val} !important;
-            margin-bottom: -#{$val} !important;
-          }
-        } @else {
-          .m#{$suf}-n#{$key} {
-            margin-#{$dir}: -#{$val} !important;
-          }
-        }
-      }
-    }
-  }
+			@if not $is-zero {
+				@if $dir == x {
+					.m#{$suf}-n#{$key} {
+						margin-left: -#{$val} !important;
+						margin-right: -#{$val} !important;
+					}
+				} @else if $dir == y {
+					.m#{$suf}-n#{$key} {
+						margin-top: -#{$val} !important;
+						margin-bottom: -#{$val} !important;
+					}
+				} @else {
+					.m#{$suf}-n#{$key} {
+						margin-#{$dir}: -#{$val} !important;
+					}
+				}
+			}
+		}
+	}
 
-  @each $dir, $suf in $directions {
-    @each $key, $val in $spacers {
-      $is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
+	@each $dir, $suf in $directions {
+		@each $key, $val in $spacers {
+			$is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
 
-      @if $dir == x {
-        .p#{$suf}-#{$key} {
-          @if $is-zero {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-          } @else {
-            padding-left: #{$val} !important;
-            padding-right: #{$val} !important;
-          }
-        }
-      } @else if $dir == y {
-        .p#{$suf}-#{$key} {
-          @if $is-zero {
-            padding-top: 0 !important;
-            padding-bottom: 0 !important;
-          } @else {
-            padding-top: #{$val} !important;
-            padding-bottom: #{$val} !important;
-          }
-        }
-      } @else {
-        .p#{$suf}-#{$key} {
-          @if $is-zero {
-            padding-#{$dir}: 0 !important;
-          } @else {
-            padding-#{$dir}: #{$val} !important;
-          }
-        }
-      }
-    }
-  }
+			@if $dir == x {
+				.p#{$suf}-#{$key} {
+					@if $is-zero {
+						padding-left: 0 !important;
+						padding-right: 0 !important;
+					} @else {
+						padding-left: #{$val} !important;
+						padding-right: #{$val} !important;
+					}
+				}
+			} @else if $dir == y {
+				.p#{$suf}-#{$key} {
+					@if $is-zero {
+						padding-top: 0 !important;
+						padding-bottom: 0 !important;
+					} @else {
+						padding-top: #{$val} !important;
+						padding-bottom: #{$val} !important;
+					}
+				}
+			} @else {
+				.p#{$suf}-#{$key} {
+					@if $is-zero {
+						padding-#{$dir}: 0 !important;
+					} @else {
+						padding-#{$dir}: #{$val} !important;
+					}
+				}
+			}
+		}
+	}
 
-  @each $key, $val in $spacers {
-    $is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
+	@each $key, $val in $spacers {
+		$is-zero: math.is-unitless($val) and $val == 0 or $val == 0rem;
 
-    .m-#{$key} {
-      @if $is-zero {
-        margin: 0 !important;
-      } @else {
-        margin: #{$val} !important;
-      }
-    }
+		.m-#{$key} {
+			@if $is-zero {
+				margin: 0 !important;
+			} @else {
+				margin: #{$val} !important;
+			}
+		}
 
-    .p-#{$key} {
-      @if $is-zero {
-        padding: 0 !important;
-      } @else {
-        padding: #{$val} !important;
-      }
-    }
+		.p-#{$key} {
+			@if $is-zero {
+				padding: 0 !important;
+			} @else {
+				padding: #{$val} !important;
+			}
+		}
 
-    @if not $is-zero {
-      .m-n#{$key} {
-        margin: -#{$val} !important;
-      }
-    }
-  }
+		@if not $is-zero {
+			.m-n#{$key} {
+				margin: -#{$val} !important;
+			}
+		}
+	}
 }

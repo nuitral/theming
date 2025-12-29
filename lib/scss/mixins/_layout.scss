@@ -1,179 +1,178 @@
-@use "sass:math";
-@use "sass:map";
+@use 'sass:math';
+@use 'sass:map';
 
 @mixin apply-padding($paddings, $suffix: col) {
-  padding: map.get($paddings, #{$suffix}-y) map.get($paddings, #{$suffix}-x);
-  box-sizing: border-box;
+	padding: map.get($paddings, #{$suffix}-y) map.get($paddings, #{$suffix}-x);
+	box-sizing: border-box;
 }
 
 @mixin generate-flex-base($columns, $paddings) {
-  .layout-flex {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    @include apply-padding($paddings, grid);
-  }
+	.layout-flex {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		@include apply-padding($paddings, grid);
+	}
 
-  .col {
-    flex: 1 1 auto;
-    width: auto;
-    @include apply-padding($paddings);
-  }
+	.col {
+		flex: 1 1 auto;
+		width: auto;
+		@include apply-padding($paddings);
+	}
 
-  .col-auto {
-    flex: 0 0 auto;
-    width: auto;
-    @include apply-padding($paddings);
-  }
+	.col-auto {
+		flex: 0 0 auto;
+		width: auto;
+		@include apply-padding($paddings);
+	}
 
-  @for $i from 1 through $columns {
-    .col-#{$i} {
-      flex: 1 1 auto;
-      max-width: math.percentage(math.div($i, $columns));
-      @include apply-padding($paddings);
-    }
-  }
+	@for $i from 1 through $columns {
+		.col-#{$i} {
+			flex: 1 1 auto;
+			max-width: math.percentage(math.div($i, $columns));
+			@include apply-padding($paddings);
+		}
+	}
 }
 
 @mixin generate-flex-grid($columns, $paddings, $breakpoints-list) {
-  @each $breakpoints in $breakpoints-list {
-    @each $bp, $size in $breakpoints {
-      @media (min-width: $size) {
-        @for $i from 1 through $columns {
-          .#{$bp}-col-#{$i} {
-            flex: 0 0 math.percentage(math.div($i, $columns));
-            max-width: math.percentage(math.div($i, $columns));
-            @include apply-padding($paddings);
-          }
-        }
+	@each $breakpoints in $breakpoints-list {
+		@each $bp, $size in $breakpoints {
+			@media (min-width: $size) {
+				@for $i from 1 through $columns {
+					.#{$bp}-col-#{$i} {
+						flex: 0 0 math.percentage(math.div($i, $columns));
+						max-width: math.percentage(math.div($i, $columns));
+						@include apply-padding($paddings);
+					}
+				}
 
-        .#{$bp}-col-auto {
-          flex: 1 1 auto;
-          max-width: none;
-          @include apply-padding($paddings);
-        }
-      }
-    }
-  }
+				.#{$bp}-col-auto {
+					flex: 1 1 auto;
+					max-width: none;
+					@include apply-padding($paddings);
+				}
+			}
+		}
+	}
 }
 
 @mixin generate-order($to, $breakpoints-list: null) {
-  @for $i from 1 through $to {
-    .order-#{$i} {
-      order: $i;
-    }
-  }
+	@for $i from 1 through $to {
+		.order-#{$i} {
+			order: $i;
+		}
+	}
 
-  @if $breakpoints-list != null {
-    @each $breakpoints in $breakpoints-list {
-      @each $bp, $size in $breakpoints {
-        @media (min-width: $size) {
-          @for $i from 1 through $to {
-            .#{$bp}-order-#{$i} {
-              order: $i;
-            }
-          }
-        }
-      }
-    }
-  }
+	@if $breakpoints-list != null {
+		@each $breakpoints in $breakpoints-list {
+			@each $bp, $size in $breakpoints {
+				@media (min-width: $size) {
+					@for $i from 1 through $to {
+						.#{$bp}-order-#{$i} {
+							order: $i;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 @mixin generate-flex-utilities(
-  $flex-directions,
-  $justify-values,
-  $align-values,
-  $breakpoints-list: null
+	$flex-directions,
+	$justify-values,
+	$align-values,
+	$breakpoints-list: null
 ) {
-  .flex {
-    display: flex !important;
-  }
-  .inline-flex {
-    display: inline-flex !important;
-  }
+	.flex {
+		display: flex !important;
+	}
 
-  @each $key, $value in $flex-directions {
-    .flex-#{$key} {
-      flex-direction: $value !important;
-    }
-  }
+	.inline-flex {
+		display: inline-flex !important;
+	}
 
-  @each $key, $value in $justify-values {
-    .justify-#{$key} {
-      justify-content: $value !important;
-    }
-  }
+	@each $key, $value in $flex-directions {
+		.flex-#{$key} {
+			flex-direction: $value !important;
+		}
+	}
 
-  @each $key, $value in $align-values {
-    .items-#{$key} {
-      align-items: $value !important;
-    }
-  }
+	@each $key, $value in $justify-values {
+		.justify-#{$key} {
+			justify-content: $value !important;
+		}
+	}
 
-  @if $breakpoints-list != null {
-    @each $breakpoints in $breakpoints-list {
-      @each $bp, $size in $breakpoints {
-        @media (min-width: $size) {
-          .#{$bp}-flex {
-            display: flex !important;
-          }
-          .#{$bp}-inline-flex {
-            display: inline-flex !important;
-          }
+	@each $key, $value in $align-values {
+		.items-#{$key} {
+			align-items: $value !important;
+		}
+	}
 
-          @each $key, $value in $flex-directions {
-            .#{$bp}-flex-#{$key} {
-              flex-direction: $value !important;
-            }
-          }
+	@if $breakpoints-list != null {
+		@each $breakpoints in $breakpoints-list {
+			@each $bp, $size in $breakpoints {
+				@media (min-width: $size) {
+					.#{$bp}-flex {
+						display: flex !important;
+					}
+					.#{$bp}-inline-flex {
+						display: inline-flex !important;
+					}
 
-          @each $key, $value in $justify-values {
-            .#{$bp}-justify-#{$key} {
-              justify-content: $value !important;
-            }
-          }
+					@each $key, $value in $flex-directions {
+						.#{$bp}-flex-#{$key} {
+							flex-direction: $value !important;
+						}
+					}
 
-          @each $key, $value in $align-values {
-            .#{$bp}-items-#{$key} {
-              align-items: $value !important;
-            }
-          }
-        }
-      }
-    }
-  }
+					@each $key, $value in $justify-values {
+						.#{$bp}-justify-#{$key} {
+							justify-content: $value !important;
+						}
+					}
+
+					@each $key, $value in $align-values {
+						.#{$bp}-items-#{$key} {
+							align-items: $value !important;
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 @mixin generate-layout($variables) {
-  $layout: map.get($variables, layout);
+	$layout: map.get($variables, layout);
+	$columns: map.get($layout, grid-columns);
+	$paddings: map.get($layout, grid-paddings);
+	$breakpoints: map.get($layout, breakpoints);
+	$device-breakpoints: map.get($breakpoints, device);
+	$viewport-breakpoints: map.get($breakpoints, viewport);
+	$flex: map.get($layout, flex);
+	$flex-directions: map.get($flex, direction);
+	$justify-values: map.get($flex, justify);
+	$align-values: map.get($flex, align);
 
-  $columns: map.get($layout, grid-columns);
-  $paddings: map.get($layout, grid-paddings);
-  $breakpoints: map.get($layout, breakpoints);
-  $device-breakpoints: map.get($breakpoints, device);
-  $viewport-breakpoints: map.get($breakpoints, viewport);
+	@include generate-flex-base($columns, $paddings);
+	@include generate-flex-grid(
+		$columns,
+		$paddings,
+		($viewport-breakpoints, $device-breakpoints)
+	);
 
-  $flex: map.get($layout, flex);
-  $flex-directions: map.get($flex, direction);
-  $justify-values: map.get($flex, justify);
-  $align-values: map.get($flex, align);
+	@include generate-flex-utilities(
+		$flex-directions,
+		$justify-values,
+		$align-values,
+		($viewport-breakpoints, $device-breakpoints)
+	);
 
-  @include generate-flex-base($columns, $paddings);
-  @include generate-flex-grid(
-                  $columns,
-                  $paddings,
-                          ($viewport-breakpoints, $device-breakpoints)
-  );
-
-  @include generate-flex-utilities(
-                  $flex-directions,
-                  $justify-values,
-                  $align-values,
-                          ($viewport-breakpoints, $device-breakpoints)
-  );
-
-  @include generate-order(
-                  $columns,
-                          ($viewport-breakpoints, $device-breakpoints)
-  );
+	@include generate-order(
+		$columns,
+		($viewport-breakpoints, $device-breakpoints)
+	);
 }
