@@ -7,6 +7,10 @@
 	@return rgb(color.red($hex), color.green($hex), color.blue($hex));
 }
 
+@function rgb-values($color) {
+	@return '#{color.red($color)}, #{color.green($color)}, #{color.blue($color)}';
+}
+
 @function generate-color-scale($base-color) {
 	$scale: (
 		100: color.scale(hex-to-rgb($base-color), $lightness: 40%),
