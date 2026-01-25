@@ -7,34 +7,34 @@ $box-shadow-dark-focus: 0 4px 8px rgb(255 255 255 / 20%) !default;
 $border-radius-atoms-value: 4rem !default;
 $corner-shape-atoms-value: squircle !default;
 $border-radius-atoms-scale: (
-        top-left: $border-radius-atoms-value,
-        top-right: $border-radius-atoms-value,
-        bottom-right: $border-radius-atoms-value,
-        bottom-left: $border-radius-atoms-value,
+	top-left: $border-radius-atoms-value,
+	top-right: $border-radius-atoms-value,
+	bottom-right: $border-radius-atoms-value,
+	bottom-left: $border-radius-atoms-value,
 );
 $border-radius-molecules-value: 1rem !default;
 $corner-shape-molecules-value: squircle !default;
 $border-radius-molecules-scale: (
-        top-left: $border-radius-molecules-value,
-        top-right: $border-radius-molecules-value,
-        bottom-right: $border-radius-molecules-value,
-        bottom-left: $border-radius-molecules-value,
+	top-left: $border-radius-molecules-value,
+	top-right: $border-radius-molecules-value,
+	bottom-right: $border-radius-molecules-value,
+	bottom-left: $border-radius-molecules-value,
 );
 $transitions-global: all 0.3s ease !default;
 $directions: (
-        top: 't',
-        right: 'r',
-        bottom: 'b',
-        left: 'l',
-        x: 'x',
-        y: 'y',
+	top: 't',
+	right: 'r',
+	bottom: 'b',
+	left: 'l',
+	x: 'x',
+	y: 'y',
 );
 $misc: (
-        border-radius-atoms: fn.radius-scale($border-radius-atoms-scale),
-        corner-shape-atoms: $corner-shape-atoms-value,
-        border-radius-molecules: fn.radius-scale($border-radius-molecules-scale),
-        corner-shape-molecules: $corner-shape-molecules-value,
-        height-atoms: 40px,
+	border-radius-atoms: fn.radius-scale($border-radius-atoms-scale),
+	corner-shape-atoms: $corner-shape-atoms-value,
+	border-radius-molecules: fn.radius-scale($border-radius-molecules-scale),
+	corner-shape-molecules: $corner-shape-molecules-value,
+	height-atoms: 40px,
 ) !default;
 $height-atoms: var(--height-atoms) !default;
 $border-radius-atoms: var(--border-radius-atoms) !default;

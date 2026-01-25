@@ -4,136 +4,140 @@
 @use '../mixins' as mx;
 
 $default-variables: (
-        layout: var.$layout,
-        misc: var.$misc,
-        text-colors: (
-                light: var.$black,
-                disabled-light: var.$black,
-                dark: var.$white,
-                disabled-dark: var.$white,
-        ),
+	layout: var.$layout,
+	misc: var.$misc,
+	text-colors: (
+		light: var.$black,
+		disabled-light: var.$black,
+		dark: var.$white,
+		disabled-dark: var.$white,
+	),
 );
 
 @function generate-theme($theme-options: null) {
-  $defaults: (
-          scale-light: var.$light-mode,
-          scale-dark: var.$dark-mode,
-          theme-name: 'nuitral',
-          light-class: 'nuitral-light-mode',
-          dark-class: 'nuitral-dark-mode',
-          variables: $default-variables,
-  );
-  $theme-options-checked: if($theme-options == null, (), $theme-options);
+	$defaults: (
+		scale-light: var.$light-mode,
+		scale-dark: var.$dark-mode,
+		theme-name: 'nuitral',
+		light-class: 'nuitral-light-mode',
+		dark-class: 'nuitral-dark-mode',
+		variables: $default-variables,
+	);
+	$theme-options-checked: if($theme-options == null, (), $theme-options);
 
-  @return map.deep-merge($defaults, $theme-options-checked);
+	@return map.deep-merge($defaults, $theme-options-checked);
 }
 
 @mixin apply-theme($theme-map) {
-  $theme-name: map.get($theme-map, theme-name);
-  $light-class: map.get($theme-map, light-class);
-  $dark-class: map.get($theme-map, dark-class);
-  $dark-scale: fn.generate-theme-scale(map.get($theme-map, scale-dark));
-  $light-scale: fn.generate-theme-scale(map.get($theme-map, scale-light));
-  $variables: map.get($theme-map, variables);
+	$theme-name: map.get($theme-map, theme-name);
+	$light-class: map.get($theme-map, light-class);
+	$dark-class: map.get($theme-map, dark-class);
+	$dark-scale: fn.generate-theme-scale(map.get($theme-map, scale-dark));
+	$light-scale: fn.generate-theme-scale(map.get($theme-map, scale-light));
+	$variables: map.get($theme-map, variables);
 
-  // --------------------------------------------------
-  // LIGHT MODE
-  // --------------------------------------------------
+	// --------------------------------------------------
+	// LIGHT MODE
+	// --------------------------------------------------
 
-  [nuitral-theme='#{$theme-name}'].#{$light-class} {
-    --text-color: var(--text-color-light);
-    --box-shadow: #{var.$box-shadow};
-    --box-shadow-focus: #{var.$box-shadow-focus};
+	[nuitral-theme='#{$theme-name}'].#{$light-class} {
+		--text-color: var(--text-color-light);
+		--box-shadow: #{var.$box-shadow};
+		--box-shadow-focus: #{var.$box-shadow-focus};
 
-    @include mx.generate-misc-css-variables($variables);
-    @include mx.generate-css-colors-variables($light-scale);
-    @include mx.generate-text-and-state-variables($light-scale, $variables);
-  }
+		@include mx.generate-misc-css-variables($variables);
+		@include mx.generate-css-colors-variables($light-scale);
+		@include mx.generate-text-and-state-variables($light-scale, $variables);
+	}
 
-  // --------------------------------------------------
-  // DARK MODE
-  // --------------------------------------------------
+	// --------------------------------------------------
+	// DARK MODE
+	// --------------------------------------------------
 
-  [nuitral-theme='#{$theme-name}'].#{$dark-class} {
-    --text-color: var(--text-color-dark);
-    --box-shadow: #{var.$box-shadow-dark};
-    --box-shadow-focus: #{var.$box-shadow-dark-focus};
+	[nuitral-theme='#{$theme-name}'].#{$dark-class} {
+		--text-color: var(--text-color-dark);
+		--box-shadow: #{var.$box-shadow-dark};
+		--box-shadow-focus: #{var.$box-shadow-dark-focus};
 
-    @include mx.generate-misc-css-variables($variables);
-    @include mx.generate-css-colors-variables($dark-scale);
-    @include mx.generate-text-and-state-variables($dark-scale, $variables);
-  }
+		@include mx.generate-misc-css-variables($variables);
+		@include mx.generate-css-colors-variables($dark-scale);
+		@include mx.generate-text-and-state-variables($dark-scale, $variables);
+	}
 
-  // --------------------------------------------------
-  // COMPONENTS
-  // --------------------------------------------------
+	// --------------------------------------------------
+	// COMPONENTS
+	// --------------------------------------------------
 
-  @include mx.box($light-scale, var.$border-radius-molecules, var.$corner-shape-molecules);
+	@include mx.box(
+		$light-scale,
+		var.$border-radius-molecules,
+		var.$corner-shape-molecules
+	);
 
-  @include mx.button(
-                  $light-scale,
-                  var.$height-atoms,
-                  var.$border-radius-atoms,
-                  var.$corner-shape-atoms,
-                  var.$transitions-global,
-                  var(--box-shadow),
-                  var(--box-shadow-focus)
-  );
+	@include mx.button(
+		$light-scale,
+		var.$height-atoms,
+		var.$border-radius-atoms,
+		var.$corner-shape-atoms,
+		var.$transitions-global,
+		var(--box-shadow),
+		var(--box-shadow-focus)
+	);
 
-  @include mx.card(
-                  $light-scale,
-                  var.$border-radius-molecules,
-                  var.$corner-shape-molecules,
-                  var.$transitions-global
-  );
+	@include mx.card(
+		$light-scale,
+		var.$border-radius-molecules,
+		var.$corner-shape-molecules,
+		var.$transitions-global
+	);
 
-  @include mx.input(
-                  var.$primary,
-                  var.$background-400,
-                  var.$background-700,
-                  var.$background-700,
-                  var.$transitions-global,
-                  var.$height-atoms,
-                  var.$border-radius-atoms,
-                  var.$corner-shape-atoms
-  );
+	@include mx.input(
+		var.$primary,
+		var.$background-400,
+		var.$background-700,
+		var.$background-700,
+		var.$transitions-global,
+		var.$height-atoms,
+		var.$border-radius-atoms,
+		var.$corner-shape-atoms
+	);
 
-  @include mx.icon;
+	@include mx.icon;
 
-  @include mx.tab($light-scale, var.$height-atoms, var.$transitions-global);
+	@include mx.tab($light-scale, var.$height-atoms, var.$transitions-global);
 
-  // --------------------------------------------------
-  // COLORS
-  // --------------------------------------------------
+	// --------------------------------------------------
+	// COLORS
+	// --------------------------------------------------
 
-  @include mx.generate-color-classes($light-scale);
+	@include mx.generate-color-classes($light-scale);
 
-  @include mx.generate-background-classes(
-                  $light-scale,
-                  var.$transitions-global
-  );
+	@include mx.generate-background-classes(
+		$light-scale,
+		var.$transitions-global
+	);
 
-  // --------------------------------------------------
-  // SPACING
-  // --------------------------------------------------
+	// --------------------------------------------------
+	// SPACING
+	// --------------------------------------------------
 
-  @include mx.generate-spacing(var.$directions, var.$spacers);
+	@include mx.generate-spacing(var.$directions, var.$spacers);
 
-  // --------------------------------------------------
-  // LAYOUT
-  // --------------------------------------------------
+	// --------------------------------------------------
+	// LAYOUT
+	// --------------------------------------------------
 
-  @include mx.generate-layout($variables);
+	@include mx.generate-layout($variables);
 
-  // --------------------------------------------------
-  // CHIP
-  // --------------------------------------------------
+	// --------------------------------------------------
+	// CHIP
+	// --------------------------------------------------
 
-  @include mx.chip(
-                  $light-scale,
-                  var.$height-atoms,
-                  var.$border-radius-atoms,
-                  var.$corner-shape-atoms,
-                  var.$transitions-global
-  );
+	@include mx.chip(
+		$light-scale,
+		var.$height-atoms,
+		var.$border-radius-atoms,
+		var.$corner-shape-atoms,
+		var.$transitions-global
+	);
 }

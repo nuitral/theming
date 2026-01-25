@@ -2,62 +2,58 @@
 @use 'sass:map';
 
 @mixin generate-css-colors-variables($scale-mode) {
-  @each $var, $scale in $scale-mode {
-    @each $scale-var, $color in $scale {
-      --#{$var}-#{$scale-var}: #{$color};
-      --#{$var}-#{$scale-var}-rgb: #{fn.rgb-values($color)};
-    }
-  }
+	@each $var, $scale in $scale-mode {
+		@each $scale-var, $color in $scale {
+			--#{$var}-#{$scale-var}: #{$color};
+			--#{$var}-#{$scale-var}-rgb: #{fn.rgb-values($color)};
+		}
+	}
 }
 
 @mixin generate-text-and-state-variables($scale-mode, $variables) {
-  --text-color-light: #{fn.get-token($variables, text-colors, light)};
-  --text-color-dark: #{fn.get-token($variables, text-colors, dark)};
+	--text-color-light: #{fn.get-token($variables, text-colors, light)};
+	--text-color-dark: #{fn.get-token($variables, text-colors, dark)};
 
-  @each $var, $scale in $scale-mode {
-    @each $scale-var, $color in $scale {
-      --#{$var}-#{$scale-var}-text: #{fn.apply-text-color(
+	@each $var, $scale in $scale-mode {
+		@each $scale-var, $color in $scale {
+			--#{$var}-#{$scale-var}-text: #{fn.apply-text-color(
 					$color,
 					var(--text-color-light),
 					var(--text-color-dark)
 				)};
-    }
-  }
-  @each $var, $scale in $scale-mode {
-    $base: map.get($scale, 500);
+		}
+	}
+	@each $var, $scale in $scale-mode {
+		$base: map.get($scale, 500);
 
-    --#{$var}-text: #{fn.apply-text-color(
+		--#{$var}-text: #{fn.apply-text-color(
 				$base,
 				var(--text-color-light),
 				var(--text-color-dark)
 			)};
-    --#{$var}-lighten: #{fn.tint-shade($base, 10%, 'lighten')};
-    --#{$var}-darken: #{fn.tint-shade($base, 10%, 'darken')};
-    --#{$var}-extra-light: #{fn.tint-shade($base, 30%, 'lighten')};
-    --#{$var}-extra-dark: #{fn.tint-shade($base, 40%, 'darken')};
-  }
+		--#{$var}-lighten: #{fn.tint-shade($base, 10%, 'lighten')};
+		--#{$var}-darken: #{fn.tint-shade($base, 10%, 'darken')};
+		--#{$var}-extra-light: #{fn.tint-shade($base, 30%, 'lighten')};
+		--#{$var}-extra-dark: #{fn.tint-shade($base, 40%, 'darken')};
+	}
 }
 
 @mixin generate-misc-css-variables($variables) {
-  --height-atoms: #{fn.get-token($variables, misc, height-atoms)};
-  --border-radius-atoms: #{fn.get-token(
+	--height-atoms: #{fn.get-token($variables, misc, height-atoms)};
+	--border-radius-atoms: #{fn.get-token(
 			$variables,
 			misc,
 			border-radius-atoms
 		)};
-  --corner-shape-atoms: #{fn.get-token(
-			$variables,
-			misc,
-			corner-shape-atoms
-		)};
-  --border-radius-molecules: #{fn.get-token(
+	--corner-shape-atoms: #{fn.get-token($variables, misc, corner-shape-atoms)};
+	--border-radius-molecules: #{fn.get-token(
 			$variables,
 			misc,
 			border-radius-molecules
 		)};
-  --corner-shape-molecules: #{fn.get-token(
+	--corner-shape-molecules: #{fn.get-token(
 			$variables,
 			misc,
 			corner-shape-molecules
-		)};;
+		)};
 }

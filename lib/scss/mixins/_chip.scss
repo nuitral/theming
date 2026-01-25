@@ -4,120 +4,132 @@
 @use 'sass:math';
 
 @mixin generate-chip(
-  $light-scale,
-  $height-atoms,
-  $border-radius-atoms,
-  $corner-shape-atoms,
-  $transitions-global
+	$light-scale,
+	$height-atoms,
+	$border-radius-atoms,
+	$corner-shape-atoms,
+	$transitions-global
 ) {
-  .nuitral-chip {
-    height: calc((#{$height-atoms} * 2 / 3) - 2px);
-    border-radius: $border-radius-atoms;
-    corner-shape: $corner-shape-atoms;
-    align-items: center;
-    width: auto;
-    border: 1px solid transparent;
-    padding: 0 8px;
-    display: inline-flex;
-    gap: 4px;
-    color: unset;
-  }
+	.nuitral-chip {
+		height: calc((#{$height-atoms} * 2 / 3) - 2px);
+		border-radius: $border-radius-atoms;
+		corner-shape: $corner-shape-atoms;
+		align-items: center;
+		width: auto;
+		border: 1px solid transparent;
+		padding: 0 8px;
+		display: inline-flex;
+		gap: 4px;
+		color: unset;
+	}
 }
 
 @mixin generate-chip-with-background($var, $scale-var) {
-  background-color: var(--#{$var}-#{$scale-var});
-  color: var(--#{$var}-#{$scale-var}-text);
-  .nuitral-icon {
-    color: var(--#{$var}-#{$scale-var}-text);
-  }
+	background-color: var(--#{$var}-#{$scale-var});
+	color: var(--#{$var}-#{$scale-var}-text);
+
+	.nuitral-icon {
+		color: var(--#{$var}-#{$scale-var}-text);
+	}
 }
 
-@mixin generate-chip-gloss($var, $scale-var, $border-radius-atoms, $corner-shape-atoms) {
-  position: relative;
-  border-color: var(--#{$var}-#{$scale-var});
-  background-color: rgb(var(--#{$var}-#{$scale-var}-rgb), 0.15);
-  color: var(--#{$var}-#{$scale-var});
-  backdrop-filter: blur(10px);
+@mixin generate-chip-gloss(
+	$var,
+	$scale-var,
+	$border-radius-atoms,
+	$corner-shape-atoms
+) {
+	position: relative;
+	border-color: var(--#{$var}-#{$scale-var});
+	background-color: rgb(var(--#{$var}-#{$scale-var}-rgb), 0.15);
+	color: var(--#{$var}-#{$scale-var});
+	backdrop-filter: blur(10px);
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 40%;
-    border-radius: $border-radius-atoms;
-    corner-shape: $corner-shape-atoms;
-    background: linear-gradient(
-                    to bottom,
-                    rgb(255 255 255 / 60%) 0%,
-                    rgb(255 255 255 / 10%) 50%,
-                    transparent 100%
-    );
-  }
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 40%;
+		border-radius: $border-radius-atoms;
+		corner-shape: $corner-shape-atoms;
+		background: linear-gradient(
+			to bottom,
+			rgb(255 255 255 / 60%) 0%,
+			rgb(255 255 255 / 10%) 50%,
+			transparent 100%
+		);
+	}
 
-  .nuitral-icon {
-    color: var(--#{$var}-#{$scale-var});
-  }
+	.nuitral-icon {
+		color: var(--#{$var}-#{$scale-var});
+	}
 }
 
 @mixin generate-chip-outline($var, $scale-var) {
-  border-color: var(--#{$var}-#{$scale-var});
-  color: var(--#{$var}-#{$scale-var});
-  .nuitral-icon {
-    color: var(--#{$var}-#{$scale-var});
-  }
+	border-color: var(--#{$var}-#{$scale-var});
+	color: var(--#{$var}-#{$scale-var});
+
+	.nuitral-icon {
+		color: var(--#{$var}-#{$scale-var});
+	}
 }
 
-@mixin generate-chip-styles($theme, $border-radius-atoms,$corner-shape-atoms) {
-  @each $var, $scale in $theme {
-    @each $scale-var, $color in $scale {
-      @if $scale-var == 500 {
-        .nuitral-chip-#{$var} {
-          @include generate-chip-with-background($var, $scale-var);
-        }
-        .nuitral-chip-#{$var}-gloss {
-          @include generate-chip-gloss(
-                          $var,
-                          $scale-var,
-                          $border-radius-atoms,
-                          $corner-shape-atoms
-          );
-        }
-        .nuitral-chip-#{$var}-outline {
-          @include generate-chip-outline($var, $scale-var);
-        }
-      }
-      .nuitral-chip-#{$var}-#{$scale-var} {
-        @include generate-chip-with-background($var, $scale-var);
-      }
-      .nuitral-chip-#{$var}-#{$scale-var}-gloss {
-        @include generate-chip-gloss(
-                        $var,
-                        $scale-var,
-                        $border-radius-atoms,
-                        $corner-shape-atoms
-        );
-      }
-      .nuitral-chip-#{$var}-#{$scale-var}-outline {
-        @include generate-chip-outline($var, $scale-var);
-      }
-    }
-  }
+@mixin generate-chip-styles($theme, $border-radius-atoms, $corner-shape-atoms) {
+	@each $var, $scale in $theme {
+		@each $scale-var, $color in $scale {
+			@if $scale-var == 500 {
+				.nuitral-chip-#{$var} {
+					@include generate-chip-with-background($var, $scale-var);
+				}
+				.nuitral-chip-#{$var}-gloss {
+					@include generate-chip-gloss(
+						$var,
+						$scale-var,
+						$border-radius-atoms,
+						$corner-shape-atoms
+					);
+				}
+				.nuitral-chip-#{$var}-outline {
+					@include generate-chip-outline($var, $scale-var);
+				}
+			}
+			.nuitral-chip-#{$var}-#{$scale-var} {
+				@include generate-chip-with-background($var, $scale-var);
+			}
+			.nuitral-chip-#{$var}-#{$scale-var}-gloss {
+				@include generate-chip-gloss(
+					$var,
+					$scale-var,
+					$border-radius-atoms,
+					$corner-shape-atoms
+				);
+			}
+			.nuitral-chip-#{$var}-#{$scale-var}-outline {
+				@include generate-chip-outline($var, $scale-var);
+			}
+		}
+	}
 }
 
 @mixin chip(
-  $light-scale,
-  $height-atoms,
-  $border-radius-atoms,
-  $corner-shape-atoms,
-$transitions-global) {
-  @include generate-chip(
-                  $light-scale,
-                  $height-atoms,
-                  $border-radius-atoms,
-                  $corner-shape-atoms,
-                  $transitions-global
-  );
-  @include generate-chip-styles($light-scale, $border-radius-atoms, $corner-shape-atoms);
+	$light-scale,
+	$height-atoms,
+	$border-radius-atoms,
+	$corner-shape-atoms,
+	$transitions-global
+) {
+	@include generate-chip(
+		$light-scale,
+		$height-atoms,
+		$border-radius-atoms,
+		$corner-shape-atoms,
+		$transitions-global
+	);
+	@include generate-chip-styles(
+		$light-scale,
+		$border-radius-atoms,
+		$corner-shape-atoms
+	);
 }
