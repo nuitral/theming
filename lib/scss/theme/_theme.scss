@@ -68,12 +68,13 @@ $default-variables: (
   // COMPONENTS
   // --------------------------------------------------
 
-  @include mx.box($light-scale, var.$border-radius-molecules);
+  @include mx.box($light-scale, var.$border-radius-molecules, var.$corner-shape-molecules);
 
   @include mx.button(
                   $light-scale,
                   var.$height-atoms,
                   var.$border-radius-atoms,
+                  var.$corner-shape-atoms,
                   var.$transitions-global,
                   var(--box-shadow),
                   var(--box-shadow-focus)
@@ -82,6 +83,7 @@ $default-variables: (
   @include mx.card(
                   $light-scale,
                   var.$border-radius-molecules,
+                  var.$corner-shape-molecules,
                   var.$transitions-global
   );
 

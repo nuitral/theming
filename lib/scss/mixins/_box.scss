@@ -1,11 +1,12 @@
 @use '../functions' as fn;
 @use 'sass:color';
 
-@mixin generate-box($border-radius-molecules) {
+@mixin generate-box($border-radius-molecules, $corner-shape-molecules) {
 	.nuitral-box {
 		padding: 1rem;
 		border: 1px solid;
 		border-radius: $border-radius-molecules;
+		corner-shape: $corner-shape-molecules;
 		background: transparent;
 		transition: all 0.3s ease-in-out;
 		box-sizing: border-box;
@@ -46,7 +47,7 @@
 	}
 }
 
-@mixin box($light-scale, $border-radius-molecules) {
+@mixin box($light-scale, $border-radius-molecules, $corner-shape-molecules) {
 	@include generate-box-background-classes($light-scale);
-	@include generate-box($border-radius-molecules);
+	@include generate-box($border-radius-molecules, $corner-shape-molecules);
 }

@@ -3,123 +3,127 @@
 @use 'sass:map';
 
 @mixin generate-button(
-	$transitions-global,
-	$height-atoms,
-	$border-radius-atoms
+  $transitions-global,
+  $height-atoms,
+  $border-radius-atoms,
+$corner-shape-atoms
 ) {
-	.nuitral-button {
-		border-radius: $border-radius-atoms;
-		display: flex;
-		align-items: center;
-		cursor: pointer;
-		height: $height-atoms;
-		overflow: hidden;
-		padding: 8px 16px;
-		box-sizing: border-box;
-		gap: 4px;
-		backface-visibility: hidden;
-		border-style: none;
-		box-shadow: none;
-		font-size: 15px;
-		font-weight: 500;
-		letter-spacing: normal;
-		line-height: 1.5;
-		text-decoration: none;
-		white-space: nowrap;
-		outline: none;
-		transition: $transitions-global;
-	}
+  .nuitral-button {
+    border-radius: $border-radius-atoms;
+    corner-shape: $corner-shape-atoms;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    height: $height-atoms;
+    overflow: hidden;
+    padding: 8px 16px;
+    box-sizing: border-box;
+    gap: 4px;
+    backface-visibility: hidden;
+    border-style: none;
+    box-shadow: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: normal;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+    outline: none;
+    transition: $transitions-global;
+  }
 }
 
 @mixin generate-button-background($var, $scale-var, $box-shadow) {
-	background-color: var(--#{$var}-#{$scale-var});
-	color: var(--#{$var}-#{$scale-var}-text);
-	box-shadow: $box-shadow;
+  background-color: var(--#{$var}-#{$scale-var});
+  color: var(--#{$var}-#{$scale-var}-text);
+  box-shadow: $box-shadow;
 }
 
 @mixin generate-button-states($var, $scale-var, $box-shadow-focus) {
-	&:hover {
-		background-color: var(--#{$var}-extra-light);
-	}
+  &:hover {
+    background-color: var(--#{$var}-extra-light);
+  }
 
-	&:active {
-		background-color: var(--#{$var}-darken);
-	}
+  &:active {
+    background-color: var(--#{$var}-darken);
+  }
 
-	&:focus {
-		box-shadow: var(--box-shadow-focus);
-	}
+  &:focus {
+    box-shadow: var(--box-shadow-focus);
+  }
 
-	&:disabled {
-		opacity: 0.6;
-		background-color: var(--#{$var}-#{$scale-var});
-		color: var(--#{$var}-#{$scale-var}-text);
-		pointer-events: none;
-		box-shadow: none;
-	}
+  &:disabled {
+    opacity: 0.6;
+    background-color: var(--#{$var}-#{$scale-var});
+    color: var(--#{$var}-#{$scale-var}-text);
+    pointer-events: none;
+    box-shadow: none;
+  }
 }
 
 @mixin generate-button-icon($var, $scale-var) {
-	.nuitral-icon {
-		color: var(--#{$var}-#{$scale-var}-text);
-	}
+  .nuitral-icon {
+    color: var(--#{$var}-#{$scale-var}-text);
+  }
 }
 
 @mixin generate-button-background-classes(
-	$theme,
-	$box-shadow,
-	$box-shadow-focus
+  $theme,
+  $box-shadow,
+  $box-shadow-focus
 ) {
-	@each $var, $scale in $theme {
-		@each $scale-var, $color in $scale {
-			@if $scale-var == 500 {
-				.nuitral-button-background-#{$var} {
-					@include generate-button-background(
-						$var,
-						$scale-var,
-						$box-shadow
-					);
-					@include generate-button-states(
-						$var,
-						$scale-var,
-						$box-shadow-focus
-					);
-					@include generate-button-icon($var, $scale-var);
-				}
-			}
-			.nuitral-button-background-#{$var}-#{$scale-var} {
-				@include generate-button-background(
-					$var,
-					$scale-var,
-					$box-shadow
-				);
-				@include generate-button-states(
-					$var,
-					$scale-var,
-					$box-shadow-focus
-				);
-				@include generate-button-icon($var, $scale-var);
-			}
-		}
-	}
+  @each $var, $scale in $theme {
+    @each $scale-var, $color in $scale {
+      @if $scale-var == 500 {
+        .nuitral-button-background-#{$var} {
+          @include generate-button-background(
+                          $var,
+                          $scale-var,
+                          $box-shadow
+          );
+          @include generate-button-states(
+                          $var,
+                          $scale-var,
+                          $box-shadow-focus
+          );
+          @include generate-button-icon($var, $scale-var);
+        }
+      }
+      .nuitral-button-background-#{$var}-#{$scale-var} {
+        @include generate-button-background(
+                        $var,
+                        $scale-var,
+                        $box-shadow
+        );
+        @include generate-button-states(
+                        $var,
+                        $scale-var,
+                        $box-shadow-focus
+        );
+        @include generate-button-icon($var, $scale-var);
+      }
+    }
+  }
 }
 
 @mixin button(
-	$light-scale,
-	$height-atoms,
-	$border-radius-atoms,
-	$transitions-global,
-	$light-box-shadow,
-	$dark-box-shadow
+  $light-scale,
+  $height-atoms,
+  $border-radius-atoms,
+  $corner-shape-atoms,
+  $transitions-global,
+  $light-box-shadow,
+  $dark-box-shadow
 ) {
-	@include generate-button(
-		$transitions-global,
-		$height-atoms,
-		$border-radius-atoms
-	);
-	@include generate-button-background-classes(
-		$light-scale,
-		var(--box-shadow),
-		var(--box-shadow-focus)
-	);
+  @include generate-button(
+                  $transitions-global,
+                  $height-atoms,
+                  $border-radius-atoms,
+                  $corner-shape-atoms,
+  );
+  @include generate-button-background-classes(
+                  $light-scale,
+                  var(--box-shadow),
+                  var(--box-shadow-focus)
+  );
 }

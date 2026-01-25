@@ -33,6 +33,7 @@ $misc: (
         border-radius-atoms: fn.radius-scale($border-radius-atoms-scale),
         corner-shape-atoms: $corner-shape-atoms-value,
         border-radius-molecules: fn.radius-scale($border-radius-molecules-scale),
+        corner-shape-molecules: $corner-shape-molecules-value,
         height-atoms: 40px,
 ) !default;
 $height-atoms: var(--height-atoms) !default;
