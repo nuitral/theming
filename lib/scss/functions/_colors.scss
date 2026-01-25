@@ -4,11 +4,15 @@
 @use 'sass:meta';
 
 @function hex-to-rgb($hex) {
-	@return rgb(color.red($hex), color.green($hex), color.blue($hex));
+	@return rgb(
+		color.channel($hex, 'red', $space: rgb),
+		color.channel($hex, 'green', $space: rgb),
+		color.channel($hex, 'blue', $space: rgb)
+	);
 }
 
 @function rgb-values($color) {
-	@return '#{color.red($color)}, #{color.green($color)}, #{color.blue($color)}';
+	@return '#{color.channel($color, "red", $space: rgb)}, #{color.channel($color, "green", $space: rgb)}, #{color.channel($color, "blue", $space: rgb)}';
 }
 
 @function generate-color-scale($base-color) {
@@ -30,8 +34,6 @@
 	$theme: ();
 
 	@each $key, $base-color in $base-colors-map {
-		@debug $base-color;
-
 		$theme: map.merge(
 			$theme,
 			(
