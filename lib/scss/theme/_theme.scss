@@ -73,7 +73,6 @@ $default-variables: (
 		var.$border-radius-molecules,
 		var.$corner-shape-molecules
 	);
-
 	@include mx.button(
 		$light-scale,
 		var.$height-atoms,
@@ -83,14 +82,12 @@ $default-variables: (
 		var(--box-shadow),
 		var(--box-shadow-focus)
 	);
-
 	@include mx.card(
 		$light-scale,
 		var.$border-radius-molecules,
 		var.$corner-shape-molecules,
 		var.$transitions-global
 	);
-
 	@include mx.input(
 		var.$primary,
 		var.$background-400,
@@ -101,9 +98,7 @@ $default-variables: (
 		var.$border-radius-atoms,
 		var.$corner-shape-atoms
 	);
-
 	@include mx.icon;
-
 	@include mx.tab($light-scale, var.$height-atoms, var.$transitions-global);
 
 	// --------------------------------------------------
@@ -111,7 +106,6 @@ $default-variables: (
 	// --------------------------------------------------
 
 	@include mx.generate-color-classes($light-scale);
-
 	@include mx.generate-background-classes(
 		$light-scale,
 		var.$transitions-global

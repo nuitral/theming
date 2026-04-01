@@ -1,8 +1,8 @@
 @mixin generate-tabs {
 	.nuitral-tabs {
 		display: flex;
-		align-items: center;
 		justify-content: flex-start;
+		align-items: center;
 		flex-wrap: wrap;
 	}
 
@@ -13,14 +13,14 @@
 
 @mixin generate-tab($height-atoms, $transitions-global) {
 	.nuitral-tab {
-		height: $height-atoms;
 		display: flex;
-		align-items: center;
-		gap: 4px;
+		height: $height-atoms;
 		padding: 8px 16px;
+		align-items: center;
+		transition: $transitions-global;
+		gap: 4px;
 		box-sizing: border-box;
 		cursor: pointer;
-		transition: $transitions-global;
 
 		.nuitral-icon {
 			margin-bottom: 2px;
@@ -51,11 +51,13 @@
 			@if $scale-var == 500 {
 				.nuitral-tab-#{$var} {
 					color: var(--text-color);
+
 					@include border-properties($var, $scale-var);
 				}
 			}
 			.nuitral-tab-#{$var}-#{$scale-var} {
 				color: var(--text-color);
+
 				@include border-properties($var, $scale-var);
 			}
 		}

@@ -8,11 +8,11 @@
 ) {
 	.nuitral-card {
 		padding: 1rem;
-		box-sizing: border-box;
-		border-radius: $border-radius-molecules;
-		corner-shape: $corner-shape-molecules;
 		border: 1px solid;
+		border-radius: $border-radius-molecules;
 		transition: $transitions-global;
+		box-sizing: border-box;
+		corner-shape: $corner-shape-molecules;
 	}
 }
 

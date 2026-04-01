@@ -11,26 +11,26 @@
 	$corner-shape-atoms
 ) {
 	.nuitral-input {
+		display: flex;
 		height: $height-atoms;
 		padding: 8px 12px;
-		box-sizing: border-box;
+		align-items: center;
+		background: $background;
 		border: 1px solid $border-color;
 		border-radius: $border-radius-atoms;
-		corner-shape: $corner-shape-atoms;
-		display: flex;
-		align-items: center;
-		gap: 4px;
-		background: $background;
 		transition: $transitions-global;
+		box-sizing: border-box;
+		corner-shape: $corner-shape-atoms;
+		gap: 4px;
 
 		input {
 			width: 100%;
 			font-size: 16px;
-			outline: none;
-			transition: $transitions-global;
 			color: unset;
-			border: none;
 			background: transparent;
+			border: none;
+			transition: $transitions-global;
+			outline: none;
 		}
 
 		@include generate-input-states(

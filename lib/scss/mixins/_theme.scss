@@ -23,6 +23,7 @@
 				)};
 		}
 	}
+
 	@each $var, $scale in $scale-mode {
 		$base: map.get($scale, 500);
 

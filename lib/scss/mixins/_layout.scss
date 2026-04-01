@@ -11,18 +11,21 @@
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
+
 		@include apply-padding($paddings, grid);
 	}
 
 	.col {
-		flex: 1 1 auto;
 		width: auto;
+		flex: 1 1 auto;
+
 		@include apply-padding($paddings);
 	}
 
 	.col-auto {
-		flex: 0 0 auto;
 		width: auto;
+		flex: 0 0 auto;
+
 		@include apply-padding($paddings);
 	}
 
@@ -30,6 +33,7 @@
 		.col-#{$i} {
 			flex: 1 1 auto;
 			max-width: math.percentage(math.div($i, $columns));
+
 			@include apply-padding($paddings);
 		}
 	}
@@ -43,6 +47,7 @@
 					.#{$bp}-col-#{$i} {
 						flex: 0 0 math.percentage(math.div($i, $columns));
 						max-width: math.percentage(math.div($i, $columns));
+
 						@include apply-padding($paddings);
 					}
 				}
@@ -50,6 +55,7 @@
 				.#{$bp}-col-auto {
 					flex: 1 1 auto;
 					max-width: none;
+
 					@include apply-padding($paddings);
 				}
 			}
@@ -163,14 +169,12 @@
 		$paddings,
 		($viewport-breakpoints, $device-breakpoints)
 	);
-
 	@include generate-flex-utilities(
 		$flex-directions,
 		$justify-values,
 		$align-values,
 		($viewport-breakpoints, $device-breakpoints)
 	);
-
 	@include generate-order(
 		$columns,
 		($viewport-breakpoints, $device-breakpoints)

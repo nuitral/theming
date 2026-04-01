@@ -1,4 +1,5 @@
 @use '../scss/index' as nuitral;
 
 $theme-nuitral: nuitral.generate-theme();
+
 @include nuitral.apply-theme($theme-nuitral);

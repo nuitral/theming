@@ -5,6 +5,7 @@
 	@if meta.type-of($radius-map) != 'map' {
 		@return $radius-map;
 	}
+
 	@return map.get($radius-map, $corner);
 }
 

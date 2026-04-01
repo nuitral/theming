@@ -27,6 +27,7 @@
 		800: color.scale(hex-to-rgb($base-color), $lightness: -30%),
 		900: color.scale(hex-to-rgb($base-color), $lightness: -40%),
 	);
+
 	@return $scale;
 }
 

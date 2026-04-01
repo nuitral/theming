@@ -11,16 +11,16 @@
 	$transitions-global
 ) {
 	.nuitral-chip {
+		display: inline-flex;
+		width: auto;
 		height: calc((#{$height-atoms} * 2 / 3) - 2px);
+		padding: 0 8px;
+		align-items: center;
+		color: unset;
+		border: 1px solid transparent;
 		border-radius: $border-radius-atoms;
 		corner-shape: $corner-shape-atoms;
-		align-items: center;
-		width: auto;
-		border: 1px solid transparent;
-		padding: 0 8px;
-		display: inline-flex;
 		gap: 4px;
-		color: unset;
 	}
 }
 
@@ -46,20 +46,20 @@
 	backdrop-filter: blur(10px);
 
 	&::before {
-		content: '';
 		position: absolute;
 		top: 0;
-		left: 0;
 		right: 0;
+		left: 0;
 		height: 40%;
-		border-radius: $border-radius-atoms;
-		corner-shape: $corner-shape-atoms;
 		background: linear-gradient(
 			to bottom,
 			rgb(255 255 255 / 60%) 0%,
 			rgb(255 255 255 / 10%) 50%,
 			transparent 100%
 		);
+		border-radius: $border-radius-atoms;
+		content: '';
+		corner-shape: $corner-shape-atoms;
 	}
 
 	.nuitral-icon {
