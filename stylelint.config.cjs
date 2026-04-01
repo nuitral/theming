@@ -1,16 +1,7 @@
 module.exports = {
-    extends: [
-        'stylelint-config-standard-scss',
-    ],
-
-    plugins: [
-        'stylelint-order',
-    ],
-
+    extends: ['stylelint-config-standard-scss'],
+    plugins: ['stylelint-order'],
     rules: {
-        indentation: 4,
-        'max-empty-lines': 1,
-        'no-extra-semicolons': true,
         'selector-class-pattern': '^[a-z0-9\\-]+$',
         'scss/dollar-variable-pattern': '^[a-z0-9\\-]+$',
         'scss/at-mixin-pattern': '^[a-z0-9\\-]+$',
