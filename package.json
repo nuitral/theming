@@ -15,9 +15,8 @@
   "author": "Nicola Centonze",
   "license": "MIT",
   "scripts": {
-    "format": "prettier \"lib/**/*.scss\" --write",
-    "lint": "stylelint \"lib/**/*.scss\" --fix",
-    "check": "npm run format && npm run lint",
+    "lint:check": "stylelint '**/*.scss'",
+    "lint": "stylelint '**/*.scss' --fix",
     "build": "rm -rf dist && sass --style=compressed lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss"
   },
   "keywords": [
@@ -33,11 +32,11 @@
   "homepage": "https://github.com/nuitral/theming#readme",
   "devDependencies": {
     "ncp": "^2.0.0",
-    "prettier": "^3.7.4",
     "sass": "^1.89.1",
     "stylelint": "^16.26.1",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-order": "^8.1.1",
     "stylelint-scss": "^6.13.0"
   }
 }

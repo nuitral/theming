@@ -1,13 +1,66 @@
 module.exports = {
     extends: [
-        "stylelint-config-standard-scss",
-        "stylelint-config-prettier-scss"
+        'stylelint-config-standard-scss',
     ],
-    plugins: ["stylelint-scss"],
+
+    plugins: [
+        'stylelint-order',
+    ],
+
     rules: {
-        "scss/at-rule-no-unknown": true,
-        "scss/no-global-function-names": true,
-        "scss/at-if-no-null": null,
-        "declaration-empty-line-before": null,
+        indentation: 4,
+        'max-empty-lines': 1,
+        'no-extra-semicolons': true,
+        'selector-class-pattern': '^[a-z0-9\\-]+$',
+        'scss/dollar-variable-pattern': '^[a-z0-9\\-]+$',
+        'scss/at-mixin-pattern': '^[a-z0-9\\-]+$',
+        'scss/percent-placeholder-pattern': '^[a-z0-9\\-]+$',
+        'scss/at-import-no-partial-leading-underscore': true,
+        'scss/no-global-function-names': true,
+        'color-function-notation': null,
+        'alpha-value-notation': null,
+        'number-max-precision': null,
+        'declaration-empty-line-before': null,
+        'order/order': [
+            [
+                'custom-properties',
+                'dollar-variables',
+                'declarations',
+                'rules',
+                'at-rules',
+            ],
+        ],
+
+        'order/properties-order': [
+            [
+                'display',
+                'position',
+                'top',
+                'right',
+                'bottom',
+                'left',
+                'z-index',
+                'width',
+                'height',
+                'margin',
+                'padding',
+                'flex',
+                'flex-direction',
+                'justify-content',
+                'align-items',
+                'font',
+                'font-size',
+                'font-weight',
+                'line-height',
+                'text-align',
+                'color',
+                'background',
+                'border',
+                'border-radius',
+                'opacity',
+                'transition',
+                'transform',
+            ],
+        ],
     },
-};
+}
