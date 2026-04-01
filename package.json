@@ -15,9 +15,10 @@
   "author": "Nicola Centonze",
   "license": "MIT",
   "scripts": {
-    "format": "prettier \"lib/**/*.scss\" --write",
-    "lint:check": "stylelint '**/*.scss'",
-    "lint": "npm run format && stylelint '**/*.scss' --fix",
+    "format:scss": "prettier 'lib/**/*.scss' --write",
+    "stylelint:check": "stylelint 'lib/**/*.scss'",
+    "stylelint:fix": "stylelint . --fix",
+    "lint": "npm run format:scss && npm run stylelint:fix",
     "build": "rm -rf dist && sass --style=compressed lib/themes/default.scss:dist/nuitral.css && npx ncp lib/scss dist/scss"
   },
   "keywords": [

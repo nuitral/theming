@@ -1,27 +1,18 @@
 module.exports = {
     extends: ['stylelint-config-standard-scss'],
     plugins: ['stylelint-order'],
+    ignoreFiles: ['node_modules/**', 'dist/**', 'media/**', '**/*.cjs', 'package-lock.json', 'package.json', '**/*.md', 'LICENSE' ],
     rules: {
         'selector-class-pattern': '^[a-z0-9\\-]+$',
         'scss/dollar-variable-pattern': '^[a-z0-9\\-]+$',
         'scss/at-mixin-pattern': '^[a-z0-9\\-]+$',
         'scss/percent-placeholder-pattern': '^[a-z0-9\\-]+$',
-        'scss/at-import-no-partial-leading-underscore': true,
+        'scss/load-no-partial-leading-underscore': true,
         'scss/no-global-function-names': true,
         'color-function-notation': null,
         'alpha-value-notation': null,
         'number-max-precision': null,
         'declaration-empty-line-before': null,
-        'order/order': [
-            [
-                'custom-properties',
-                'dollar-variables',
-                'declarations',
-                'rules',
-                'at-rules',
-            ],
-        ],
-
         'order/properties-order': [
             [
                 'display',
