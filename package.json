@@ -1,8 +1,14 @@
 {
   "name": "@nuitral/theming",
-  "version": "0.0.1-beta.2",
+  "version": "0.0.1-beta.3",
   "sass": "dist/scss/_index.scss",
   "style": "dist/nuitral.css",
+  "exports": {
+    ".": {
+      "sass": "./dist/scss/_index.scss",
+      "default": "./dist/nuitral.css"
+    }
+  },
   "publishConfig": {
     "access": "public"
   },

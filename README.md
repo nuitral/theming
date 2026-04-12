@@ -8,7 +8,7 @@
 
 <p><b>nuitral theming</b> is part of the <b>nuitral</b> suite and handles theming creation.</p>
 <p>It takes advantage of the power of SCSS and the flexibility of CSS to provide the best development experience.</p>
-<p><b>Status:</b> This project is currently in <b>alpha version</b>.</p>
+<p><b>Status:</b> This project is currently in <b>beta version</b>.</p>
 
 ---
 

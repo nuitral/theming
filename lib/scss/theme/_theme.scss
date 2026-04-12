@@ -23,7 +23,11 @@ $default-variables: (
 		dark-class: 'nuitral-dark-mode',
 		variables: $default-variables,
 	);
-	$theme-options-checked: if($theme-options == null, (), $theme-options);
+	$theme-options-checked: ();
+
+	@if $theme-options {
+		$theme-options-checked: $theme-options;
+	}
 
 	@return map.deep-merge($defaults, $theme-options-checked);
 }
@@ -134,4 +138,10 @@ $default-variables: (
 		var.$corner-shape-atoms,
 		var.$transitions-global
 	);
+
+	// --------------------------------------------------
+	// LIST
+	// --------------------------------------------------
+
+	@include mx.generate-list;
 }

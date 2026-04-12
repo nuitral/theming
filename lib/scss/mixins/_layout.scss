@@ -1,5 +1,6 @@
 @use 'sass:math';
 @use 'sass:map';
+@use 'sass:list';
 
 @mixin apply-padding($paddings, $suffix: col) {
 	padding: map.get($paddings, #{$suffix}-y) map.get($paddings, #{$suffix}-x);
@@ -63,14 +64,14 @@
 	}
 }
 
-@mixin generate-order($to, $breakpoints-list: null) {
+@mixin generate-order($to, $breakpoints-list: ()) {
 	@for $i from 1 through $to {
 		.order-#{$i} {
 			order: $i;
 		}
 	}
 
-	@if $breakpoints-list != null {
+	@if $breakpoints-list {
 		@each $breakpoints in $breakpoints-list {
 			@each $bp, $size in $breakpoints {
 				@media (min-width: $size) {
@@ -89,7 +90,7 @@
 	$flex-directions,
 	$justify-values,
 	$align-values,
-	$breakpoints-list: null
+	$breakpoints-list: ()
 ) {
 	.flex {
 		display: flex !important;
@@ -117,13 +118,14 @@
 		}
 	}
 
-	@if $breakpoints-list != null {
+	@if list.length($breakpoints-list) > 0 {
 		@each $breakpoints in $breakpoints-list {
 			@each $bp, $size in $breakpoints {
 				@media (min-width: $size) {
 					.#{$bp}-flex {
 						display: flex !important;
 					}
+
 					.#{$bp}-inline-flex {
 						display: inline-flex !important;
 					}

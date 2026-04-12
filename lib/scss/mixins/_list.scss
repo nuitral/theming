@@ -1,0 +1,28 @@
+@mixin generate-list() {
+	.nuitral-list {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		&.horizontal {
+			flex-direction: row;
+		}
+
+		&.vertical {
+			height: 100%;
+			flex-direction: column;
+		}
+
+		.start,
+		.end {
+			flex: 0 0 auto;
+		}
+
+		.default {
+			display: flex;
+			flex: 1;
+			justify-content: start;
+			align-items: center;
+		}
+	}
+}
