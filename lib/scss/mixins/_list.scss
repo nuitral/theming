@@ -1,28 +1,54 @@
 @mixin generate-list() {
 	.nuitral-list {
 		display: flex;
-		justify-content: space-between;
 		align-items: center;
-
-		&.horizontal {
-			flex-direction: row;
-		}
-
-		&.vertical {
-			height: 100%;
-			flex-direction: column;
-		}
 
 		.start,
 		.end {
 			flex: 0 0 auto;
 		}
 
-		.default {
-			display: flex;
-			flex: 1;
-			justify-content: start;
-			align-items: center;
+		&.horizontal {
+			flex-direction: row;
+			width: 100%;
+
+
+			.default {
+				display: flex;
+				justify-content: center;
+				flex: 1;
+				&.j-center {
+					justify-content: center;
+				}
+				&.j-start {
+					justify-content: flex-start;
+				}
+
+				&.j-end {
+					justify-content: flex-end;
+				}
+			}
+
+
+		}
+
+		&.vertical {
+			flex-direction: column;
+			height: 100%;
+
+			.default {
+				&.j-center {
+					margin-top: auto;
+					margin-bottom: auto;
+				}
+				&.j-start {
+					margin-bottom: auto;
+				}
+
+				&.j-end {
+					margin-top: auto;
+				}
+			}
 		}
 	}
 }
